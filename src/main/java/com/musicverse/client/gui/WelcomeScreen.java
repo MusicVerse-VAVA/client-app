@@ -1,15 +1,31 @@
 package com.musicverse.client.gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import lombok.SneakyThrows;
 
 public class WelcomeScreen {
+
+    private static Stage primaryStage;
+    private static BorderPane rootLayout;
+
     public static VBox getHolder(){
+
+        Button registerBtn, loginBtn, registerArtistBtn;
+        Label guest;
+
         // Requesting the Java versions used by the application
         //(top/right/bottom/left)
         final String versionJava = System.getProperty("java.version");
@@ -26,17 +42,17 @@ public class WelcomeScreen {
         title.setAlignment(Pos.TOP_LEFT);
         title.setPadding(new Insets(40,10, 10, 40));
 
-        Button registerBtn = new Button("Create an account");
+        registerBtn = new Button("Create an account");
         registerBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
         registerBtn.setAlignment(Pos.TOP_CENTER);
 
-        Button loginBtn = new Button("I already have an account");
+        loginBtn = new Button("I already have an account");
         loginBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
 
-        Button registerArtistBtn = new Button("Create an artist account");
+        registerArtistBtn = new Button("Create an artist account");
         registerArtistBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
 
-        Label guest = new Label("continue without registration");
+        guest = new Label("continue without registration");
         guest.setStyle("-fx-text-fill: white; -fx-font-size: 15px;");
         guest.setMaxWidth(Double.MAX_VALUE);
         guest.setAlignment(Pos.CENTER);
@@ -57,6 +73,20 @@ public class WelcomeScreen {
         VBox holder = new VBox(title, buttons, motto);
         holder.setSpacing(20);
         holder.setStyle("-fx-background-color: #3D3F3C");
+
+        loginBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @SneakyThrows
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Parent root = FXMLLoader.load(getClass().getResource("/LoginScreen.fxml"));
+                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root, 1200,600);
+                window.setTitle("title");
+                window.setScene(scene);
+                window.show();
+            }
+        });
+
         return holder;
     }
 }
