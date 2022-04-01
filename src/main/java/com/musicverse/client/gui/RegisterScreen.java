@@ -9,9 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class LoginScreen {
+public class RegisterScreen {
+
+    @FXML
+    private Circle avatarCircle;
 
     @FXML
     private Label backBtn;
@@ -20,10 +24,21 @@ public class LoginScreen {
     private TextField emailField;
 
     @FXML
-    private Button logInBtn;
+    private TextField nickNameField;
+
+    @FXML
+    private PasswordField pswd2Field;
 
     @FXML
     private PasswordField pswdField;
+
+    @FXML
+    private Button signUpBtn;
+
+    @FXML
+    void onAvatarClick(MouseEvent event) {
+
+    }
 
     @FXML
     void onBackBtnClick(MouseEvent event) {
@@ -35,8 +50,12 @@ public class LoginScreen {
     }
 
     @FXML
-    void onLogInBtnClick(ActionEvent event) {
+    void onSignUpClick(ActionEvent event) {
 
+    }
+
+    void setLabelText(String text){
+        signUpBtn.setText(text);
     }
 
 }

@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.LoginScreen">
    <children>
       <Label layoutX="50.0" layoutY="49.0" text="Welcome to MUSICVERSE!" textFill="WHITE">
@@ -39,11 +38,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField prefHeight="0.0" prefWidth="226.0" GridPane.columnIndex="1" />
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="emailField" prefHeight="0.0" prefWidth="226.0" GridPane.columnIndex="1" />
+            <PasswordField fx:id="pswdField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="561.0" layoutY="390.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" style="-fx-background-color: #58A034;" text="Log in" textFill="WHITE">
+      <Button fx:id="logInBtn" layoutX="561.0" layoutY="390.0" mnemonicParsing="false" onAction="#onLogInBtnClick" prefHeight="40.0" prefWidth="138.0" style="-fx-background-color: #58A034;" text="Log in" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -53,5 +52,10 @@
             <Font size="18.0" />
          </font>
       </Text>
+      <Label fx:id="backBtn" layoutX="50.0" layoutY="529.0" onMouseClicked="#onBackBtnClick" prefHeight="26.0" prefWidth="43.0" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

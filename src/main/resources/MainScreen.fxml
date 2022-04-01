@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1199.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.MainScreen">
+   <children>
+      <Label fx:id="title" layoutX="38.0" layoutY="28.0" prefHeight="27.0" prefWidth="112.0" text="MUSICVERSE" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="loginMainScreenLabel" layoutX="734.0" layoutY="28.0" prefHeight="27.0" prefWidth="49.0" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="registerMainScreenLabel" layoutX="792.0" layoutY="28.0" prefHeight="27.0" prefWidth="70.0" text="Register" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="nickLabel" layoutX="935.0" layoutY="29.0" prefHeight="27.0" prefWidth="89.0" text="Guest/nick" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="settingsLabel" layoutX="1096.0" layoutY="28.0" prefHeight="27.0" prefWidth="89.0" text="Settings" textFill="WHITE">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="46.0" layoutX="21.0" layoutY="80.0" stroke="WHITE" strokeType="INSIDE" width="1159.0" AnchorPane.leftAnchor="21.0" />
+      <Label fx:id="likedSongsLabel1" layoutX="354.0" layoutY="95.0" text="Liked songs" textFill="WHITE" AnchorPane.leftAnchor="344.0">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="likedArtistsLabel" layoutX="564.0" layoutY="95.0" text="Liked artists" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="likedAlbumsLabel1" layoutX="778.0" layoutY="95.0" text="Liked albums" textFill="WHITE" AnchorPane.rightAnchor="344.0">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="297.0" layoutX="22.0" layoutY="144.0" stroke="WHITE" strokeType="INSIDE" width="200.0" AnchorPane.leftAnchor="21.0" />
+      <Label fx:id="playlistsLabel" layoutX="32.0" layoutY="147.0" prefHeight="27.0" prefWidth="186.0" text="List of playlists" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="184.3333282470703" layoutX="21.0" layoutY="174.0" startX="12.333332061767578" stroke="WHITE" />
+      <ListView layoutX="31.0" layoutY="179.0" prefHeight="260.0" prefWidth="176.0" style="-fx-background-color: #3D3F3C;" />
+      <Rectangle fx:id="playerBox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="143.0" layoutX="18.0" layoutY="447.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
+      <Label fx:id="currentSongLabel" layoutX="66.0" layoutY="469.0" text="currentSongLabel">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="currentArtistLabel" layoutX="65.0" layoutY="487.0" text="currentArtistLabel">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="playerLine" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="13.0" layoutX="307.0" layoutY="578.0" stroke="BLACK" strokeType="INSIDE" width="827.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="65.0" />
+      <Rectangle fx:id="genresBoxes" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="396.0" layoutX="232.0" layoutY="144.0" stroke="WHITE" strokeType="INSIDE" width="948.0" />
+      <Label fx:id="searchMusicLabel" layoutX="627.0" layoutY="163.0" text="Search music by genre" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="rockGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#2d6294" height="130.0" layoutX="244.0" layoutY="199.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="130.0" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="199.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="classicGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#33a871" height="130.0" layoutX="407.0" layoutY="195.0" stroke="BLACK" strokeType="INSIDE" width="130.0" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="199.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="oldiesGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#b3c933" height="130.0" layoutX="580.0" layoutY="196.0" stroke="BLACK" strokeType="INSIDE" width="130.0" AnchorPane.leftAnchor="565.0" AnchorPane.topAnchor="199.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="countryGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#bf5e22" height="130.0" layoutX="757.0" layoutY="216.0" stroke="BLACK" strokeType="INSIDE" width="130.0" AnchorPane.leftAnchor="725.0" AnchorPane.topAnchor="199.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="bluesGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#bd2b22" height="130.0" layoutX="910.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" width="130.0" AnchorPane.leftAnchor="885.0" AnchorPane.topAnchor="199.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="hiphopGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#bd8522" height="130.0" layoutX="1057.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" width="130.0" AnchorPane.leftAnchor="1040.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="mixGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#8b2c8f" height="130.0" layoutX="244.0" layoutY="356.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="130.0" AnchorPane.leftAnchor="244.0" AnchorPane.topAnchor="356.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="christmasGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#8f2c31" height="130.0" layoutX="425.0" layoutY="369.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="130.0" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="356.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="kidsGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#91c0c4" height="130.0" layoutX="570.0" layoutY="370.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="130.0" AnchorPane.leftAnchor="565.0" AnchorPane.topAnchor="356.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="popGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#2cf1ff" height="130.0" layoutX="743.0" layoutY="371.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="130.0" AnchorPane.leftAnchor="725.0" AnchorPane.topAnchor="356.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="partyGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#74eb2a" height="130.0" layoutX="911.0" layoutY="367.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="130.0" AnchorPane.leftAnchor="885.0" AnchorPane.topAnchor="356.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle fx:id="chillGenreBox" arcHeight="5.0" arcWidth="5.0" fill="#845ef5" height="130.0" layoutX="1035.0" layoutY="356.0" stroke="BLACK" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="0.0" width="130.0" AnchorPane.leftAnchor="1040.0" AnchorPane.topAnchor="356.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Label fx:id="rockBoxLabel" layoutX="244.0" layoutY="216.0" prefHeight="28.0" prefWidth="68.0" text="Rock" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="classicBoxLabel" layoutX="407.0" layoutY="217.0" prefHeight="28.0" prefWidth="116.0" text="Classical" textFill="WHITE" AnchorPane.leftAnchor="407.0">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="oldiesBoxLabel" layoutX="568.0" layoutY="215.0" prefHeight="28.0" prefWidth="125.0" text="Oldies" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="countryBoxLabel" layoutX="726.0" layoutY="219.0" prefHeight="28.0" prefWidth="130.0" text="Country" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="bluesBoxLabel" layoutX="885.0" layoutY="217.0" prefHeight="28.0" prefWidth="130.0" text="Blues" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="hiphopBoxLabel" layoutX="1043.0" layoutY="220.0" prefHeight="28.0" prefWidth="125.0" text="Hip-Hop" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="mixBoxLabel" layoutX="247.0" layoutY="373.0" prefHeight="28.0" prefWidth="140.0" text="Mix" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="christmasBoxLabel" layoutX="404.0" layoutY="373.0" prefHeight="28.0" prefWidth="130.0" text="Christmas" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="kidsBoxLabel" layoutX="564.0" layoutY="373.0" prefHeight="28.0" prefWidth="132.0" text="Kids" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="popBoxLabel" layoutX="724.0" layoutY="374.0" prefHeight="28.0" prefWidth="132.0" text="Pop" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="partyBoxLabel" layoutX="885.0" layoutY="371.0" prefHeight="28.0" prefWidth="132.0" text="Party" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label fx:id="chillBoxLabel" layoutX="1040.0" layoutY="372.0" prefHeight="28.0" prefWidth="130.0" text="Chill" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>
