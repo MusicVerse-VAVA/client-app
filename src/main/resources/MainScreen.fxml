@@ -3,6 +3,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -16,22 +20,17 @@
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="loginMainScreenLabel" layoutX="734.0" layoutY="28.0" prefHeight="27.0" prefWidth="49.0" text="Login" textFill="WHITE">
+      <Label fx:id="loginMainScreenLabel" layoutX="734.0" layoutY="28.0" onMouseClicked="#loginLabelClick" prefHeight="27.0" prefWidth="49.0" text="Login" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="registerMainScreenLabel" layoutX="792.0" layoutY="28.0" prefHeight="27.0" prefWidth="70.0" text="Register" textFill="WHITE">
+      <Label fx:id="registerMainScreenLabel" layoutX="792.0" layoutY="28.0" onMouseClicked="#registerLabelClick" prefHeight="27.0" prefWidth="70.0" text="Register" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="nickLabel" layoutX="935.0" layoutY="29.0" prefHeight="27.0" prefWidth="89.0" text="Guest/nick" textFill="WHITE">
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="settingsLabel" layoutX="1096.0" layoutY="28.0" prefHeight="27.0" prefWidth="89.0" text="Settings" textFill="WHITE">
+      <Label fx:id="nickLabel" layoutX="884.0" layoutY="29.0" prefHeight="27.0" prefWidth="179.0" text="Guest/nick" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
@@ -71,7 +70,7 @@
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <Rectangle fx:id="playerLine" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="13.0" layoutX="307.0" layoutY="578.0" stroke="BLACK" strokeType="INSIDE" width="827.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="65.0" />
+      <Rectangle fx:id="playerLine" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="13.0" layoutX="281.0" layoutY="570.0" stroke="BLACK" strokeType="INSIDE" width="827.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="91.0" />
       <Rectangle fx:id="genresBoxes" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="396.0" layoutX="232.0" layoutY="144.0" stroke="WHITE" strokeType="INSIDE" width="948.0" />
       <Label fx:id="searchMusicLabel" layoutX="627.0" layoutY="163.0" text="Search music by genre" textFill="WHITE">
          <font>
@@ -234,5 +233,22 @@
             <Insets left="20.0" />
          </padding>
       </Label>
+      <MenuButton fx:id="settingsDropDown" layoutX="1080.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #3D3F3C;" text="Settings" textFill="WHITE">
+        <items>
+          <MenuItem fx:id="settingsMenuItemProfile" mnemonicParsing="false" text="Profile" />
+          <MenuItem fx:id="settingsMenuItemSettings" mnemonicParsing="false" text="Settings" />
+            <MenuItem fx:id="settingsMenuItemAA" mnemonicParsing="false" text="Artist section" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="settingsMenuItemLogOut" mnemonicParsing="false" text="Log out" />
+        </items>
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </MenuButton>
+      <TextField fx:id="searchField" layoutX="203.0" layoutY="28.0" promptText="Search">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

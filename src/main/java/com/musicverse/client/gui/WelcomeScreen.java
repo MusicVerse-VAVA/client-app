@@ -126,6 +126,8 @@ public class WelcomeScreen {
                 Parent root = loader.load();
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root, 1200,600);
+                com.musicverse.client.gui.MainScreen controler = loader.getController();
+                controler.setRole(1);
                 window.setTitle("MusicVerse");
                 window.setScene(scene);
                 window.show();
