@@ -10,64 +10,16 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class MainScreen {
-
-    @FXML
-    private Label bluesBoxLabel;
-
-    @FXML
-    private Rectangle bluesGenreBox;
-
-    @FXML
-    private Label chillBoxLabel;
-
-    @FXML
-    private Rectangle chillGenreBox;
-
-    @FXML
-    private Label christmasBoxLabel;
-
-    @FXML
-    private Rectangle christmasGenreBox;
-
-    @FXML
-    private Label classicBoxLabel;
-
-    @FXML
-    private Rectangle classicGenreBox;
-
-    @FXML
-    private Label countryBoxLabel;
-
-    @FXML
-    private Rectangle countryGenreBox;
-
-    @FXML
-    private Label currentArtistLabel;
-
-    @FXML
-    private Label currentSongLabel;
-
-    @FXML
-    private Rectangle genresBoxes;
-
-    @FXML
-    private Label hiphopBoxLabel;
-
-    @FXML
-    private Rectangle hiphopGenreBox;
-
-    @FXML
-    private Label kidsBoxLabel;
-
-    @FXML
-    private Rectangle kidsGenreBox;
 
     @FXML
     private Label likedAlbumsLabel1;
@@ -82,58 +34,14 @@ public class MainScreen {
     private Label loginMainScreenLabel;
 
     @FXML
-    private Label mixBoxLabel;
-
-    @FXML
-    private Rectangle mixGenreBox;
-
-    @FXML
     private Label nickLabel;
-
-    @FXML
-    private Label oldiesBoxLabel;
-
-    @FXML
-    private Rectangle oldiesGenreBox;
-
-    @FXML
-    private Label partyBoxLabel;
-
-    @FXML
-    private Rectangle partyGenreBox;
-
-    @FXML
-    private Rectangle playerBox;
-
-    @FXML
-    private Rectangle playerLine;
 
     @FXML
     private Label playlistsLabel;
 
-    @FXML
-    private Label popBoxLabel;
-
-    @FXML
-    private Rectangle popGenreBox;
 
     @FXML
     private Label registerMainScreenLabel;
-
-    @FXML
-    private Label rockBoxLabel;
-
-    @FXML
-    private Rectangle rockGenreBox;
-
-    @FXML
-    private Label searchMusicLabel;
-
-    @FXML
-    private Label settingsLabel;
-
-    @FXML
-    private Label title;
 
     @FXML
     private MenuButton settingsDropDown;
@@ -141,21 +49,67 @@ public class MainScreen {
     @FXML
     private MenuItem settingsMenuItemAA;
 
-    @FXML
-    private MenuItem settingsMenuItemLogOut;
-
-    @FXML
-    private MenuItem settingsMenuItemProfile;
-
-    @FXML
-    private MenuItem settingsMenuItemSettings;
-
-    @FXML
-    private TextField searchField;
-
     private int role = -1;
 
     private String userName = "Guest";
+
+    @FXML
+    private GridPane rectanglesGrid;
+
+    static String randomColor(){
+
+        int red = (int)Math.floor(Math.random()*(255-1+1)+1);
+        int green = (int)Math.floor(Math.random()*(255-1+1)+1);
+        int blue = (int)Math.floor(Math.random()*(255-1+1)+1);
+
+        String red1 = String.valueOf(red);
+        String green1 = String.valueOf(green);
+        String blue1 = String.valueOf(blue);
+
+        return "-fx-background-color: rgba(" + red1 +"," + green1 + "," + blue1 + ",0.99); -fx-pref-height: 60px";
+    }
+
+    void setRectangles(String[] items){
+
+        int rowNum = (int) Math.ceil((double) items.length / 6);
+
+        for (int i = 0; i < rowNum; i++) {
+            RowConstraints rowConst = new RowConstraints(100);
+            rowConst.setPercentHeight(100.0 / rowNum);
+            rectanglesGrid.getRowConstraints().add(rowConst);
+        }
+
+        int counter = 0;
+        for (int row=0; row < rowNum; row++) {
+            for (int col=0; col < 6; col++){
+
+                Label labelOfBox = new Label(items[counter]);
+                labelOfBox.setStyle("-fx-text-fill: white; -fx-font-size: 25px; -fx-padding: 5; -fx-font-weight: bold");
+
+                Pane pane = new Pane();
+                pane.setStyle(randomColor());
+
+                AnchorPane anchorPane = new AnchorPane();
+                anchorPane.getChildren().add(labelOfBox);
+
+                pane.setOnMouseReleased(e -> {
+                    System.out.println(labelOfBox);
+                });
+
+                pane.getChildren().add(anchorPane);
+                rectanglesGrid.add(pane, col, row);
+
+                if (counter == (items.length -1)){
+                    break;
+                }
+                counter++;
+            }
+            if (counter == (items.length )){
+                break;
+            }
+        }
+
+    }
 
     void setRole(int i){
 
@@ -216,8 +170,5 @@ public class MainScreen {
     void registerLabelClick(MouseEvent event) {
         loadFxml(event,"/RegisterScreen.fxml", "Register");
     }
-
-
-
 
 }

@@ -128,6 +128,8 @@ public class WelcomeScreen {
                 Scene scene = new Scene(root, 1200,600);
                 com.musicverse.client.gui.MainScreen controler = loader.getController();
                 controler.setRole(1);
+                String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
+                controler.setRectangles(items);
                 window.setTitle("MusicVerse");
                 window.setScene(scene);
                 window.show();
