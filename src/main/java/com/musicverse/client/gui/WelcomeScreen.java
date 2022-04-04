@@ -1,5 +1,6 @@
 package com.musicverse.client.gui;
 
+import com.musicverse.client.InitScreensFunctions;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -81,12 +82,7 @@ public class WelcomeScreen {
             @SneakyThrows
             @Override
             public void handle(ActionEvent actionEvent) {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginScreen.fxml")));
-                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root, 1200,600);
-                window.setTitle("Log in user");
-                window.setScene(scene);
-                window.show();
+                new InitScreensFunctions().initLoginScreen(actionEvent);
             }
         });
 
@@ -94,12 +90,7 @@ public class WelcomeScreen {
             @SneakyThrows
             @Override
             public void handle(ActionEvent actionEvent) {
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/RegisterScreen.fxml")));
-                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root, 1200,600);
-                window.setTitle("Register new user");
-                window.setScene(scene);
-                window.show();
+                new InitScreensFunctions().initRegistrationScreen(actionEvent, 1);
             }
         });
 
@@ -107,32 +98,14 @@ public class WelcomeScreen {
             @SneakyThrows
             @Override
             public void handle(ActionEvent actionEvent) {
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/RegisterScreen.fxml")));
-                Parent root = loader.load();
-                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                com.musicverse.client.gui.RegisterScreen controler = loader.getController();
-                controler.setLabelText("Request to be an artist");
-                Scene scene = new Scene(root, 1200,600);
-                window.setTitle("Register new artist");
-                window.setScene(scene);
-                window.show();
+                new InitScreensFunctions().initRegistrationScreen(actionEvent, 2);
             }
         });
         guest.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @SneakyThrows
             @Override
             public void handle(MouseEvent event) {
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
-                Parent root = loader.load();
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root, 1200,600);
-                com.musicverse.client.gui.MainScreen controler = loader.getController();
-                controler.setRole(1);
-                String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
-                controler.setRectangles(items);
-                window.setTitle("MusicVerse");
-                window.setScene(scene);
-                window.show();
+                new InitScreensFunctions().initMainScreen(event);
             }
         });
 

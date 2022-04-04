@@ -54,7 +54,7 @@ public class RegisterScreen {
 
     }
 
-    void setLabelText(String text){
+    public void setLabelText(String text){
         signUpBtn.setText(text);
     }
 

@@ -1,5 +1,7 @@
 package com.musicverse.client.gui;
 
+import com.musicverse.client.InitScreensFunctions;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,16 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class MainScreen {
 
@@ -42,6 +40,10 @@ public class MainScreen {
 
     @FXML
     private Label registerMainScreenLabel;
+
+
+    @FXML
+    private MenuItem settingsMenuItemSettings;
 
     @FXML
     private MenuButton settingsDropDown;
@@ -69,7 +71,7 @@ public class MainScreen {
         return "-fx-background-color: rgba(" + red1 +"," + green1 + "," + blue1 + ",0.99); -fx-pref-height: 60px";
     }
 
-    void setRectangles(String[] items){
+    public void setRectangles(String[] items){
 
         int rowNum = (int) Math.ceil((double) items.length / 6);
 
@@ -111,7 +113,12 @@ public class MainScreen {
 
     }
 
-    void setRole(int i){
+    @FXML
+    void onSettingsClick(ActionEvent event) {
+        new InitScreensFunctions().initSettingsScreen(event, settingsDropDown, "Settings", "/SettingsScreen.fxml");
+    }
+
+    public void setRole(int i){
 
         this.role = i;
         registerMainScreenLabel.setVisible(false);
@@ -150,8 +157,8 @@ public class MainScreen {
         }
     }
 
-    @SneakyThrows
-    void loadFxml(MouseEvent event, String fxml, String title){
+    /*@SneakyThrows
+    public void loadFxml(MouseEvent event, String fxml, String title){
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)));
         Parent root = loader.load();
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -160,15 +167,25 @@ public class MainScreen {
         window.setScene(scene);
         window.show();
     }
+    @SneakyThrows
+    void loadFxml(String fxml, String title){
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)));
+        Parent root = loader.load();
+        Stage window = (Stage) settingsDropDown.getScene().getWindow();
+        Scene scene = new Scene(root, 1200,600);
+        window.setScene(scene);
+        window.setTitle(title);
+        window.show();
+    }*/
 
     @FXML
-    void loginLabelClick(MouseEvent event) {
-        loadFxml(event,"/LoginScreen.fxml", "Login");
+    void loginLabelClick(ActionEvent event) {
+        new InitScreensFunctions().initLoginScreen(event);
     }
 
     @FXML
-    void registerLabelClick(MouseEvent event) {
-        loadFxml(event,"/RegisterScreen.fxml", "Register");
+    void registerLabelClick(ActionEvent event) {
+        new InitScreensFunctions().initRegistrationScreen(event, 1);
     }
 
 }

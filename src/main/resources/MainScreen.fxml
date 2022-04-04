@@ -239,7 +239,7 @@
       <MenuButton fx:id="settingsDropDown" layoutX="1080.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #3D3F3C;" text="Settings" textFill="WHITE">
         <items>
           <MenuItem fx:id="settingsMenuItemProfile" mnemonicParsing="false" text="Profile" />
-          <MenuItem fx:id="settingsMenuItemSettings" mnemonicParsing="false" text="Settings" />
+          <MenuItem fx:id="settingsMenuItemSettings" mnemonicParsing="false" onAction="#onSettingsClick" text="Settings" />
             <MenuItem fx:id="settingsMenuItemAA" mnemonicParsing="false" text="Artist section" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem fx:id="settingsMenuItemLogOut" mnemonicParsing="false" text="Log out" />
