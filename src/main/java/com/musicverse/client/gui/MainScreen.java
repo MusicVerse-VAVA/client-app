@@ -3,21 +3,15 @@ package com.musicverse.client.gui;
 import com.musicverse.client.InitScreensFunctions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import lombok.SneakyThrows;
-
-import java.util.Objects;
-
 public class MainScreen {
+
+    @FXML
+    public AnchorPane mainPane;
 
     @FXML
     private Label likedAlbumsLabel1;
@@ -47,6 +41,9 @@ public class MainScreen {
 
     @FXML
     private MenuButton settingsDropDown;
+
+    @FXML
+    private MenuBar menuBarTest;
 
     @FXML
     private MenuItem settingsMenuItemAA;
@@ -113,14 +110,13 @@ public class MainScreen {
 
     }
 
-    @FXML
-    void onSettingsClick(ActionEvent event) {
-        new InitScreensFunctions().initSettingsScreen(event, settingsDropDown, "Settings", "/SettingsScreen.fxml");
-    }
-
     public void setRole(int i){
 
         this.role = i;
+
+        SettingsDropDown settingsDropDownImported = new SettingsDropDown();
+        menuBarTest.getMenus().add(settingsDropDownImported.menu(role, mainPane, "main"));
+
         registerMainScreenLabel.setVisible(false);
         loginMainScreenLabel.setVisible(false);
         nickLabel.setText(userName);
@@ -134,7 +130,6 @@ public class MainScreen {
                 break;
 
             case 0:
-                settingsDropDown.setVisible(false);
                 playlistsLabel.setText("Only for registered");
                 likedAlbumsLabel1.setVisible(false);
                 likedArtistsLabel.setVisible(false);
@@ -144,39 +139,15 @@ public class MainScreen {
                 break;
 
             case 1:
-                settingsMenuItemAA.setVisible(false);
                 break;
 
             case 2:
-                settingsMenuItemAA.setText("Artist section");
-
+                break;
             case 3:
-                settingsMenuItemAA.setText("Admin section");
             default:
                 break;
         }
     }
-
-    /*@SneakyThrows
-    public void loadFxml(MouseEvent event, String fxml, String title){
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)));
-        Parent root = loader.load();
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1200,600);
-        window.setTitle(title);
-        window.setScene(scene);
-        window.show();
-    }
-    @SneakyThrows
-    void loadFxml(String fxml, String title){
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)));
-        Parent root = loader.load();
-        Stage window = (Stage) settingsDropDown.getScene().getWindow();
-        Scene scene = new Scene(root, 1200,600);
-        window.setScene(scene);
-        window.setTitle(title);
-        window.show();
-    }*/
 
     @FXML
     void loginLabelClick(ActionEvent event) {

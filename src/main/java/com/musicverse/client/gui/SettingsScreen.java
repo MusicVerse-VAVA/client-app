@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class SettingsCreen {
+public class SettingsScreen {
 
     @FXML
     private Label backLabel;
@@ -42,6 +42,8 @@ public class SettingsCreen {
     @FXML
     private Label title;
 
+    private String from;
+
     @FXML
     void onBackLabelClick(MouseEvent event) {
         new InitScreensFunctions().initMainScreen(event);
@@ -55,6 +57,10 @@ public class SettingsCreen {
     @FXML
     void onSaveBtnClick(ActionEvent event) {
 
+    }
+
+    public void setFrom(String from){
+        this.from = from;
     }
 
 }

@@ -3,10 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1199.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.MainScreen">
+<AnchorPane prefHeight="600.0" fx:id="mainPane" prefWidth="1199.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.MainScreen">
    <children>
       <Label fx:id="title" layoutX="38.0" layoutY="28.0" prefHeight="27.0" prefWidth="112.0" text="MUSICVERSE" textFill="WHITE">
          <font>
@@ -236,18 +234,6 @@
             <Insets left="20.0" />
          </padding>
       </Label>
-      <MenuButton fx:id="settingsDropDown" layoutX="1080.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #3D3F3C;" text="Settings" textFill="WHITE">
-        <items>
-          <MenuItem fx:id="settingsMenuItemProfile" mnemonicParsing="false" text="Profile" />
-          <MenuItem fx:id="settingsMenuItemSettings" mnemonicParsing="false" onAction="#onSettingsClick" text="Settings" />
-            <MenuItem fx:id="settingsMenuItemAA" mnemonicParsing="false" text="Artist section" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem fx:id="settingsMenuItemLogOut" mnemonicParsing="false" text="Log out" />
-        </items>
-         <font>
-            <Font name="Calibri" size="18.0" />
-         </font>
-      </MenuButton>
       <TextField fx:id="searchField" layoutX="203.0" layoutY="28.0" promptText="Search">
          <font>
             <Font size="14.0" />
@@ -270,5 +256,6 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <MenuBar fx:id="menuBarTest" layoutX="1080.0" layoutY="24.0" />
    </children>
 </AnchorPane>
