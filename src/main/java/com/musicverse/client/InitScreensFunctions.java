@@ -26,7 +26,7 @@ public class InitScreensFunctions {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200,600);
         com.musicverse.client.gui.MainScreen controler = loader.getController();
-        controler.setRole(2);
+        controler.setRole(3);
         String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
         controler.setRectangles(items);
         window.setTitle("MusicVerse");
@@ -76,6 +76,9 @@ public class InitScreensFunctions {
         }else if (Objects.equals(Title, "Settings")){
             com.musicverse.client.gui.SettingsScreen controler = loader.getController();
             controler.setFrom(from);
+        }else if (Objects.equals(Title, "Admin")){
+            com.musicverse.client.gui.AdminSectionScreen controler = loader.getController();
+            controler.setSettings(from);
         }
         Scene scene = new Scene(root, 1200,600);
         window.setScene(scene);

@@ -40,7 +40,11 @@ public class SettingsDropDown {
         });
 
         AAItem.setOnAction(e -> {
-            new InitScreensFunctions().initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", pane, from);
+            if (role == 2)
+                new InitScreensFunctions().initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", pane, from);
+            else if (role == 3)
+                new InitScreensFunctions().initSettingsScreen("Admin", "/AdminSectionScreen.fxml", pane, from);
+
         });
 
         logOutItem.setOnAction(e -> {
