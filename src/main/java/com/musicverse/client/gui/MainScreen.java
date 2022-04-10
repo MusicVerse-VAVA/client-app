@@ -1,5 +1,7 @@
 package com.musicverse.client.gui;
 
+import java.io.IOException;
+
 import com.musicverse.client.InitScreensFunctions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -150,12 +152,12 @@ public class MainScreen {
     }
 
     @FXML
-    void loginLabelClick(ActionEvent event) {
+    void loginLabelClick(ActionEvent event) throws IOException {
         new InitScreensFunctions().initLoginScreen(event);
     }
 
     @FXML
-    void registerLabelClick(ActionEvent event) {
+    void registerLabelClick(ActionEvent event) throws IOException {
         new InitScreensFunctions().initRegistrationScreen(event, 1);
     }
 

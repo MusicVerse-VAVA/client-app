@@ -15,12 +15,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class InitScreensFunctions {
 
     @SneakyThrows
-    public void initMainScreen(MouseEvent event){
+    public void initMainScreen(MouseEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         Parent root = loader.load();
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -35,7 +36,7 @@ public class InitScreensFunctions {
     }
 
     @SneakyThrows
-    public void initRegistrationScreen(ActionEvent actionEvent, int role){
+    public void initRegistrationScreen(ActionEvent actionEvent, int role) throws IOException{
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/RegisterScreen.fxml")));
         Parent root = loader.load();
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -56,7 +57,7 @@ public class InitScreensFunctions {
     }
 
     @SneakyThrows
-    public void initLoginScreen(ActionEvent actionEvent){
+    public void initLoginScreen(ActionEvent actionEvent) throws IOException{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginScreen.fxml")));
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200,600);
@@ -66,7 +67,7 @@ public class InitScreensFunctions {
     }
 
     @SneakyThrows
-    public void initSettingsScreen(String Title, String fxml, AnchorPane pane, String from){
+    public void initSettingsScreen(String Title, String fxml, AnchorPane pane, String from) throws IOException{
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)));
         Parent root = loader.load();
         Stage window = (Stage) pane.getScene().getWindow();

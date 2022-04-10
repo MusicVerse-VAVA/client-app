@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class WelcomeScreen {
@@ -82,7 +83,12 @@ public class WelcomeScreen {
             @SneakyThrows
             @Override
             public void handle(ActionEvent actionEvent) {
-                new InitScreensFunctions().initLoginScreen(actionEvent);
+                try {
+					new InitScreensFunctions().initLoginScreen(actionEvent);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -90,7 +96,12 @@ public class WelcomeScreen {
             @SneakyThrows
             @Override
             public void handle(ActionEvent actionEvent) {
-                new InitScreensFunctions().initRegistrationScreen(actionEvent, 1);
+                try {
+					new InitScreensFunctions().initRegistrationScreen(actionEvent, 1);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -98,14 +109,24 @@ public class WelcomeScreen {
             @SneakyThrows
             @Override
             public void handle(ActionEvent actionEvent) {
-                new InitScreensFunctions().initRegistrationScreen(actionEvent, 2);
+                try {
+					new InitScreensFunctions().initRegistrationScreen(actionEvent, 2);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
         guest.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @SneakyThrows
             @Override
             public void handle(MouseEvent event) {
-                new InitScreensFunctions().initMainScreen(event);
+                try {
+					new InitScreensFunctions().initMainScreen(event);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 

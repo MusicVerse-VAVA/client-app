@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class ArtistSectionScreen {
@@ -82,7 +83,7 @@ public class ArtistSectionScreen {
     private String from;
 
     @FXML
-    void backLabelClick(MouseEvent event) {
+    void backLabelClick(MouseEvent event) throws IOException {
         new InitScreensFunctions().initMainScreen(event);
     }
 

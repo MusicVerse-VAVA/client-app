@@ -1,5 +1,7 @@
 package com.musicverse.client.gui;
 
+import java.io.IOException;
+
 import com.musicverse.client.InitScreensFunctions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +47,7 @@ public class SettingsScreen {
     private String from;
 
     @FXML
-    void onBackLabelClick(MouseEvent event) {
+    void onBackLabelClick(MouseEvent event) throws IOException {
         new InitScreensFunctions().initMainScreen(event);
     }
 

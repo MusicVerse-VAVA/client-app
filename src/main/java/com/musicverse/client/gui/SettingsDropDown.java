@@ -1,5 +1,7 @@
 package com.musicverse.client.gui;
 
+import java.io.IOException;
+
 import com.musicverse.client.InitScreensFunctions;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -36,14 +38,29 @@ public class SettingsDropDown {
         }
 
         settingsItem.setOnAction(e -> {
-            new InitScreensFunctions().initSettingsScreen("Settings", "/SettingsScreen.fxml", pane, from);
+            try {
+				new InitScreensFunctions().initSettingsScreen("Settings", "/SettingsScreen.fxml", pane, from);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         });
 
         AAItem.setOnAction(e -> {
             if (role == 2)
-                new InitScreensFunctions().initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", pane, from);
-            else if (role == 3)
-                new InitScreensFunctions().initSettingsScreen("Admin", "/AdminSectionScreen.fxml", pane, from);
+				try {
+					new InitScreensFunctions().initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", pane, from);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			else if (role == 3)
+				try {
+					new InitScreensFunctions().initSettingsScreen("Admin", "/AdminSectionScreen.fxml", pane, from);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
         });
 
