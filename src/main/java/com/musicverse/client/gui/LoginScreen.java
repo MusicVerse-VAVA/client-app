@@ -1,9 +1,14 @@
 package com.musicverse.client.gui;
 
 import java.sql.ResultSet;
+import java.sql.SQLOutput;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.Preferences;
 
 import com.musicverse.client.Database;
 
+import com.musicverse.client.objects.User;
+import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -73,9 +78,18 @@ public class LoginScreen {
 	    		loginAlert.setAlertType(AlertType.INFORMATION);
 	   		 	loginAlert.setContentText("PRIHLASENY POUZIVATEL : "+result.getString("nickname"));
 	            loginAlert.show();
+
+				//Session management
+				Preferences prefs = Preferences.userRoot().node("com/musicverse/client/sessionManagement/PreferencesLogin.java");
+				PreferencesLogin prefLogin = new PreferencesLogin();
+				User user = new User(result.getString("nickName"), result.getString("email"), result.getInt("access_level")
+				, result.getInt("id"), "000000");
+				prefLogin.setPreference(user);
+				System.out.println(PreferencesLogin.getPrefs().getEmail());
 	    	}
 	    	
    		 	this.goBack(event);
+
     	}
     	catch(Exception e){
     		//...
