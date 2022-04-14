@@ -6,6 +6,7 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 
@@ -45,9 +46,14 @@ public class AudioPlayer {
         playing = true;
     }
 
-    public long getLengthInMicroseconds() throws MusicPlayerException {
+    public Duration getLength() throws MusicPlayerException {
         if (audioClip == null) openClip();
-        return audioClip.getMicrosecondLength();
+        return Duration.of(audioClip.getMicrosecondLength(), ChronoUnit.MICROS);
+    }
+
+    public Duration getCurrentPlaybackPosition() throws MusicPlayerException {
+        if (audioClip == null) return Duration.ZERO;
+        return Duration.of(audioClip.getMicrosecondPosition(), ChronoUnit.MICROS);
     }
 
     public void seekTo(Duration time) throws MusicPlayerException {
