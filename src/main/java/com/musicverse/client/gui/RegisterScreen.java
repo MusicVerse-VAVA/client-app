@@ -15,12 +15,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import com.musicverse.client.Database;
+import com.musicverse.client.ServerAPI;
+import lombok.val;
 
 public class RegisterScreen {
 	
-	private Database db;
-
     @FXML
     private Circle avatarCircle;
 
@@ -68,32 +67,24 @@ public class RegisterScreen {
              return;
     	}
     	try {
-	    	db = new Database();
+	    	val api = ServerAPI.getInstance();
 	    	String nickname = this.nickNameField.getText();
 	    	String email = this.emailField.getText();
+            String password = this.pswdField.getText();
 	    	
-	    	if(db.emailExists(email)) {
-	    		registerAlert.setAlertType(AlertType.ERROR);
-	   		 	registerAlert.setContentText("Tento email už používa iný používate¾");
-	            registerAlert.show();
-	            return;
-	    	}
-	    	
-	    	if(db.nicknameExists(nickname)) {
-	    		registerAlert.setAlertType(AlertType.ERROR);
-	   		 	registerAlert.setContentText("Tento nickname už používa iný používate¾");
-	            registerAlert.show();
-	            return;
-	    	}
-	    	
-	    	db.registerUser(email,nickname,this.pswdField.getText());
+	    	if (!api.registerUser(email, nickname, password)) {
+                registerAlert.setAlertType(AlertType.ERROR);
+                registerAlert.setContentText("Username or Email is already in use!");
+                registerAlert.show();
+                return;
+            };
 	    	registerAlert.setAlertType(AlertType.INFORMATION);
    		 	registerAlert.setContentText("Používate¾ bol vytvorený!");
    		 	registerAlert.show();
    		 	this.goBack(event);
     	}
     	catch(Exception e){
-    		//...
+            e.printStackTrace();
     	}
 
     }

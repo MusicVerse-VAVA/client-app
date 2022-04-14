@@ -1,11 +1,6 @@
 package com.musicverse.client.gui;
 
-import java.sql.ResultSet;
-import java.sql.SQLOutput;
-import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.Preferences;
-
-import com.musicverse.client.Database;
+import com.musicverse.client.ServerAPI;
 
 import com.musicverse.client.objects.User;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
@@ -22,11 +17,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import lombok.val;
 
 public class LoginScreen {
 	
-	private Database db;
-
     @FXML
     private Label backBtn;
 
@@ -57,18 +51,12 @@ public class LoginScreen {
     @FXML
     void onLogInBtnClick(ActionEvent event) {
     	try {
-	    	db = new Database();
+	    	val api = ServerAPI.getInstance();
 	    	String password = this.pswdField.getText();
 	    	String email = this.emailField.getText();
-	    	
-	    	if(!db.emailExists(email)) {
-	    		loginAlert.setAlertType(AlertType.ERROR);
-	   		 	loginAlert.setContentText("Používate¾ s týmto e-mailom neexistuje");
-	            loginAlert.show();
-	            return;
-	    	}
-	    	ResultSet result = db.authenticate(email, password);
-	    	if(result == null) {
+
+			val userJson = api.authenticate(email, password);
+	    	if(userJson == null) {
 	    		loginAlert.setAlertType(AlertType.ERROR);
 	   		 	loginAlert.setContentText("Nesprávne prihlasovacie údaje");
 	            loginAlert.show();
@@ -76,14 +64,13 @@ public class LoginScreen {
 	    	}
 	    	else {
 	    		loginAlert.setAlertType(AlertType.INFORMATION);
-	   		 	loginAlert.setContentText("PRIHLASENY POUZIVATEL : "+result.getString("nickname"));
+	   		 	loginAlert.setContentText("PRIHLASENY POUZIVATEL : " + userJson.getString("username"));
 	            loginAlert.show();
 
 				//Session management
-				Preferences prefs = Preferences.userRoot().node("com/musicverse/client/sessionManagement/PreferencesLogin.java");
 				PreferencesLogin prefLogin = new PreferencesLogin();
-				User user = new User(result.getString("nickName"), result.getString("email"), result.getInt("access_level")
-				, result.getInt("id"), "000000");
+				User user = new User(userJson.getString("username"), userJson.getString("email"), userJson.getInt("accessLevel")
+				, userJson.getInt("id"), "000000");
 				prefLogin.setPreference(user);
 				System.out.println(PreferencesLogin.getPrefs().getEmail());
 	    	}
@@ -92,7 +79,7 @@ public class LoginScreen {
 
     	}
     	catch(Exception e){
-    		//...
+    		e.printStackTrace();
     	}
 
     }
