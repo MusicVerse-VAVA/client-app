@@ -53,6 +53,18 @@ public class ServerAPI {
 		});
 	}
 
+	public JsonNode getUserPlaylists(int id){
+		val payload = new ObjectNode();
+		payload.set("id", id);
+		return queryServerJson("playlists", payload, (code, response) -> {
+			if (response.getString("status").equals("ok")) {
+				return response.get("playlists");
+			} else {
+				return null;
+			}
+		});
+	}
+
 	private <R> R queryServerJson(String url, JsonNode request, ServerQueryCallback<JsonNode, R> callback) {
 		return queryServerBinary(url, request, (code, bin) -> {
 			val json = JsonNode.parse(new String(bin));

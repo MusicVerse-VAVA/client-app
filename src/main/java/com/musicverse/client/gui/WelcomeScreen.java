@@ -130,7 +130,7 @@ public class WelcomeScreen {
             }
         });
 
-
         return holder;
     }
+
 }
