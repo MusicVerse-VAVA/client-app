@@ -65,6 +65,17 @@ public class ServerAPI {
 		});
 	}
 
+	public JsonNode getPublicPlaylists(){
+		val payload = new ObjectNode();
+		return queryServerJson("allplaylists", payload, (code, response) -> {
+			if (response.getString("status").equals("ok")) {
+				return response.get("playlists");
+			} else {
+				return null;
+			}
+		});
+	}
+
 	private <R> R queryServerJson(String url, JsonNode request, ServerQueryCallback<JsonNode, R> callback) {
 		return queryServerBinary(url, request, (code, bin) -> {
 			val json = JsonNode.parse(new String(bin));

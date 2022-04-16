@@ -1,16 +1,18 @@
 package com.musicverse.client.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.sessionManagement.PreferencesLogin;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 public class MainScreen {
+
 
     @FXML
     public AnchorPane mainPane;
@@ -32,6 +34,9 @@ public class MainScreen {
 
     @FXML
     private Label playlistsLabel;
+
+    @FXML
+    private ListView listOfPlaylists;
 
 
     @FXML
@@ -70,7 +75,7 @@ public class MainScreen {
         return "-fx-background-color: rgba(" + red1 +"," + green1 + "," + blue1 + ",0.99); -fx-pref-height: 60px";
     }
 
-    public void setRectangles(String[] items){
+    public void setRectangles(String [] items){
 
         int rowNum = (int) Math.ceil((double) items.length / 6);
 
@@ -79,6 +84,7 @@ public class MainScreen {
             rowConst.setPercentHeight(100.0 / rowNum);
             rectanglesGrid.getRowConstraints().add(rowConst);
         }
+
 
         int counter = 0;
         for (int row=0; row < rowNum; row++) {
@@ -150,6 +156,14 @@ public class MainScreen {
                 break;
         }
     }
+
+    public void setPlaylists(HashMap<Integer,String> list){
+        for (String name : list.values()){
+            listOfPlaylists.getItems().add(name);
+        }
+    }
+
+
 
     @FXML
     void loginLabelClick(ActionEvent event) throws IOException {

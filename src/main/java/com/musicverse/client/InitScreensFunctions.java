@@ -1,27 +1,55 @@
 package com.musicverse.client;
 
-import com.musicverse.client.gui.MainScreen;
+import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
+import  com.musicverse.client.ServerAPI;
+import lombok.val;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class InitScreensFunctions {
 
     @SneakyThrows
-    public void initMainScreen(MouseEvent event) throws IOException{
+    public void initMainScreen(ActionEvent event, HashMap<Integer,String> list) throws IOException{
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
+        Parent root = loader.load();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1200,600);
+        com.musicverse.client.gui.MainScreen controler = loader.getController();
+        controler.setRole(3);
+        String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
+        controler.setRectangles(items);
+
+        //Pridanie public playlistov k private playlistom -> pre guesta sa zobrazia only public playlisty
+        try {
+            val api = ServerAPI.getInstance();
+            val playlists = api.getPublicPlaylists();
+            for (int i = 0; i<playlists.size();i++) {
+                list.put(playlists.get(i).getInt("id"),playlists.get(i).getString("name"));
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        controler.setPlaylists(list);
+        window.setTitle("MusicVerse");
+        window.setScene(scene);
+        window.show();
+    }
+
+    public void initMainScreen(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         Parent root = loader.load();
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

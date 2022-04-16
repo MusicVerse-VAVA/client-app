@@ -83,7 +83,7 @@ public class ArtistSectionScreen {
     private String from;
 
     @FXML
-    void backLabelClick(MouseEvent event) throws IOException {
+    void backLabelClick(ActionEvent event) throws IOException {
         new InitScreensFunctions().initMainScreen(event);
     }
 

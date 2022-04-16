@@ -47,7 +47,7 @@ public class SettingsScreen {
     private String from;
 
     @FXML
-    void onBackLabelClick(MouseEvent event) throws IOException {
+    void onBackLabelClick(ActionEvent event) throws IOException {
         new InitScreensFunctions().initMainScreen(event);
     }
 

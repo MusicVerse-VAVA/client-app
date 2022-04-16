@@ -59,7 +59,7 @@
          </font>
       </Label>
       <Line endX="184.3333282470703" layoutX="21.0" layoutY="174.0" startX="12.333332061767578" stroke="WHITE" />
-      <ListView layoutX="31.0" layoutY="179.0" prefHeight="260.0" prefWidth="176.0" style="-fx-background-color: #3D3F3C;" />
+      <ListView fx:id="listOfPlaylists" layoutX="31.0" layoutY="179.0" prefHeight="260.0" prefWidth="176.0" style="-fx-background-color: #3D3F3C;" />
       <Rectangle fx:id="playerBox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="143.0" layoutX="18.0" layoutY="447.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
       <Label fx:id="currentSongLabel" layoutX="66.0" layoutY="469.0" text="currentSongLabel">
          <font>

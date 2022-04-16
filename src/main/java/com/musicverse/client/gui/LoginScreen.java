@@ -1,5 +1,6 @@
 package com.musicverse.client.gui;
 
+import com.falsepattern.json.node.JsonNode;
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.ServerAPI;
 
@@ -23,6 +24,7 @@ import lombok.SneakyThrows;
 import lombok.val;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class LoginScreen {
 	
@@ -81,7 +83,12 @@ public class LoginScreen {
 
 				//zmena obrazovky
 				val response = api.getUserPlaylists(PreferencesLogin.getPrefs().getId());
-				System.out.println("playlisty tohto pouzivatela : "+response);
+				try {
+					new InitScreensFunctions().initMainScreen(event , createPlaylist(response));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 	    	}
 	    	
@@ -93,6 +100,14 @@ public class LoginScreen {
     	}
 
     }
+
+	private HashMap<Integer,String> createPlaylist(JsonNode playlists){
+		HashMap<Integer,String> list = new HashMap<>();
+		for (int i = 0; i<playlists.size();i++) {
+			list.put(playlists.get(i).getInt("id"),playlists.get(i).getString("name"));
+		}
+		return list;
+	}
 
 
 }

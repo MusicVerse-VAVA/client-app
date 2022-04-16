@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class WelcomeScreen {
@@ -28,8 +29,7 @@ public class WelcomeScreen {
 
     public static VBox getHolder(){
 
-        Button registerBtn, loginBtn, registerArtistBtn;
-        Label guest;
+        Button registerBtn, loginBtn, registerArtistBtn, guestBtn;
 
         // Requesting the Java versions used by the application
         //(top/right/bottom/left)
@@ -57,11 +57,11 @@ public class WelcomeScreen {
         registerArtistBtn = new Button("Create an artist account");
         registerArtistBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
 
-        guest = new Label("continue without registration");
-        guest.setStyle("-fx-text-fill: white; -fx-font-size: 15px;");
-        guest.setMaxWidth(Double.MAX_VALUE);
-        guest.setAlignment(Pos.CENTER);
-        guest.setUnderline(true);
+        guestBtn = new Button("Continue without registration");
+        guestBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
+        guestBtn.setMaxWidth(Double.MAX_VALUE);
+        guestBtn.setAlignment(Pos.CENTER);
+        guestBtn.setUnderline(true);
 
         Label motto = new Label("where all the music experience is indescribably unearthly");
         motto.setStyle("-fx-text-fill: white; -fx-font-size: 18px; ");
@@ -73,7 +73,7 @@ public class WelcomeScreen {
         buttons.add(registerBtn, 0, 0);
         buttons.add(loginBtn, 0, 1);
         buttons.add(registerArtistBtn, 0, 2);
-        buttons.add(guest, 0, 3);
+        buttons.add(guestBtn, 0, 3);
 
         VBox holder = new VBox(title, buttons, motto);
         holder.setSpacing(20);
@@ -117,12 +117,13 @@ public class WelcomeScreen {
 				}
             }
         });
-        guest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        guestBtn.setOnAction(new EventHandler<ActionEvent>() {
             @SneakyThrows
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(ActionEvent event) {
                 try {
-					new InitScreensFunctions().initMainScreen(event);
+                    //TODO : Ziskaj playlisty vsetkych userov ktore nie su private
+					new InitScreensFunctions().initMainScreen(event,new HashMap<Integer, String>());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
