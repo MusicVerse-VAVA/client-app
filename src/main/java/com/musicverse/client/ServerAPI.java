@@ -100,13 +100,18 @@ public class ServerAPI {
 		val requestURI = String.format("%s:%d/%s", hostname, port, url);
 		val conn = (HttpURLConnection) new URL(requestURI).openConnection();
 		conn.setRequestProperty("User-Agent", "musicverse-client");
-		conn.setRequestMethod(method.name());
 		conn.setDoInput(true);
 		conn.setDoOutput(true);
+		conn.setRequestMethod(method.name());
+		conn.connect();
 		val os = conn.getOutputStream();
 		os.write(request.toString().getBytes(StandardCharsets.UTF_8));
 		os.flush();
 		os.close();
+		val responseCode = conn.getResponseCode();
+		if (responseCode != 200) {
+			throw new IllegalStateException("ERROR: Server returned error code " + responseCode + ": " + conn.getResponseMessage());
+		}
 		val content = conn.getInputStream().readAllBytes();
 		return callback.processResponse(conn.getResponseCode(), content);
 	}
