@@ -15,6 +15,7 @@ import lombok.val;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class InitScreensFunctions {
@@ -29,7 +30,7 @@ public class InitScreensFunctions {
         com.musicverse.client.gui.MainScreen controler = loader.getController();
         controler.setRole(PreferencesLogin.getPrefs().getRole());
         String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
-        controler.setRectangles(items);
+
 
         //Pridanie public playlistov k private playlistom -> pre guesta sa zobrazia only public playlisty
         try {
@@ -39,7 +40,13 @@ public class InitScreensFunctions {
                 list.put(playlists.get(i).getInt("id"),playlists.get(i).getString("name"));
             }*/
             val genres = api.getGenres();
-            System.out.println(genres);
+
+            ArrayList<String> genresList = new ArrayList<String>();
+            for (int i = 0; i < genres.size(); i++)
+                genresList.add(genres.get(i).getString("genre"));
+
+            controler.setRectangles(genresList);
+
         }
         catch (Exception e){
             e.printStackTrace();
@@ -60,7 +67,25 @@ public class InitScreensFunctions {
         com.musicverse.client.gui.MainScreen controler = loader.getController();
         controler.setRole(3);
         String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
-        controler.setRectangles(items);
+        try {
+            val api = ServerAPI.getInstance();
+            val playlists = api.getPublicPlaylists();
+            /*for (int i = 0; i<playlists.size();i++) {
+                list.put(playlists.get(i).getInt("id"),playlists.get(i).getString("name"));
+            }*/
+            val genres = api.getGenres();
+
+            ArrayList<String> genresList = new ArrayList<String>();
+            for (int i = 1; i < genres.size() + 1; i++)
+                genresList.add(genres.get(i).getString("genre"));
+
+            controler.setRectangles(genresList);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         window.setTitle("MusicVerse");
         window.setScene(scene);
         window.show();

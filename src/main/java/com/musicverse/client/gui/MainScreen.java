@@ -75,9 +75,9 @@ public class MainScreen {
         return "-fx-background-color: rgba(" + red1 +"," + green1 + "," + blue1 + ",0.99); -fx-pref-height: 60px";
     }
 
-    public void setRectangles(String [] items){
+    public void setRectangles(ArrayList<String> items){
 
-        int rowNum = (int) Math.ceil((double) items.length / 6);
+        int rowNum = (int) Math.ceil((double) items.size() / 6);
 
         for (int i = 0; i < rowNum; i++) {
             RowConstraints rowConst = new RowConstraints(100);
@@ -90,7 +90,7 @@ public class MainScreen {
         for (int row=0; row < rowNum; row++) {
             for (int col=0; col < 6; col++){
 
-                Label labelOfBox = new Label(items[counter]);
+                Label labelOfBox = new Label(items.get(counter));
                 labelOfBox.setStyle("-fx-text-fill: white; -fx-font-size: 25px; -fx-padding: 5; -fx-font-weight: bold");
 
                 Pane pane = new Pane();
@@ -106,12 +106,12 @@ public class MainScreen {
                 pane.getChildren().add(anchorPane);
                 rectanglesGrid.add(pane, col, row);
 
-                if (counter == (items.length -1)){
+                if (counter == (items.size() -1)){
                     break;
                 }
                 counter++;
             }
-            if (counter == (items.length )){
+            if (counter == (items.size() )){
                 break;
             }
         }
