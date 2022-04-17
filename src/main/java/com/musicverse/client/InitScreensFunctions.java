@@ -21,12 +21,13 @@ public class InitScreensFunctions {
 
     @SneakyThrows
     public void initMainScreen(ActionEvent event, HashMap<Integer,String> list) throws IOException{
+        PreferencesLogin preferencesLogin = new PreferencesLogin();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
         Parent root = loader.load();
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200,600);
         com.musicverse.client.gui.MainScreen controler = loader.getController();
-        controler.setRole(3);
+        controler.setRole(PreferencesLogin.getPrefs().getRole());
         String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
         controler.setRectangles(items);
 
@@ -34,9 +35,11 @@ public class InitScreensFunctions {
         try {
             val api = ServerAPI.getInstance();
             val playlists = api.getPublicPlaylists();
-            for (int i = 0; i<playlists.size();i++) {
+            /*for (int i = 0; i<playlists.size();i++) {
                 list.put(playlists.get(i).getInt("id"),playlists.get(i).getString("name"));
-            }
+            }*/
+            val genres = api.getGenres();
+            System.out.println(genres);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -77,7 +80,7 @@ public class InitScreensFunctions {
             label = "Request to be an artist";
             Title = "Register new artist";
         }
-        controler.setLabelText(label);
+        controler.setLabelText(label, role);
         Scene scene = new Scene(root, 1200,600);
         window.setTitle(Title);
         window.setScene(scene);

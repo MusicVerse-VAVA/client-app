@@ -130,7 +130,7 @@ public class MainScreen {
         nickLabel.setText(userName);
 
         if (role > 0)
-            nickLabel.setText("Simon Drienik");
+            nickLabel.setText(PreferencesLogin.getPrefs().getNickName());
 
         switch (role) {
             case -1:

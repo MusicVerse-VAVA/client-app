@@ -32,11 +32,12 @@ public class ServerAPI {
 		port = 10008;
 	}
 	
-	public boolean registerUser(String email, String username, String password) {
+	public boolean registerUser(String email, String username, String password, int role) {
 		val payload = new ObjectNode();
 		payload.set("email", email);
 		payload.set("username", username);
 		payload.set("password", password);
+		payload.set("access_level", role);
 		return queryServerJson("register", payload, (code, response) -> response.getString("status").equals("ok"));
 	}
 	
@@ -70,6 +71,17 @@ public class ServerAPI {
 		return queryServerJson("allplaylists", payload, (code, response) -> {
 			if (response.getString("status").equals("ok")) {
 				return response.get("playlists");
+			} else {
+				return null;
+			}
+		});
+	}
+
+	public JsonNode getGenres(){
+		val payload = new ObjectNode();
+		return queryServerJson("genres", payload, (code, response) -> {
+			if (response.getString("status").equals("ok")) {
+				return response.get("genres");
 			} else {
 				return null;
 			}

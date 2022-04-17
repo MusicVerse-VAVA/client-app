@@ -19,7 +19,9 @@ import com.musicverse.client.ServerAPI;
 import lombok.val;
 
 public class RegisterScreen {
-	
+
+    private int role;
+
     @FXML
     private Circle avatarCircle;
 
@@ -72,7 +74,7 @@ public class RegisterScreen {
 	    	String email = this.emailField.getText();
             String password = this.pswdField.getText();
 	    	
-	    	if (!api.registerUser(email, nickname, password)) {
+	    	if (!api.registerUser(email, nickname, password, role)) {
                 registerAlert.setAlertType(AlertType.ERROR);
                 registerAlert.setContentText("Username or Email is already in use!");
                 registerAlert.show();
@@ -110,7 +112,8 @@ public class RegisterScreen {
     
     
 
-    public void setLabelText(String text){
+    public void setLabelText(String text, int role){
+        this.role = role;
         signUpBtn.setText(text);
     }
 

@@ -123,6 +123,7 @@ public class WelcomeScreen {
             public void handle(ActionEvent event) {
                 try {
                     //TODO : Ziskaj playlisty vsetkych userov ktore nie su private
+                    //this is not needed, we will not use public playlists
 					new InitScreensFunctions().initMainScreen(event,new HashMap<Integer, String>());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
