@@ -38,14 +38,14 @@ public class ServerAPI {
 		payload.set("username", username);
 		payload.set("password", password);
 		payload.set("access_level", role);
-		return queryServerJson("register", payload, (code, response) -> response.getString("status").equals("ok"));
+		return queryServerJson("register", Method.POST, payload, (code, response) -> response.getString("status").equals("ok"));
 	}
 	
 	public JsonNode authenticate(String email, String password) {
 		val payload = new ObjectNode();
 		payload.set("email", email);
 		payload.set("password", password);
-		return queryServerJson("auth", payload, (code, response) -> {
+		return queryServerJson("auth", Method.POST, payload, (code, response) -> {
 			if (response.getString("status").equals("ok")) {
 				return response.get("user");
 			} else {
@@ -57,7 +57,7 @@ public class ServerAPI {
 	public JsonNode getUserPlaylists(int id){
 		val payload = new ObjectNode();
 		payload.set("id", id);
-		return queryServerJson("playlists", payload, (code, response) -> {
+		return queryServerJson("playlists", Method.POST, payload, (code, response) -> {
 			if (response.getString("status").equals("ok")) {
 				return response.get("playlists");
 			} else {
@@ -68,7 +68,7 @@ public class ServerAPI {
 
 	public JsonNode getPublicPlaylists(){
 		val payload = new ObjectNode();
-		return queryServerJson("allplaylists", payload, (code, response) -> {
+		return queryServerJson("allplaylists", Method.POST, payload, (code, response) -> {
 			if (response.getString("status").equals("ok")) {
 				return response.get("playlists");
 			} else {
@@ -79,7 +79,7 @@ public class ServerAPI {
 
 	public JsonNode getGenres(){
 		val payload = new ObjectNode();
-		return queryServerJson("genres", payload, (code, response) -> {
+		return queryServerJson("genres", Method.GET, payload, (code, response) -> {
 			if (response.getString("status").equals("ok")) {
 				return response.get("genres");
 			} else {
@@ -88,19 +88,19 @@ public class ServerAPI {
 		});
 	}
 
-	private <R> R queryServerJson(String url, JsonNode request, ServerQueryCallback<JsonNode, R> callback) {
-		return queryServerBinary(url, request, (code, bin) -> {
+	private <R> R queryServerJson(String url, Method method, JsonNode request, ServerQueryCallback<JsonNode, R> callback) {
+		return queryServerBinary(url, method, request, (code, bin) -> {
 			val json = JsonNode.parse(new String(bin));
 			return callback.processResponse(code, json);
 		});
 	}
 
 	@SneakyThrows
-	private <R> R queryServerBinary(String url, JsonNode request, ServerQueryCallback<byte[], R> callback) {
+	private <R> R queryServerBinary(String url, Method method, JsonNode request, ServerQueryCallback<byte[], R> callback) {
 		val requestURI = String.format("%s:%d/%s", hostname, port, url);
 		val conn = (HttpURLConnection) new URL(requestURI).openConnection();
 		conn.setRequestProperty("User-Agent", "musicverse-client");
-		conn.setRequestMethod("POST");
+		conn.setRequestMethod(method.name());
 		conn.setDoInput(true);
 		conn.setDoOutput(true);
 		val os = conn.getOutputStream();
@@ -114,6 +114,9 @@ public class ServerAPI {
 	public interface ServerQueryCallback<T, R> {
 		R processResponse(int responseCode, T responseBody);
 	}
-	
+
+	public enum Method {
+		GET, POST
+	}
 
 }
