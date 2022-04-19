@@ -9,13 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
-import  com.musicverse.client.ServerAPI;
+import com.musicverse.client.api.ServerAPI;
 import lombok.val;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public class InitScreensFunctions {
@@ -130,6 +129,7 @@ public class InitScreensFunctions {
         if (Objects.equals(Title, "Artist")){
             com.musicverse.client.gui.ArtistSectionScreen controler = loader.getController();
             controler.setSettings(from);
+            controler.load();
         }else if (Objects.equals(Title, "Settings")){
             com.musicverse.client.gui.SettingsScreen controler = loader.getController();
             controler.setFrom(from);

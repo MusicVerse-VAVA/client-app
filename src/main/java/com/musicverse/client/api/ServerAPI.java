@@ -1,4 +1,4 @@
-package com.musicverse.client;
+package com.musicverse.client.api;
 
 import com.falsepattern.json.node.JsonNode;
 import com.falsepattern.json.node.ObjectNode;
@@ -38,7 +38,22 @@ public class ServerAPI {
 		payload.set("username", username);
 		payload.set("password", password);
 		payload.set("access_level", role);
-		return queryServerJson("register", Method.POST, payload, (code, response) -> response.getString("status").equals("ok"));
+		if (queryServerJson("register", Method.POST, payload, (code, response) -> response.getString("status").equals("ok"))){
+			return createArtist(email);
+		}
+		return false;
+	}
+
+	public JsonNode loadArtistByUser(int userId){
+		val payload = new ObjectNode();
+		payload.set("user_id", userId);
+		return queryServerJson("loadArtistByUser", Method.POST, payload, (code, response) -> {
+			if (response.getString("status").equals("ok")){
+				return response.get("artist");
+			}else{
+				return null;
+			}
+		});
 	}
 	
 	public JsonNode authenticate(String email, String password) {
@@ -86,6 +101,12 @@ public class ServerAPI {
 				return null;
 			}
 		});
+	}
+
+	public boolean createArtist(String user_email){
+		val payload = new ObjectNode();
+		payload.set("user_email", user_email);
+		return queryServerJson("create_artist", Method.POST, payload, (code, response) -> response.getString("status").equals("ok"));
 	}
 
 	private <R> R queryServerJson(String url, Method method, JsonNode request, ServerQueryCallback<JsonNode, R> callback) {

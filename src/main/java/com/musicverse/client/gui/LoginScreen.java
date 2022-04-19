@@ -2,13 +2,12 @@ package com.musicverse.client.gui;
 
 import com.falsepattern.json.node.JsonNode;
 import com.musicverse.client.InitScreensFunctions;
-import com.musicverse.client.ServerAPI;
+import com.musicverse.client.api.ServerAPI;
 
 import com.musicverse.client.objects.User;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -20,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import lombok.SneakyThrows;
 import lombok.val;
 
 import java.io.IOException;

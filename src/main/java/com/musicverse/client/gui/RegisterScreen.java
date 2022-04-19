@@ -1,5 +1,6 @@
 package com.musicverse.client.gui;
 
+import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import com.musicverse.client.ServerAPI;
+import com.musicverse.client.api.ServerAPI;
 import lombok.val;
 
 public class RegisterScreen {
@@ -80,10 +81,12 @@ public class RegisterScreen {
                 registerAlert.show();
                 return;
             };
-	    	registerAlert.setAlertType(AlertType.INFORMATION);
-   		 	registerAlert.setContentText("Používate¾ bol vytvorený!");
-   		 	registerAlert.show();
-   		 	this.goBack(event);
+
+            registerAlert.setAlertType(AlertType.INFORMATION);
+            registerAlert.setContentText("Používate¾ bol vytvorený - èaká na schválenie!");
+            registerAlert.show();
+            this.goBack(event);
+
     	}
     	catch(Exception e){
             e.printStackTrace();

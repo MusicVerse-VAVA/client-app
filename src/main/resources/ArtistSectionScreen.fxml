@@ -30,7 +30,7 @@
       <Line endX="1000.0" layoutX="150.0" layoutY="80.0" startX="-100.0" stroke="WHITE" />
       <Circle fx:id="avatarCircle" fill="WHITE" layoutX="160.0" layoutY="213.0" radius="59.0" stroke="BLACK" strokeType="INSIDE" />
       <Label fx:id="avatarLabel" layoutX="131.0" layoutY="205.0" text="Add avatar" />
-      <Label layoutX="302.0" layoutY="102.0" text="Artist name" textFill="WHITE">
+      <Label fx:id="artistName" layoutX="302.0" layoutY="102.0" text="Artist name" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="24.0" />
          </font>
@@ -44,18 +44,12 @@
       <Label fx:id="editAvatarLabel" layoutX="198.0" layoutY="255.0" text="Edit" textFill="WHITE" />
       <Label fx:id="editNameLabel" layoutX="274.0" layoutY="108.0" text="Edit" textFill="WHITE" />
       <Label fx:id="editGenreLabel" layoutX="274.0" layoutY="130.0" text="Edit" textFill="WHITE" />
-      <Label fx:id="editDescriptionLabel" layoutX="1117.0" layoutY="130.0" text="Edit" textFill="WHITE" />
+      <Label fx:id="editDescriptionLabel" layoutX="1117.0" layoutY="130.0" onMouseClicked="#onEditBtnClick" text="Edit" textFill="WHITE" />
       <Button layoutX="1050.0" layoutY="126.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: green;" text="Save" textFill="WHITE" AnchorPane.bottomAnchor="449.0" />
-      <Rectangle fx:id="albumsRectangle" arcHeight="5.0" arcWidth="5.0" fill="#3d3f3c" height="282.0" layoutX="304.0" layoutY="278.0" stroke="WHITE" strokeType="INSIDE" width="412.0" AnchorPane.leftAnchor="304.0" AnchorPane.rightAnchor="491.0" />
-      <Rectangle fx:id="playlistsRectangle" arcHeight="5.0" arcWidth="5.0" fill="#3d3f3c" height="282.0" layoutX="740.0" layoutY="278.0" stroke="WHITE" strokeType="INSIDE" width="412.0" AnchorPane.leftAnchor="740.0" AnchorPane.rightAnchor="55.0" />
-      <Label fx:id="albumsLabel" layoutX="491.0" layoutY="286.0" text="Albums" textFill="WHITE">
+      <Rectangle fx:id="albumsRectangle" arcHeight="5.0" arcWidth="5.0" fill="#3d3f3c" height="282.0" layoutX="304.0" layoutY="278.0" stroke="WHITE" strokeType="INSIDE" width="846.0" AnchorPane.leftAnchor="304.0" AnchorPane.rightAnchor="57.0" />
+      <Label fx:id="albumsLabel" layoutX="712.0" layoutY="293.0" text="Albums" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label fx:id="playlistsLabel" layoutX="926.0" layoutY="286.0" text="Playlists" textFill="WHITE">
-         <font>
-            <Font name="Calibri" size="12.0" />
          </font>
       </Label>
       <MenuBar fx:id="menuBarSettings" layoutX="1090.0" layoutY="34.0" />
