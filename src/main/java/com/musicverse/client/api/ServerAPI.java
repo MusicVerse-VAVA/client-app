@@ -103,6 +103,17 @@ public class ServerAPI {
 		});
 	}
 
+	public boolean editArtist(int id, String nameField, String descriptionField, String genre){
+		val payload = new ObjectNode();
+		payload.set("id", id);
+		payload.set("name", nameField);
+		payload.set("description", descriptionField);
+		payload.set("genre", genre);
+		System.out.println(id + nameField + descriptionField + genre);
+		return queryServerJson("editArtist", Method.POST, payload,
+				(code, response) -> response.getString("status").equals("ok"));
+	}
+
 	public boolean createArtist(String user_email){
 		val payload = new ObjectNode();
 		payload.set("user_email", user_email);
