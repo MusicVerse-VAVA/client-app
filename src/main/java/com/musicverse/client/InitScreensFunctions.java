@@ -65,7 +65,7 @@ public class InitScreensFunctions {
         Scene scene = new Scene(root, 1200,600);
         com.musicverse.client.gui.MainScreen controler = loader.getController();
         controler.setRole(3);
-        String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
+        //String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
         try {
             val api = ServerAPI.getInstance();
             val playlists = api.getPublicPlaylists();

@@ -1,6 +1,7 @@
 package com.musicverse.client.gui;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,6 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import com.musicverse.client.api.ServerAPI;
+import lombok.val;
+
 public class MainScreen {
 
 
@@ -59,8 +63,25 @@ public class MainScreen {
 
     private String userName = "Guest";
 
+    private int genre_id = -1;
+
+    private ServerAPI server_api;
+
     @FXML
     private GridPane rectanglesGrid;
+
+    private int showType = 0;
+
+    public MainScreen(){
+        try {
+            this.server_api = ServerAPI.getInstance();
+            this.showType = 0;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     static String randomColor(){
 
@@ -100,7 +121,15 @@ public class MainScreen {
                 anchorPane.getChildren().add(labelOfBox);
 
                 pane.setOnMouseReleased(e -> {
-                    System.out.println(labelOfBox);
+
+                    this.genre_id = setGenreId(labelOfBox.getText(),items);
+                    //TODO : nastavit artistov
+
+                    //TEST API
+                   val artists = this.server_api.getArtistsByGenre(genre_id);
+                   val songs1 = this.server_api.songsByAlbum(1);
+                   val songs2 = this.server_api.songsByPlaylist(1);
+
                 });
 
                 pane.getChildren().add(anchorPane);
@@ -117,6 +146,7 @@ public class MainScreen {
         }
 
     }
+
 
     public void setRole(int i){
 
@@ -162,6 +192,28 @@ public class MainScreen {
             listOfPlaylists.getItems().add(name);
         }
     }
+
+    public int setGenreId(String name,ArrayList<String> list){
+        for (int i=0;i<list.size();i++){
+            if(list.get(i).equals(name))
+               return i+1;
+        }
+        return -1;
+    }
+
+    public int getGenreId(){
+        return this.genre_id;
+    }
+
+
+    public ArrayList<String> getArtistsNames(){
+        val artists = this.server_api.getArtistsByGenre(getGenreId());
+        ArrayList<String> filtered = new ArrayList<>();
+        for (int i = 0; i < artists.size(); i++)
+            filtered.add(artists.get(i).getString("name"));
+        return filtered;
+    }
+
 
 
 

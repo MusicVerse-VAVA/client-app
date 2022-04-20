@@ -103,6 +103,51 @@ public class ServerAPI {
 		});
 	}
 
+	public JsonNode getArtistsByGenre(int genre_id){
+		if(genre_id < 0)
+			return null;
+		val payload = new ObjectNode();
+		payload.set("genre_id",genre_id);
+		return queryServerJson("artistsByGenre", Method.POST, payload, (code, response) -> {
+			if (response.getString("status").equals("ok")) {
+				System.out.println(response.get("artists"));
+				return response.get("artists");
+			} else {
+				return null;
+			}
+		});
+	}
+
+	public JsonNode songsByPlaylist(int playlist_id){
+		if(playlist_id < 0)
+			return null;
+		val payload = new ObjectNode();
+		payload.set("playlist_id",playlist_id);
+		return queryServerJson("songsByPlaylist", Method.POST, payload, (code, response) -> {
+			if (response.getString("status").equals("ok")) {
+				System.out.println(response.get("songs"));
+				return response.get("songs");
+			} else {
+				return null;
+			}
+		});
+	}
+
+	public JsonNode songsByAlbum(int album_id){
+		if(album_id < 0)
+			return null;
+		val payload = new ObjectNode();
+		payload.set("album_id",album_id);
+		return queryServerJson("songsByAlbum", Method.POST, payload, (code, response) -> {
+			if (response.getString("status").equals("ok")) {
+				System.out.println(response.get("songs"));
+				return response.get("songs");
+			} else {
+				return null;
+			}
+		});
+	}
+
 	public boolean editArtist(int id, String nameField, String descriptionField, String genre){
 		val payload = new ObjectNode();
 		payload.set("id", id);
@@ -119,6 +164,8 @@ public class ServerAPI {
 		payload.set("user_email", user_email);
 		return queryServerJson("create_artist", Method.POST, payload, (code, response) -> response.getString("status").equals("ok"));
 	}
+
+
 
 	private <R> R queryServerJson(String url, Method method, JsonNode request, ServerQueryCallback<JsonNode, R> callback) {
 		return queryServerBinary(url, method, request, (code, bin) -> {
