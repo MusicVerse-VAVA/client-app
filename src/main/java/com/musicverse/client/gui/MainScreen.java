@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.collections.Controller;
+import com.musicverse.client.objects.Artist;
+import com.musicverse.client.objects.User;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -72,6 +75,9 @@ public class MainScreen {
 
     private int showType = 0;
 
+    @FXML
+    private TableView<Artist> tableView;
+
     public MainScreen(){
         try {
             this.server_api = ServerAPI.getInstance();
@@ -123,12 +129,33 @@ public class MainScreen {
                 pane.setOnMouseReleased(e -> {
 
                     this.genre_id = setGenreId(labelOfBox.getText(),items);
-                    //TODO : nastavit artistov
+                    val artists = this.server_api.getArtistsByGenre(genre_id);
 
-                    //TEST API
-                   val artists = this.server_api.getArtistsByGenre(genre_id);
-                   val songs1 = this.server_api.songsByAlbum(1);
-                   val songs2 = this.server_api.songsByPlaylist(1);
+                    ArrayList<Artist> artistArrayList = new ArrayList<>();
+
+                    for (int i = 0; i < artists.size(); i++){
+                        artistArrayList.add(
+                                new Artist(
+                                        artists.get(i).getString("name"),
+                                        artists.get(i).getString("description"),
+                                        String.valueOf(artists.get(i).getInt("id")),
+                                        labelOfBox.getText())
+                                );
+                    }
+                    System.out.println(artistArrayList.get(0).getGenre());
+
+                    Controller<Artist> controller = new Controller<>();
+                    tableView.setVisible(true);
+                    tableView = controller.initialize(artistArrayList, new String[]{"name", "description", "id", "genre"}, tableView);
+                    tableView.refresh();
+                    System.out.println(tableView.getColumns().toString());
+
+
+
+
+                   //TEST API
+                   //val songs1 = this.server_api.songsByAlbum(1);
+                   //val songs2 = this.server_api.songsByPlaylist(1);
 
                 });
 
