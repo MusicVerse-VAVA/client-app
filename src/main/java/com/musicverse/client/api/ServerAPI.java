@@ -44,10 +44,19 @@ public class ServerAPI {
 		return false;
 	}
 
-	public JsonNode loadArtistByUser(int userId){
+	public JsonNode loadArtist(int id, int what){
 		val payload = new ObjectNode();
-		payload.set("user_id", userId);
-		return queryServerJson("loadArtistByUser", Method.POST, payload, (code, response) -> {
+		String url;
+
+		if (what == 0){
+			payload.set("id", id);
+			url = "loadArtistByUser";
+		} else {
+			payload.set("id", what);
+			url = "loadArtistByArtist";
+		}
+
+		return queryServerJson(url, Method.POST, payload, (code, response) -> {
 			if (response.getString("status").equals("ok")){
 				return response.get("artist");
 			}else{
@@ -117,6 +126,8 @@ public class ServerAPI {
 			}
 		});
 	}
+
+
 
 	public JsonNode songsByPlaylist(int playlist_id){
 		if(playlist_id < 0)

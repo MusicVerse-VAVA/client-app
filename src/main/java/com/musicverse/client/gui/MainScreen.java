@@ -8,8 +8,8 @@ import java.util.Objects;
 
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.collections.Controller;
+import com.musicverse.client.collections.Utils;
 import com.musicverse.client.objects.Artist;
-import com.musicverse.client.objects.MainObject;
 import com.musicverse.client.objects.Song;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
@@ -155,7 +155,7 @@ public class MainScreen {
 
                     Controller<Artist> controller = new Controller<>();
                     tableView.getItems().clear();
-                    tableView = controller.initialize(artistArrayList, new String[]{"name", "description", "id", "genre"}, tableView, 0);
+                    tableView = controller.initialize(artistArrayList, new String[]{"name", "description", "id", "genre"}, tableView, 0, mainPane);
                     tableView.setVisible(true);
                     tableView.refresh();
                     System.out.println(tableView.getColumns().toString());
@@ -236,7 +236,10 @@ public class MainScreen {
                 int result = getKeyByValue(list, listOfPlaylists.getSelectionModel().getSelectedItem());
                 val songs2 = server_api.songsByPlaylist(result);
 
-                ArrayList<Song> songArrayList = new ArrayList<>();
+                Utils utils = new Utils();
+                tableSongs = utils.generateTableSongs(tableSongs, songs2, mainPane);
+
+                /*ArrayList<Song> songArrayList = new ArrayList<>();
 
 
                 //String albumId, String data, String description, String duration, String id, String name,
@@ -265,11 +268,12 @@ public class MainScreen {
                         songArrayList,
                         new String[]{"album_id", "data", "description",
                                 "name", "album", "artist","duration","genre", "id",  "artist_id", "genre_id"},
-                        tableSongs, 1
+                        tableSongs, 1, mainPane
                 );
                 tableSongs.setVisible(true);
                 tableSongs.refresh();
-                System.out.println(songs2);
+
+                System.out.println(songs2);*/
             }
         });
 

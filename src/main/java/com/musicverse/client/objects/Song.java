@@ -1,6 +1,8 @@
 package com.musicverse.client.objects;
 
-public class Song implements MainObject{
+import com.musicverse.client.collections.EventHandler;
+
+public class Song {
 
     private String albumId;
     private String data;
@@ -116,4 +118,5 @@ public class Song implements MainObject{
     public void setArtistId(String artistId) {
         this.artistId = artistId;
     }
+
 }

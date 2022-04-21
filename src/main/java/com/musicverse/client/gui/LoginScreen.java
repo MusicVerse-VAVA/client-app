@@ -24,6 +24,8 @@ import lombok.val;
 import java.io.IOException;
 import java.util.HashMap;
 
+import static com.musicverse.client.collections.Utils.createPlaylist;
+
 public class LoginScreen {
 	
     @FXML
@@ -80,9 +82,9 @@ public class LoginScreen {
 				System.out.println(PreferencesLogin.getPrefs().getEmail());
 
 				//zmena obrazovky
-				val response = api.getUserPlaylists(PreferencesLogin.getPrefs().getId());
+				//val response = api.getUserPlaylists(PreferencesLogin.getPrefs().getId());
 				try {
-					new InitScreensFunctions().initMainScreen(event , createPlaylist(response));
+					new InitScreensFunctions().initMainScreen(event);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -99,13 +101,7 @@ public class LoginScreen {
 
     }
 
-	private HashMap<Integer,String> createPlaylist(JsonNode playlists){
-		HashMap<Integer,String> list = new HashMap<>();
-		for (int i = 0; i<playlists.size();i++) {
-			list.put(playlists.get(i).getInt("id"),playlists.get(i).getString("name"));
-		}
-		return list;
-	}
+
 
 
 }

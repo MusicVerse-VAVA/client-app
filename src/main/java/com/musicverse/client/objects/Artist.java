@@ -1,6 +1,8 @@
 package com.musicverse.client.objects;
 
-public class Artist implements MainObject{
+import com.musicverse.client.collections.EventHandler;
+
+public class Artist {
     private String name;
     private String description;
     private String id;
@@ -44,4 +46,5 @@ public class Artist implements MainObject{
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
 }

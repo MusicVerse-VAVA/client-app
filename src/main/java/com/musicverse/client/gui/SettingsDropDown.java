@@ -39,7 +39,7 @@ public class SettingsDropDown {
 
         settingsItem.setOnAction(e -> {
             try {
-				new InitScreensFunctions().initSettingsScreen("Settings", "/SettingsScreen.fxml", pane, from);
+				new InitScreensFunctions().initSettingsScreen("Settings", "/SettingsScreen.fxml", pane, 0, 0);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -49,14 +49,14 @@ public class SettingsDropDown {
         AAItem.setOnAction(e -> {
             if (role == 2)
 				try {
-					new InitScreensFunctions().initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", pane, from);
+					new InitScreensFunctions().initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", pane, 0, 0);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			else if (role == 3)
 				try {
-					new InitScreensFunctions().initSettingsScreen("Admin", "/AdminSectionScreen.fxml", pane, from);
+					new InitScreensFunctions().initSettingsScreen("Admin", "/AdminSectionScreen.fxml", pane, 0, 0);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

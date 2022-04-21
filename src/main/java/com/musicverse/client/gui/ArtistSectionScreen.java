@@ -4,6 +4,11 @@ import com.falsepattern.json.node.JsonNode;
 import com.falsepattern.json.node.ListNode;
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.api.ServerAPI;
+import com.musicverse.client.collections.Controller;
+import com.musicverse.client.collections.Utils;
+import com.musicverse.client.objects.Album;
+import com.musicverse.client.objects.Artist;
+import com.musicverse.client.objects.Song;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.collections.FXCollections;
@@ -102,11 +107,27 @@ public class ArtistSectionScreen {
 
     private int id;
 
+    @FXML
+    private TableView<Album> tableAlbums;
+
     private JsonNode data;
 
     @FXML
+    private TableView<Song> tableSongs;
+
+    @FXML
+    private Button backBtn;
+
+    /*@FXML
     void backLabelClick(ActionEvent event) throws IOException {
-        new InitScreensFunctions().initMainScreen(event);
+        InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+        initScreensFunctions.initMainScreen(event);
+    }*/
+
+    @FXML
+    void backBtnClick(ActionEvent event) throws IOException {
+        InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+        initScreensFunctions.initMainScreen(event);
     }
 
     public void setSettings(String from){
@@ -115,18 +136,54 @@ public class ArtistSectionScreen {
         menuBarSettings.getMenus().add(settingsDropDownImported.menu(2, artistNameLabel, "artist"));
     }
 
-    public void load(){
+
+
+    public void load(int id, int shownTable){
+
         val api = ServerAPI.getInstance();
-        data = api.loadArtistByUser(PreferencesLogin.getPrefs().getId());
+        data = api.loadArtist(PreferencesLogin.getPrefs().getId(), id);
 
         this.artistName.setText(data.getString("name"));
         this.genreLabel.setText(data.getString("genre"));
         this.descriptionArea.setText(data.getString("description"));
         this.id = data.getInt("id");
+        if (id > 1)
+            editDescriptionLabel.setVisible(false);
+        this.descriptionArea.setEditable(false);
 
+        ArrayList<Album> albumArrayList = new ArrayList<>();
+        val albums = data.get("albums");
 
+        //String id, String name, String description, String artist_id, String genre_id, String artist, String genre
+        for (int i = 0; i < albums.size(); i++){
+            albumArrayList.add(
+                    new Album(
+                            String.valueOf(albums.get(i).getInt("id")),
+                            albums.get(i).getString("name"),
+                            albums.get(i).getString("description"),
+                            String.valueOf(albums.get(i).getInt("artist_id")),
+                            String.valueOf(data.getInt("genre_id")),
+                            data.getString("name"),
+                            data.getString("genre")
+                    )
+
+            );
+        }
+
+        Controller<Album> controller = new Controller<>();
+        tableAlbums.getItems().clear();
+        tableAlbums = controller.initialize(albumArrayList, new String[]{"id", "name", "description", "artist_id", "genre_id", "artist", "genre"}, tableAlbums, 2, artistNameLabel);
+        tableAlbums.setVisible(true);
+        tableAlbums.refresh();
+
+        tableSongs.setVisible(false);
+        if (shownTable > 0){
+            val songs = api.songsByAlbum(shownTable);
+            Utils utils = new Utils();
+            tableSongs.setVisible(true);
+            tableSongs = utils.generateTableSongs(tableSongs, songs, artistNameLabel);
+        }
     }
-
 
     @FXML
     void onEditBtnClick(MouseEvent event) {
