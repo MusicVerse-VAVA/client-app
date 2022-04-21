@@ -1,19 +1,22 @@
 package com.musicverse.client.gui;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.collections.Controller;
 import com.musicverse.client.objects.Artist;
-import com.musicverse.client.objects.User;
+import com.musicverse.client.objects.MainObject;
+import com.musicverse.client.objects.Song;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import com.musicverse.client.api.ServerAPI;
 import lombok.val;
@@ -64,6 +67,9 @@ public class MainScreen {
 
     private int role = -1;
 
+    @FXML
+    private Label homeLabel;
+
     private String userName = "Guest";
 
     private int genre_id = -1;
@@ -72,6 +78,9 @@ public class MainScreen {
 
     @FXML
     private GridPane rectanglesGrid;
+
+    @FXML
+    private TableView<Song> tableSongs;
 
     private int showType = 0;
 
@@ -145,8 +154,9 @@ public class MainScreen {
                     System.out.println(artistArrayList.get(0).getGenre());
 
                     Controller<Artist> controller = new Controller<>();
+                    tableView.getItems().clear();
+                    tableView = controller.initialize(artistArrayList, new String[]{"name", "description", "id", "genre"}, tableView, 0);
                     tableView.setVisible(true);
-                    tableView = controller.initialize(artistArrayList, new String[]{"name", "description", "id", "genre"}, tableView);
                     tableView.refresh();
                     System.out.println(tableView.getColumns().toString());
 
@@ -215,9 +225,63 @@ public class MainScreen {
     }
 
     public void setPlaylists(HashMap<Integer,String> list){
+
         for (String name : list.values()){
             listOfPlaylists.getItems().add(name);
         }
+
+        listOfPlaylists.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                int result = getKeyByValue(list, listOfPlaylists.getSelectionModel().getSelectedItem());
+                val songs2 = server_api.songsByPlaylist(result);
+
+                ArrayList<Song> songArrayList = new ArrayList<>();
+
+
+                //String albumId, String data, String description, String duration, String id, String name,
+                        //String artistId, String genre_id, String genre, String artist, String album
+                for (int i = 0; i < songs2.size(); i++){
+                    songArrayList.add(
+                            new Song(
+                                    String.valueOf(songs2.get(i).getInt("album_id")),
+                                    songs2.get(i).getString("data"),
+                                    songs2.get(i).getString("description"),
+                                    songs2.get(i).getString("name"),
+                                    songs2.get(i).getString("album"),
+                                    songs2.get(i).getString("artist"),
+                                    String.valueOf(songs2.get(i).getInt("duration")),
+                                    songs2.get(i).getString("genre"),
+                                    String.valueOf(songs2.get(i).getInt("id")),
+                                    String.valueOf(songs2.get(i).getInt("artist_id")),
+                                    String.valueOf(songs2.get(i).getInt("genre_id"))
+                                    )
+                    );
+                }
+               tableSongs.getColumns().clear();
+                tableSongs.getItems().clear();
+                Controller<Song> controller = new Controller<>();
+                tableSongs = controller.initialize(
+                        songArrayList,
+                        new String[]{"album_id", "data", "description",
+                                "name", "album", "artist","duration","genre", "id",  "artist_id", "genre_id"},
+                        tableSongs, 1
+                );
+                tableSongs.setVisible(true);
+                tableSongs.refresh();
+                System.out.println(songs2);
+            }
+        });
+
+    }
+
+    public static <T,E> T getKeyByValue(HashMap<T, E> map, Object value) {
+        for (Map.Entry<T,E> entry : map.entrySet()){
+            if (Objects.equals(value, entry.getValue())){
+                return entry.getKey();
+            }
+        }
+        return (T) Integer.valueOf(0);
     }
 
     public int setGenreId(String name,ArrayList<String> list){
@@ -227,6 +291,7 @@ public class MainScreen {
         }
         return -1;
     }
+
 
     public int getGenreId(){
         return this.genre_id;
@@ -252,6 +317,13 @@ public class MainScreen {
     @FXML
     void registerLabelClick(ActionEvent event) throws IOException {
         new InitScreensFunctions().initRegistrationScreen(event, 1);
+    }
+
+
+    @FXML
+    void onHomeClicked(MouseEvent event) {
+        tableView.setVisible(false);
+        tableSongs.setVisible(false);
     }
 
 }

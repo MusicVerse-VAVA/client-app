@@ -1,6 +1,6 @@
 package com.musicverse.client.objects;
 
-public class Artist {
+public class Artist implements MainObject{
     private String name;
     private String description;
     private String id;
