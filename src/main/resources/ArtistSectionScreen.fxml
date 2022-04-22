@@ -37,7 +37,7 @@
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="descriptionArea" layoutX="302.0" layoutY="154.0" prefHeight="118.0" prefWidth="850.0" promptText="Description" AnchorPane.bottomAnchor="328.0" />
+      <TextArea fx:id="descriptionArea" layoutX="302.0" layoutY="154.0" prefHeight="83.0" prefWidth="850.0" promptText="Description" AnchorPane.bottomAnchor="363.0" />
       <Label fx:id="editDescriptionLabel" layoutX="1117.0" layoutY="130.0" onMouseClicked="#onEditBtnClick" text="Edit" textFill="WHITE" />
       <Button disable="true" layoutX="1050.0" layoutY="126.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: green;" text="Save" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="449.0" />
       <Rectangle fx:id="albumsRectangle" arcHeight="5.0" arcWidth="5.0" fill="#3d3f3c" height="282.0" layoutX="304.0" layoutY="278.0" stroke="WHITE" strokeType="INSIDE" width="846.0" AnchorPane.leftAnchor="304.0" AnchorPane.rightAnchor="57.0" />
@@ -50,12 +50,14 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="159.0" layoutX="21.0" layoutY="427.0" stroke="BLACK" strokeType="INSIDE" width="211.0" />
       <Label layoutX="129.0" layoutY="498.0" prefHeight="17.0" prefWidth="38.0" text="player" textAlignment="CENTER" />
       <Line endX="743.0" layoutX="409.0" layoutY="578.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
-      <TableView fx:id="tableAlbums" layoutX="308.0" layoutY="307.0" prefHeight="253.0" prefWidth="840.0" />
+      <TableView fx:id="tableAlbums" layoutX="308.0" layoutY="307.0" onMouseClicked="#onAlbumItemClicked" prefHeight="253.0" prefWidth="840.0" />
       <Button fx:id="backBtn" layoutX="219.0" layoutY="40.0" mnemonicParsing="false" onAction="#backBtnClick" text="Back" />
       <TableView fx:id="tableSongs" layoutX="247.0" layoutY="280.0" prefHeight="282.0" prefWidth="960.0">
          <columns>
             <TableColumn prefWidth="75.0" text="Column X" />
          </columns>
       </TableView>
+      <Button fx:id="newAlbumBtn" layoutX="21.0" layoutY="376.0" mnemonicParsing="false" onAction="#onNewAlbumBtnClick" prefHeight="25.0" prefWidth="140.0" text="Add new album" />
+      <MenuBar fx:id="albumAction" layoutX="1051.0" layoutY="247.0" />
    </children>
 </AnchorPane>

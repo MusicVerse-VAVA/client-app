@@ -1,14 +1,27 @@
 package com.musicverse.client.collections.itemActions;
 
+import com.falsepattern.json.node.JsonNode;
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.api.ServerAPI;
 import com.musicverse.client.objects.Song;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import lombok.val;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SongActionDropDown implements ItemActionDropDown<Song>{
 
@@ -29,7 +42,7 @@ public class SongActionDropDown implements ItemActionDropDown<Song>{
         this.api = ServerAPI.getInstance();
 
         if (id != 1 || PreferencesLogin.getPrefs().getId() < 1){
-            addToPlaylist.setVisible(false);
+           // addToPlaylist.setVisible(false);
         }
 
         playSong.setOnAction(e -> {
@@ -38,7 +51,55 @@ public class SongActionDropDown implements ItemActionDropDown<Song>{
 
         //only for songs reached from artist, it means id = 1
         addToPlaylist.setOnAction(e -> {
-            // TODO add to playlist
+
+            JsonNode jn = api.getUserPlaylists(PreferencesLogin.getPrefs().getId());
+            ArrayList<String> playlists = new ArrayList<String>();
+            for (int i = 0; i < jn.size(); i++) {
+                playlists.add(jn.get(i).getString("name"));
+            }
+
+            final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            VBox dialogVbox = new VBox(20);
+            dialog.setHeight(500);
+
+            Button buttonSave = new Button("Save");
+            Button buttonCancel = new Button("Cancel");
+
+            dialogVbox.getChildren().add(new Text("Choose playlist"));
+
+            ComboBox combo_box =
+                    new ComboBox(FXCollections
+                            .observableArrayList(playlists));
+            dialogVbox.getChildren().add(combo_box);
+
+            dialogVbox.getChildren().add(buttonSave);
+            dialogVbox.getChildren().add(buttonCancel);
+
+            Scene dialogScene = new Scene(dialogVbox, 300, 200);
+            dialog.setScene(dialogScene);
+            dialog.show();
+
+            buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    dialog.close();
+                }
+            });
+
+            buttonSave.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                    int playlistId;
+                   for (int i = 0; i < jn.size(); i++){
+                       if (jn.get(i).getString("name") == combo_box.getSelectionModel().getSelectedItem()){
+                           playlistId = jn.get(i).getInt("id");
+                           api.addToPlaylist(playlistId, Integer.parseInt(song.getId()));
+                       }
+                   }
+                }
+            });
 
         });
 

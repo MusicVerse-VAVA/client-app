@@ -119,7 +119,7 @@ public class Controller <U> {
                 if (!row.isEmpty() && mouseEvent.getButton()== MouseButton.PRIMARY
                 && mouseEvent.getClickCount() == 1) {
                     U clickedRow = row.getItem();
-                    if (what == 0){
+                    /*if (what == 0){
                         Artist artist = (Artist) clickedRow;
                         EventHandler<Artist> eventHandler = new ArtistTableHandler();
                         eventHandler.handler(artist, mainPane);
@@ -133,7 +133,7 @@ public class Controller <U> {
                         Album album = (Album) clickedRow;
                         EventHandler<Album> eventHandler = new AlbumTableHandler();
                         eventHandler.handler(album, mainPane);
-                    }
+                    }*/
                 }
             });
             return row;

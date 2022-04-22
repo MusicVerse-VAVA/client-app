@@ -12,6 +12,7 @@ import com.musicverse.client.collections.Controller;
 import com.musicverse.client.collections.Utils;
 import com.musicverse.client.collections.itemActions.SongActionDropDown;
 import com.musicverse.client.objects.Artist;
+import com.musicverse.client.objects.Playlist;
 import com.musicverse.client.objects.Song;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.collections.FXCollections;
@@ -121,6 +122,7 @@ public class MainScreen {
     public void setRectangles(ArrayList<String> items){
 
         btnDeletePlaylist.setVisible(false);
+        playlistDescriptionBtn.setVisible(false);
 
         if (PreferencesLogin.getPrefs().getId() < 1)
             newPlaylistBtn.setVisible(false);
@@ -331,7 +333,9 @@ public class MainScreen {
         }
     }
 
-    public void setPlaylists(HashMap<Integer,String> list){
+    private String playlistDescription;
+
+    public void setPlaylists(HashMap<Integer,String> list, ArrayList<Playlist> playlistArrayList){
 
         for (String name : list.values()){
             listOfPlaylists.getItems().add(name);
@@ -341,7 +345,14 @@ public class MainScreen {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 btnDeletePlaylist.setVisible(true);
+                playlistDescriptionBtn.setVisible(true);
                 int result = getKeyByValue(list, listOfPlaylists.getSelectionModel().getSelectedItem());
+
+                for (Playlist playlist : playlistArrayList) {
+                    if (playlist.getId() == result)
+                        playlistDescription = playlist.getDescription();
+                }
+
                 val songs2 = server_api.songsByPlaylist(result);
                 selectedPlaylistId = result;
 
@@ -397,6 +408,35 @@ public class MainScreen {
         new InitScreensFunctions().initRegistrationScreen(event, 1);
     }
 
+    @FXML
+    private Button playlistDescriptionBtn;
+    @FXML
+    void onPlaylistDescriptionBtnClick(ActionEvent event) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        dialog.setHeight(400);
+
+        Button buttonCancel = new Button("Cancel");
+
+        dialogVbox.getChildren().add(new Text("Playlist description"));
+
+        dialogVbox.getChildren().add(new Text(playlistDescription));
+
+        dialogVbox.getChildren().add(buttonCancel);
+
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+
+        buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+    }
+
 
     @FXML
     void onHomeClicked(MouseEvent event) {
@@ -404,6 +444,7 @@ public class MainScreen {
         tableSongs.setVisible(false);
         songItemAction.setVisible(false);
         btnDeletePlaylist.setVisible(false);
+        playlistDescriptionBtn.setVisible(false);
     }
 
 }

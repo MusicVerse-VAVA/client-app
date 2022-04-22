@@ -6,6 +6,8 @@ import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.api.ServerAPI;
 import com.musicverse.client.collections.Controller;
 import com.musicverse.client.collections.Utils;
+import com.musicverse.client.collections.itemActions.AlbumActionDropDown;
+import com.musicverse.client.collections.itemActions.SongActionDropDown;
 import com.musicverse.client.objects.Album;
 import com.musicverse.client.objects.Artist;
 import com.musicverse.client.objects.Song;
@@ -135,6 +137,15 @@ public class ArtistSectionScreen {
         SettingsDropDown settingsDropDownImported = new SettingsDropDown();
         menuBarSettings.getMenus().add(settingsDropDownImported.menu(2, artistNameLabel, "artist"));
     }
+    private Album selectedAlbum;
+    @FXML
+    void onAlbumItemClicked(MouseEvent event) {
+        ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
+        AlbumActionDropDown albumActionDropDown = new AlbumActionDropDown();
+        selectedAlbum = tableAlbums.getSelectionModel().getSelectedItem();
+        albumAction.setVisible(true);
+        albumAction.getMenus().add(albumActionDropDown.setMenu(selectedAlbum, artistNameLabel, 0, Integer.parseInt(selectedAlbum.getId()),  ae));
+    }
 
 
 
@@ -142,6 +153,9 @@ public class ArtistSectionScreen {
 
         val api = ServerAPI.getInstance();
         data = api.loadArtist(PreferencesLogin.getPrefs().getId(), id);
+
+        albumAction.setVisible(true);
+
 
         this.artistName.setText(data.getString("name"));
         this.genreLabel.setText(data.getString("genre"));
@@ -178,12 +192,58 @@ public class ArtistSectionScreen {
 
         tableSongs.setVisible(false);
         if (shownTable > 0){
+            albumAction.setVisible(false);
             val songs = api.songsByAlbum(shownTable);
             Utils utils = new Utils();
             tableSongs.setVisible(true);
             tableSongs = utils.generateTableSongs(tableSongs, songs, artistNameLabel);
         }
     }
+
+    @FXML
+    private Button newAlbumBtn;
+
+    @FXML
+    void onNewAlbumBtnClick(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    private MenuBar albumAction;
+
+    @FXML
+    private Button albumDescriptionBtn;
+
+    private String selectedAlbumDescription;
+
+
+    /*@FXML
+    void onAlbumDescriptionBtn(ActionEvent event) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        dialog.setHeight(400);
+
+        Button buttonCancel = new Button("Cancel");
+
+        dialogVbox.getChildren().add(new Text("Album description"));
+
+        dialogVbox.getChildren().add(new Text("playlistDescription"));
+
+        dialogVbox.getChildren().add(buttonCancel);
+
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+
+        buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+    }*/
 
     @FXML
     void onEditBtnClick(MouseEvent event) {

@@ -176,6 +176,14 @@ public class ServerAPI {
 				response.getString("status").equals("ok"));
 	}
 
+	public boolean addToPlaylist(int playlistId, int songId){
+		val payload = new ObjectNode();
+		payload.set("song_id", songId);
+		payload.set("collection_id", playlistId);
+		return queryServerJson("addToPlaylist", Method.POST, payload, (code, response) ->
+				response.getString("status").equals("ok"));
+	}
+
 	public boolean createCollection(int id, String name, String description, int what){
 		val payload = new ObjectNode();
 		payload.set("collection", what);

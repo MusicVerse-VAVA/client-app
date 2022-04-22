@@ -2,6 +2,7 @@ package com.musicverse.client;
 
 import com.musicverse.client.collections.Utils;
 import com.musicverse.client.objects.Artist;
+import com.musicverse.client.objects.Playlist;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -85,7 +86,15 @@ public class InitScreensFunctions {
             controler.setRectangles(genresList);
 
             val response = api.getUserPlaylists(PreferencesLogin.getPrefs().getId());
-            controler.setPlaylists(Utils.createPlaylist(response));
+            ArrayList<Playlist> playlistArrayList = new ArrayList<>();
+            for (int i = 0; i < response.size(); i++){
+                playlistArrayList.add(new Playlist(
+                        response.get(i).getString("name"),
+                        response.get(i).getString("description"),
+                        response.get(i).getInt("id")
+                ));
+            }
+            controler.setPlaylists(Utils.createPlaylist(response), playlistArrayList);
 
         }
         catch (Exception e){

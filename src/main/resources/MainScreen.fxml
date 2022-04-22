@@ -266,5 +266,6 @@
             <Font size="10.0" />
          </font>
       </Button>
+      <Button fx:id="playlistDescriptionBtn" layoutX="21.0" layoutY="414.0" mnemonicParsing="false" onAction="#onPlaylistDescriptionBtnClick" prefHeight="30.0" prefWidth="200.0" text="Playlist description" />
    </children>
 </AnchorPane>
