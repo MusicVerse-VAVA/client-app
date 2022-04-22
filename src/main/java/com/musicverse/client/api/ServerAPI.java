@@ -159,6 +159,33 @@ public class ServerAPI {
 		});
 	}
 
+	public boolean deleteSong(int songId, int collectionId, int what){
+		val payload = new ObjectNode();
+		payload.set("collection", what);
+		payload.set("collection_id", collectionId);
+		payload.set("song_id", songId);
+		return queryServerJson("deleteSong", Method.POST, payload, (code, response) ->
+			response.getString("status").equals("ok"));
+	}
+
+	public boolean deleteCollection(int id, int what){
+		val payload = new ObjectNode();
+		payload.set("collection", what);
+		payload.set("collection_id", id);
+		return queryServerJson("deleteCollection", Method.POST, payload, (code, response) ->
+				response.getString("status").equals("ok"));
+	}
+
+	public boolean createCollection(int id, String name, String description, int what){
+		val payload = new ObjectNode();
+		payload.set("collection", what);
+		payload.set("id", id);
+		payload.set("name", name);
+		payload.set("description", description);
+		return queryServerJson("createCollection", Method.POST, payload, (code, response) ->
+				response.getString("status").equals("ok"));
+	}
+
 	public boolean editArtist(int id, String nameField, String descriptionField, String genre){
 		val payload = new ObjectNode();
 		payload.set("id", id);

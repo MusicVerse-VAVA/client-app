@@ -122,11 +122,8 @@ public class WelcomeScreen {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    //TODO : Ziskaj playlisty vsetkych userov ktore nie su private
-                    //this is not needed, we will not use public playlists
 					new InitScreensFunctions().initMainScreen(event);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
             }

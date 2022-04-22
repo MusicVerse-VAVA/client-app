@@ -1,4 +1,4 @@
-package com.musicverse.client.collections;
+package com.musicverse.client.collections.eventHandlers;
 
 import javafx.scene.layout.AnchorPane;
 

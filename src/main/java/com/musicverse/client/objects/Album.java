@@ -1,8 +1,5 @@
 package com.musicverse.client.objects;
 
-import com.musicverse.client.collections.EventHandler;
-import javafx.scene.layout.AnchorPane;
-
 public class Album  {
 
     private String id, name, description, artist_id, genre_id, genre, artist;

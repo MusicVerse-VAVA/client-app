@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuBar?>
@@ -50,7 +51,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Line endX="184.3333282470703" layoutX="21.0" layoutY="174.0" startX="12.333332061767578" stroke="WHITE" />
+      <Line endX="184.3333282470703" layoutX="21.0" layoutY="179.0" startX="12.333332061767578" stroke="WHITE" />
       <ListView fx:id="listOfPlaylists" layoutX="31.0" layoutY="179.0" prefHeight="260.0" prefWidth="176.0" style="-fx-background-color: #3D3F3C;" />
       <Rectangle fx:id="playerBox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="143.0" layoutX="18.0" layoutY="447.0" stroke="BLACK" strokeType="INSIDE" width="204.0" />
       <Label fx:id="currentSongLabel" layoutX="66.0" layoutY="469.0" text="currentSongLabel">
@@ -63,7 +64,7 @@
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <Rectangle fx:id="playerLine" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="13.0" layoutX="281.0" layoutY="570.0" stroke="BLACK" strokeType="INSIDE" width="827.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="91.0" />
+      <Rectangle fx:id="playerLine" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="13.0" layoutX="281.0" layoutY="570.0" stroke="BLACK" strokeType="INSIDE" width="757.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="161.0" />
       <Rectangle fx:id="genresBoxes" arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="396.0" layoutX="232.0" layoutY="144.0" stroke="WHITE" strokeType="INSIDE" width="948.0" />
       <Label fx:id="searchMusicLabel" layoutX="627.0" layoutY="163.0" text="Search music by genre" textFill="WHITE">
          <font>
@@ -250,12 +251,20 @@
                   <RowConstraints />
                   <RowConstraints />
                   <RowConstraints />
+                  <RowConstraints />
                </rowConstraints>
             </GridPane>
          </content>
       </ScrollPane>
       <MenuBar fx:id="menuBarTest" layoutX="1080.0" layoutY="24.0" />
       <TableView fx:id="tableView" layoutX="237.0" layoutY="144.0" prefHeight="396.0" prefWidth="940.0" style="-fx-background-color: #3D3F3C;" stylesheets="@tableViewCss.css" visible="false" />
-      <TableView fx:id="tableSongs" layoutX="247.0" layoutY="154.0" prefHeight="396.0" prefWidth="940.0" style="-fx-background-color: #3D3F3C;" stylesheets="@tableViewCss.css" visible="false" />
+      <TableView fx:id="tableSongs" layoutX="247.0" layoutY="154.0" onMouseClicked="#onSongItemClicked" prefHeight="396.0" prefWidth="940.0" style="-fx-background-color: #3D3F3C;" stylesheets="@tableViewCss.css" visible="false" />
+      <MenuBar fx:id="songItemAction" layoutX="1015.0" layoutY="90.0" prefWidth="150.0" />
+      <Button fx:id="btnDeletePlaylist" layoutX="1074.0" layoutY="556.0" minWidth="50.0" mnemonicParsing="false" onAction="#onBtnDeletePlaylistClick" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: red;" text="Delete playlist" />
+      <Button fx:id="newPlaylistBtn" layoutX="134.0" layoutY="147.0" mnemonicParsing="false" onAction="#onBtnNewPlaylistClick" prefHeight="27.0" prefWidth="70.0" style="-fx-background-color: green;" text="Add new">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

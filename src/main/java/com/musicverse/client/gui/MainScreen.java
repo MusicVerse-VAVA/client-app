@@ -6,19 +6,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.falsepattern.json.node.JsonNode;
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.collections.Controller;
 import com.musicverse.client.collections.Utils;
+import com.musicverse.client.collections.itemActions.SongActionDropDown;
 import com.musicverse.client.objects.Artist;
 import com.musicverse.client.objects.Song;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import com.musicverse.client.api.ServerAPI;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import lombok.val;
 
 public class MainScreen {
@@ -113,6 +120,11 @@ public class MainScreen {
 
     public void setRectangles(ArrayList<String> items){
 
+        btnDeletePlaylist.setVisible(false);
+
+        if (PreferencesLogin.getPrefs().getId() < 1)
+            newPlaylistBtn.setVisible(false);
+
         int rowNum = (int) Math.ceil((double) items.size() / 6);
 
         for (int i = 0; i < rowNum; i++) {
@@ -184,11 +196,106 @@ public class MainScreen {
 
     }
 
+    @FXML
+    private MenuBar songItemAction;
+
+    private ActionEvent e;
+
+    @FXML
+
+    private Song selectedSong = null;
+
+    private int selectedPlaylistId = 0;
+
+
+    @FXML
+    private Button newPlaylistBtn;
+
+
+    @FXML
+    void onBtnNewPlaylistClick(ActionEvent event2) {
+
+        val api = ServerAPI.getInstance();
+
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        dialog.setHeight(500);
+
+        TextField nameField = new TextField("playListName");
+        TextField descriptionField = new TextField("description");
+        Button buttonSave = new Button("Save");
+        Button buttonCancel = new Button("Cancel");
+
+        dialogVbox.getChildren().add(new Text("Name of playlist"));
+        dialogVbox.getChildren().add(nameField);
+
+        dialogVbox.getChildren().add(new Text("Add description"));
+        dialogVbox.getChildren().add(descriptionField);
+
+        dialogVbox.getChildren().add(buttonSave);
+        dialogVbox.getChildren().add(buttonCancel);
+
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+
+        buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+
+        buttonSave.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                if (api.createCollection(PreferencesLogin.getPrefs().getId(),
+                        nameField.getText(), descriptionField.getText(), 0)){
+
+                    InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+
+                    try {
+                        dialog.close();
+                        initScreensFunctions.initMainScreen(event2);
+
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+        });
+
+    }
+
+    @FXML
+    public void onSongItemClicked(MouseEvent event) {
+        ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
+        SongActionDropDown songActionDropDown = new SongActionDropDown();
+        selectedSong = tableSongs.getSelectionModel().getSelectedItem();
+        songItemAction.setVisible(true);
+        songItemAction.getMenus().add(songActionDropDown.setMenu(selectedSong, mainPane, 0, selectedPlaylistId,  ae));
+
+    }
+
+
+    @FXML
+    private Button btnDeletePlaylist;
+    @FXML
+    void onBtnDeletePlaylistClick(ActionEvent event) throws IOException {
+        if(server_api.deleteCollection(selectedPlaylistId, 0)){
+            InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+            initScreensFunctions.initMainScreen(event);
+        }
+    }
+
 
     public void setRole(int i){
 
         this.role = i;
 
+        btnDeletePlaylist.setVisible(false);
         SettingsDropDown settingsDropDownImported = new SettingsDropDown();
         menuBarTest.getMenus().add(settingsDropDownImported.menu(role, mainPane, "main"));
 
@@ -233,47 +340,14 @@ public class MainScreen {
         listOfPlaylists.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                btnDeletePlaylist.setVisible(true);
                 int result = getKeyByValue(list, listOfPlaylists.getSelectionModel().getSelectedItem());
                 val songs2 = server_api.songsByPlaylist(result);
+                selectedPlaylistId = result;
 
                 Utils utils = new Utils();
                 tableSongs = utils.generateTableSongs(tableSongs, songs2, mainPane);
 
-                /*ArrayList<Song> songArrayList = new ArrayList<>();
-
-
-                //String albumId, String data, String description, String duration, String id, String name,
-                        //String artistId, String genre_id, String genre, String artist, String album
-                for (int i = 0; i < songs2.size(); i++){
-                    songArrayList.add(
-                            new Song(
-                                    String.valueOf(songs2.get(i).getInt("album_id")),
-                                    songs2.get(i).getString("data"),
-                                    songs2.get(i).getString("description"),
-                                    songs2.get(i).getString("name"),
-                                    songs2.get(i).getString("album"),
-                                    songs2.get(i).getString("artist"),
-                                    String.valueOf(songs2.get(i).getInt("duration")),
-                                    songs2.get(i).getString("genre"),
-                                    String.valueOf(songs2.get(i).getInt("id")),
-                                    String.valueOf(songs2.get(i).getInt("artist_id")),
-                                    String.valueOf(songs2.get(i).getInt("genre_id"))
-                                    )
-                    );
-                }
-               tableSongs.getColumns().clear();
-                tableSongs.getItems().clear();
-                Controller<Song> controller = new Controller<>();
-                tableSongs = controller.initialize(
-                        songArrayList,
-                        new String[]{"album_id", "data", "description",
-                                "name", "album", "artist","duration","genre", "id",  "artist_id", "genre_id"},
-                        tableSongs, 1, mainPane
-                );
-                tableSongs.setVisible(true);
-                tableSongs.refresh();
-
-                System.out.println(songs2);*/
             }
         });
 
@@ -328,6 +402,8 @@ public class MainScreen {
     void onHomeClicked(MouseEvent event) {
         tableView.setVisible(false);
         tableSongs.setVisible(false);
+        songItemAction.setVisible(false);
+        btnDeletePlaylist.setVisible(false);
     }
 
 }

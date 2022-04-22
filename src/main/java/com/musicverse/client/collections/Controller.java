@@ -1,7 +1,12 @@
 package com.musicverse.client.collections;
 
+import com.musicverse.client.collections.eventHandlers.AlbumTableHandler;
+import com.musicverse.client.collections.eventHandlers.ArtistTableHandler;
+import com.musicverse.client.collections.eventHandlers.EventHandler;
+import com.musicverse.client.collections.eventHandlers.SongTableHandleer;
 import com.musicverse.client.objects.Album;
 import com.musicverse.client.objects.Artist;
+import com.musicverse.client.objects.Song;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -118,6 +123,11 @@ public class Controller <U> {
                         Artist artist = (Artist) clickedRow;
                         EventHandler<Artist> eventHandler = new ArtistTableHandler();
                         eventHandler.handler(artist, mainPane);
+                    }
+                    if (what == 1){
+                        Song song = (Song) clickedRow;
+                        EventHandler<Song> eventHandler = new SongTableHandleer();
+                        eventHandler.handler(song, mainPane);
                     }
                     if (what == 2){
                         Album album = (Album) clickedRow;

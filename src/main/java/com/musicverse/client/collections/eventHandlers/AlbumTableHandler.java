@@ -1,12 +1,12 @@
-package com.musicverse.client.collections;
+package com.musicverse.client.collections.eventHandlers;
 
 import com.musicverse.client.InitScreensFunctions;
-import com.musicverse.client.gui.ArtistSectionScreen;
+import com.musicverse.client.collections.eventHandlers.EventHandler;
 import com.musicverse.client.objects.Album;
 import javafx.scene.layout.AnchorPane;
 import lombok.SneakyThrows;
 
-public class AlbumTableHandler implements EventHandler<Album>{
+public class AlbumTableHandler implements EventHandler<Album> {
     @SneakyThrows
     @Override
     public void handler(Album album, AnchorPane mainPane) {

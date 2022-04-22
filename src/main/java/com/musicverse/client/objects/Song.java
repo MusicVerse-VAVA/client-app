@@ -1,7 +1,5 @@
 package com.musicverse.client.objects;
 
-import com.musicverse.client.collections.EventHandler;
-
 public class Song {
 
     private String albumId;
