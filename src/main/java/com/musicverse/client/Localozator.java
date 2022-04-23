@@ -8,8 +8,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public final class Localozator {
-//    private static final Locale locale = Locale.getDefault();
-    private static final Locale locale = new Locale("sk", "SK");
+    private static final Locale locale = Locale.getDefault();
+//    private static final Locale locale = new Locale("sk", "SK");
 
     private static final File file = new File("src/main/resources/bundle");
 

@@ -17,19 +17,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1199.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.MainScreen">
+<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="1199.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.MainScreen">
    <children>
       <Label fx:id="title" layoutX="38.0" layoutY="28.0" prefHeight="27.0" prefWidth="112.0" text="MUSICVERSE" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="loginMainScreenLabel" layoutX="734.0" layoutY="28.0" onMouseClicked="#loginLabelClick" prefHeight="27.0" prefWidth="49.0" text="Login" textFill="WHITE">
+      <Label fx:id="loginMainScreenLabel" layoutX="734.0" layoutY="28.0" onMouseClicked="#loginLabelClick" prefHeight="27.0" prefWidth="49.0" text="%LOG IN" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="registerMainScreenLabel" layoutX="792.0" layoutY="28.0" onMouseClicked="#registerLabelClick" prefHeight="27.0" prefWidth="70.0" text="Register" textFill="WHITE">
+      <Label fx:id="registerMainScreenLabel" layoutX="792.0" layoutY="28.0" onMouseClicked="#registerLabelClick" prefHeight="27.0" prefWidth="70.0" text="%SIGN UP" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
@@ -40,13 +40,13 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="46.0" layoutX="21.0" layoutY="80.0" stroke="WHITE" strokeType="INSIDE" width="1159.0" AnchorPane.leftAnchor="21.0" />
-      <Label fx:id="homeLabel" layoutX="608.0" layoutY="94.0" onMouseClicked="#onHomeClicked" text="HOME" textFill="WHITE">
+      <Label fx:id="homeLabel" layoutX="608.0" layoutY="94.0" onMouseClicked="#onHomeClicked" text="%HOME" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="297.0" layoutX="22.0" layoutY="144.0" stroke="WHITE" strokeType="INSIDE" width="200.0" AnchorPane.leftAnchor="21.0" />
-      <Label fx:id="playlistsLabel" layoutX="32.0" layoutY="147.0" prefHeight="27.0" prefWidth="186.0" text="List of playlists" textFill="WHITE">
+      <Label fx:id="playlistsLabel" layoutX="32.0" layoutY="147.0" prefHeight="27.0" prefWidth="186.0" text="%LIST OF PLAYLISTS" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -227,7 +227,7 @@
             <Insets left="20.0" />
          </padding>
       </Label>
-      <TextField fx:id="searchField" layoutX="203.0" layoutY="28.0" promptText="Search">
+      <TextField fx:id="searchField" layoutX="203.0" layoutY="28.0" promptText="%SEARCH">
          <font>
             <Font size="14.0" />
          </font>
@@ -260,12 +260,12 @@
       <TableView fx:id="tableView" layoutX="237.0" layoutY="144.0" prefHeight="396.0" prefWidth="940.0" style="-fx-background-color: #3D3F3C;" stylesheets="@tableViewCss.css" visible="false" />
       <TableView fx:id="tableSongs" layoutX="247.0" layoutY="154.0" onMouseClicked="#onSongItemClicked" prefHeight="396.0" prefWidth="940.0" style="-fx-background-color: #3D3F3C;" stylesheets="@tableViewCss.css" visible="false" />
       <MenuBar fx:id="songItemAction" layoutX="1015.0" layoutY="90.0" prefWidth="150.0" />
-      <Button fx:id="btnDeletePlaylist" layoutX="1074.0" layoutY="556.0" minWidth="50.0" mnemonicParsing="false" onAction="#onBtnDeletePlaylistClick" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: red;" text="Delete playlist" />
-      <Button fx:id="newPlaylistBtn" layoutX="134.0" layoutY="147.0" mnemonicParsing="false" onAction="#onBtnNewPlaylistClick" prefHeight="27.0" prefWidth="70.0" style="-fx-background-color: green;" text="Add new">
+      <Button fx:id="btnDeletePlaylist" layoutX="1074.0" layoutY="556.0" minWidth="50.0" mnemonicParsing="false" onAction="#onBtnDeletePlaylistClick" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: red;" text="%DELETE PLAYLIST" />
+      <Button fx:id="newPlaylistBtn" layoutX="134.0" layoutY="147.0" mnemonicParsing="false" onAction="#onBtnNewPlaylistClick" prefHeight="27.0" prefWidth="70.0" style="-fx-background-color: green;" text="%ADD NEW">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Button fx:id="playlistDescriptionBtn" layoutX="21.0" layoutY="414.0" mnemonicParsing="false" onAction="#onPlaylistDescriptionBtnClick" prefHeight="30.0" prefWidth="200.0" text="Playlist description" />
+      <Button fx:id="playlistDescriptionBtn" layoutX="21.0" layoutY="414.0" mnemonicParsing="false" onAction="#onPlaylistDescriptionBtnClick" prefHeight="30.0" prefWidth="200.0" text="%PLAYLIST DESCRIPTION" />
    </children>
 </AnchorPane>

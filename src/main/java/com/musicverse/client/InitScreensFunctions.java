@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class InitScreensFunctions {
 
@@ -64,7 +65,8 @@ public class InitScreensFunctions {
     }*/
 
     public void initMainScreen(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
+        ResourceBundle resources = Localozator.getResourceBundle();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")), resources);
         Parent root = loader.load();
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200,600);
@@ -108,7 +110,8 @@ public class InitScreensFunctions {
 
     @SneakyThrows
     public void initRegistrationScreen(ActionEvent actionEvent, int role) throws IOException{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/RegisterScreen.fxml")));
+        ResourceBundle resources = Localozator.getResourceBundle();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/RegisterScreen.fxml")), resources);
         Parent root = loader.load();
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         com.musicverse.client.gui.RegisterScreen controler = loader.getController();
@@ -129,7 +132,8 @@ public class InitScreensFunctions {
 
     @SneakyThrows
     public void initLoginScreen(ActionEvent actionEvent) throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginScreen.fxml")));
+        ResourceBundle resources = Localozator.getResourceBundle();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginScreen.fxml")), resources);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200,600);
         window.setTitle("Log in user");
@@ -139,7 +143,8 @@ public class InitScreensFunctions {
 
     @SneakyThrows
     public void initSettingsScreen(String Title, String fxml, AnchorPane pane, int from, int shownTable) throws IOException{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)));
+        ResourceBundle resources = Localozator.getResourceBundle();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)), resources);
         Parent root = loader.load();
         Stage window = (Stage) pane.getScene().getWindow();
         if (Objects.equals(Title, "Artist")){

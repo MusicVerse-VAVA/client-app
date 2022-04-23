@@ -12,14 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.RegisterScreen">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #3D3F3C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicverse.client.gui.RegisterScreen">
    <children>
-      <Label layoutX="60.0" layoutY="59.0" text="Welcome to MUSICVERSE!" textFill="WHITE">
+      <Label layoutX="60.0" layoutY="59.0" text="%WELCOME" textFill="WHITE">
          <font>
             <Font name="Calibri" size="25.0" />
          </font>
       </Label>
-      <Text fill="WHITE" layoutX="743.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="where all the music experience is indescribably unearthly" wrappingWidth="407.81280517578125">
+      <Text fill="WHITE" layoutX="743.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%WHERE ALL THE MUSIC EXPERIENCE IS INDESCRIBABLY UNEARTHLY" wrappingWidth="407.81280517578125">
          <font>
             <Font size="18.0" />
          </font>
@@ -36,22 +36,22 @@
             <RowConstraints maxHeight="81.13333740234376" minHeight="10.0" prefHeight="51.266638183593756" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="18.0" prefWidth="170.0" text="Email" textFill="WHITE">
+            <Label prefHeight="18.0" prefWidth="170.0" text="E-mail" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="48.0" prefWidth="106.0" text="NickName" textFill="WHITE" GridPane.rowIndex="1">
+            <Label prefHeight="48.0" prefWidth="106.0" text="%NICKNAME" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="37.0" prefWidth="124.0" text="Password" textFill="WHITE" GridPane.rowIndex="2">
+            <Label prefHeight="37.0" prefWidth="124.0" text="%PASSWORD" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="7.0" prefWidth="125.0" text="Password" textFill="WHITE" GridPane.rowIndex="3">
+            <Label prefHeight="7.0" prefWidth="125.0" text="%PASSWORD" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
@@ -63,17 +63,17 @@
          </children>
       </GridPane>
       <Circle fx:id="avatarCircle" fill="WHITE" layoutX="944.0" layoutY="259.0" onMouseClicked="#onAvatarClick" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="914.0" layoutY="248.0" text="Add photo">
+      <Label layoutX="914.0" layoutY="248.0" text="%ADD PHOTO">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="signUpBtn" layoutX="209.0" layoutY="437.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="40.0" prefWidth="241.0" style="-fx-background-color: #58A034;" text="Sign Up" textFill="WHITE" wrapText="true">
+      <Button fx:id="signUpBtn" layoutX="209.0" layoutY="437.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="40.0" prefWidth="241.0" style="-fx-background-color: #58A034;" text="%SIGN UP" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="backBtn" layoutX="27.0" layoutY="541.0" onMouseClicked="#onBackBtnClick" text="Back" textFill="WHITE">
+      <Label fx:id="backBtn" layoutX="27.0" layoutY="541.0" onMouseClicked="#onBackBtnClick" text="%BACK" textFill="WHITE">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
