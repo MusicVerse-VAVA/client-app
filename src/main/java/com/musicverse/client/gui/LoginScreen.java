@@ -5,6 +5,7 @@ import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.api.ServerAPI;
 
 import com.musicverse.client.objects.User;
+import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -73,6 +74,7 @@ public class LoginScreen {
                 loginAlert.setAlertType(AlertType.INFORMATION);
                 loginAlert.setContentText("PRIHLASENY POUZIVATEL : " + userJson.getString("username"));
                 loginAlert.show();
+                new MyLogger("Prihlaseny pouzivatel: "+userJson.getString("username"),"INFO");
 
                 //Session management
                 PreferencesLogin prefLogin = new PreferencesLogin();

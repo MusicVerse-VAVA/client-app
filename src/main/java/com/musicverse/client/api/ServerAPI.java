@@ -3,6 +3,7 @@ package com.musicverse.client.api;
 import com.falsepattern.json.node.JsonNode;
 import com.falsepattern.json.node.ObjectNode;
 import com.musicverse.client.IOUtil;
+import com.musicverse.client.sessionManagement.MyLogger;
 import lombok.val;
 
 import java.io.*;
@@ -41,9 +42,13 @@ public class ServerAPI {
         payload.set("password", password);
         payload.set("access_level", role);
         if (queryServerJson("register", Method.POST, payload, (code, response) -> response.getString("status").equals("ok"))){
+            new MyLogger("Registracia interpreta: "+username,"INFO");
             return createArtist(email);
+
         }
+        new MyLogger("Chyba pri registracii interpreta","ERROR");
         return false;
+
     }
 
     public JsonNode loadArtist(int id, int what){
@@ -60,8 +65,10 @@ public class ServerAPI {
 
         return queryServerJson(url, Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")){
+                new MyLogger("Ziskanie interpreta z databazy prebehlo uspesne ","INFO");
                 return response.get("artist");
             }else{
+                new MyLogger("Chyba pri ziskavani interpreta z databazy","ERROR");
                 return null;
             }
         });
@@ -73,8 +80,10 @@ public class ServerAPI {
         payload.set("password", password);
         return queryServerJson("auth", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
+                new MyLogger("Uspesna autentifikacia pouzivatela","INFO");
                 return response.get("user");
             } else {
+                new MyLogger("Chyba pri autentifikacii pouzivatela "+email,"ERROR");
                 return null;
             }
         });
@@ -85,8 +94,10 @@ public class ServerAPI {
         payload.set("id", id);
         return queryServerJson("playlists", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
+                new MyLogger("Ziskanie playlistov pouzivatela "+id+" z databazy prebehlo uspesne","INFO");
                 return response.get("playlists");
             } else {
+                new MyLogger("Chyba pri ziskavani playlistov pouzivatela "+id,"ERROR");
                 return null;
             }
         });
@@ -96,8 +107,10 @@ public class ServerAPI {
         val payload = new ObjectNode();
         return queryServerJson("allplaylists", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
+                new MyLogger("Ziskanie playlistov z databazy prebehlo uspesne","INFO");
                 return response.get("playlists");
             } else {
+                new MyLogger("Chyba pri ziskavani playlistov","ERROR");
                 return null;
             }
         });
@@ -107,8 +120,10 @@ public class ServerAPI {
         val payload = new ObjectNode();
         return queryServerJson("genres", Method.GET, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
+                new MyLogger("Ziskanie zanrov z databazy prebehlo uspesne","INFO");
                 return response.get("genres");
             } else {
+                new MyLogger("Chyba pri ziskavani zanrov","ERROR");
                 return null;
             }
         });
@@ -122,8 +137,10 @@ public class ServerAPI {
         return queryServerJson("artistsByGenre", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
                 System.out.println(response.get("artists"));
+                new MyLogger("Ziskanie interpretov podla zadaneho zanru "+genre_id+" prebehlo uspesne","INFO");
                 return response.get("artists");
             } else {
+                new MyLogger("Chyba pri ziskavani interpretov podla zanru"+genre_id,"ERROR");
                 return null;
             }
         });
@@ -139,6 +156,7 @@ public class ServerAPI {
                 val file = IOUtil.getSongFile(songID);
                 try {
                     IOUtil.streamToFile(response, file);
+                    new MyLogger("Stahovanie skladby "+songID+" prebehlo uspesne","INFO");
                     return true;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -147,6 +165,7 @@ public class ServerAPI {
             });
         } catch (IOException e) {
             e.printStackTrace();
+            new MyLogger("Chyba pri stahovani skladby "+songID,"ERROR");
             return false;
         }
     }
@@ -174,8 +193,10 @@ public class ServerAPI {
         return queryServerJson("songsByPlaylist", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
                 System.out.println(response.get("songs"));
+                new MyLogger("Ziskavanie skladieb v playliste"+playlist_id+"prebehlo uspesne","INFO");
                 return response.get("songs");
             } else {
+                new MyLogger("Chyba pri ziskavani skladieb v playliste"+playlist_id,"ERROR");
                 return null;
             }
         });
@@ -189,8 +210,10 @@ public class ServerAPI {
         return queryServerJson("songsByAlbum", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
                 System.out.println(response.get("songs"));
+                new MyLogger("Ziskavanie skladieb v albume"+album_id+"prebehlo uspesne","INFO");
                 return response.get("songs");
             } else {
+                new MyLogger("Chyba pri ziskavani skladieb v albume"+album_id,"ERROR");
                 return null;
             }
         });
