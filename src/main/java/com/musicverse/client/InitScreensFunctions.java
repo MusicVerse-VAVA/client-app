@@ -117,11 +117,11 @@ public class InitScreensFunctions {
         com.musicverse.client.gui.RegisterScreen controler = loader.getController();
         String label = "", Title = "";
         if (role == 1){
-            label = "Register";
-            Title = "Register new user";
+            label = Localozator.getResourceBundle().getString("REGISTER");
+            Title = Localozator.getResourceBundle().getString("REGISTER NEW USER");
         } else if (role == 2) {
-            label = "Request to be an artist";
-            Title = "Register new artist";
+            label = Localozator.getResourceBundle().getString("ARTIST REQUEST");
+            Title = Localozator.getResourceBundle().getString("REGISTER NEW ARTIST");
         }
         controler.setLabelText(label, role);
         Scene scene = new Scene(root, 1200,600);

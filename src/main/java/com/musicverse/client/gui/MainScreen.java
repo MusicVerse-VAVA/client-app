@@ -225,10 +225,10 @@ public class MainScreen {
         VBox dialogVbox = new VBox(20);
         dialog.setHeight(500);
 
-        TextField nameField = new TextField("playListName");
-        TextField descriptionField = new TextField("description");
-        Button buttonSave = new Button("Save");
-        Button buttonCancel = new Button("Cancel");
+        TextField nameField = new TextField(Localozator.getResourceBundle().getString("PLAYLISTNAME"));
+        TextField descriptionField = new TextField(Localozator.getResourceBundle().getString("DESCRIPTION"));
+        Button buttonSave = new Button(Localozator.getResourceBundle().getString("SAVE"));
+        Button buttonCancel = new Button(Localozator.getResourceBundle().getString("CANCEL"));
 
         dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("NAME OF PLAYLIST")));
         dialogVbox.getChildren().add(nameField);

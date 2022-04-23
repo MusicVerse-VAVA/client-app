@@ -56,17 +56,18 @@ public class WelcomeScreen {
         title.setPadding(new Insets(40,10, 10, 40));
 
         registerBtn = new Button(Localozator.getResourceBundle().getString("CREATE AN ACCOUNT"));
-        registerBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
-        registerBtn.setAlignment(Pos.TOP_CENTER);
+        registerBtn.setStyle("-fx-cursor: hand; -fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
+        registerBtn.setAlignment(Pos.CENTER);
 
         loginBtn = new Button(Localozator.getResourceBundle().getString("I ALREADY HAVE AN ACCOUNT"));
-        loginBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
+        loginBtn.setStyle("-fx-cursor: hand; -fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
 
         registerArtistBtn = new Button(Localozator.getResourceBundle().getString("CREATE AN ARTIST ACCOUNT"));
-        registerArtistBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
+        registerArtistBtn.setStyle("-fx-cursor: hand; -fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
+        registerArtistBtn.setAlignment(Pos.CENTER);
 
         guestBtn = new Button(Localozator.getResourceBundle().getString("CONTINUE WITHOUT REGISTRATION"));
-        guestBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
+        guestBtn.setStyle("-fx-cursor: hand; -fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
         guestBtn.setMaxWidth(Double.MAX_VALUE);
         guestBtn.setAlignment(Pos.CENTER);
         guestBtn.setUnderline(true);

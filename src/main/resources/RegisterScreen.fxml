@@ -51,7 +51,7 @@
                   <Font name="Calibri" size="18.0" />
                </font>
             </Label>
-            <Label prefHeight="7.0" prefWidth="125.0" text="%PASSWORD" textFill="WHITE" GridPane.rowIndex="3">
+            <Label prefHeight="7.0" prefWidth="125.0" text="%CONFIRM PASSWORD" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font name="Calibri" size="18.0" />
                </font>
@@ -62,18 +62,18 @@
             <PasswordField fx:id="pswd2Field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Circle fx:id="avatarCircle" fill="WHITE" layoutX="944.0" layoutY="259.0" onMouseClicked="#onAvatarClick" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="914.0" layoutY="248.0" text="%ADD PHOTO">
+      <Circle fx:id="avatarCircle" fill="WHITE" layoutX="944.0" layoutY="259.0" onMouseClicked="#onAvatarClick" radius="100.0" stroke="BLACK" strokeType="INSIDE" style="-fx-cursor: hand;"/>
+      <Label layoutX="914.0" layoutY="248.0" text="%ADD PHOTO" style="-fx-cursor: hand;">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="signUpBtn" layoutX="209.0" layoutY="437.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="40.0" prefWidth="241.0" style="-fx-background-color: #58A034;" text="%SIGN UP" textFill="WHITE" wrapText="true">
+      <Button fx:id="signUpBtn" layoutX="209.0" layoutY="437.0" mnemonicParsing="false" onAction="#onSignUpClick" prefHeight="40.0" prefWidth="241.0" style="-fx-background-color: #58A034; -fx-cursor: hand;" text="%SIGN UP" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="backBtn" layoutX="27.0" layoutY="541.0" onMouseClicked="#onBackBtnClick" text="%BACK" textFill="WHITE">
+      <Label fx:id="backBtn" layoutX="27.0" layoutY="541.0" onMouseClicked="#onBackBtnClick" text="%BACK" textFill="WHITE" style="-fx-cursor: hand;">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>

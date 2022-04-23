@@ -14,10 +14,10 @@ import javafx.scene.layout.AnchorPane;
 
 public class SettingsDropDown {
 
-    private Menu settingsMenu = new Menu("Settings");
-    private MenuItem settingsItem = new MenuItem("Settings");
+    private Menu settingsMenu = new Menu(Localozator.getResourceBundle().getString("SETTINGS"));
+    private MenuItem settingsItem = new MenuItem(Localozator.getResourceBundle().getString("SETTINGS"));
     private MenuItem AAItem = new MenuItem("AA section");
-    private MenuItem logOutItem = new MenuItem("Log out");
+    private MenuItem logOutItem = new MenuItem(Localozator.getResourceBundle().getString("LOG OUT"));
 
     public Menu menu(int role, AnchorPane pane, String from){
 

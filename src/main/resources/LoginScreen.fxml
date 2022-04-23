@@ -42,7 +42,7 @@
             <PasswordField fx:id="pswdField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="logInBtn" layoutX="561.0" layoutY="390.0" mnemonicParsing="false" onAction="#onLogInBtnClick" prefHeight="40.0" prefWidth="138.0" style="-fx-background-color: #58A034;" text="%LOG IN" textFill="WHITE">
+      <Button fx:id="logInBtn" layoutX="561.0" layoutY="390.0" mnemonicParsing="false" onAction="#onLogInBtnClick" prefHeight="40.0" prefWidth="138.0" style="-fx-background-color: #58A034; -fx-cursor: hand;" text="%LOG IN" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
@@ -52,7 +52,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Label fx:id="backBtn" layoutX="50.0" layoutY="529.0" onMouseClicked="#onBackBtnClick" prefHeight="26.0" prefWidth="43.0" text="%BACK" textFill="WHITE">
+      <Label fx:id="backBtn" layoutX="50.0" layoutY="529.0" onMouseClicked="#onBackBtnClick" prefHeight="26.0" prefWidth="43.0" text="%BACK" textFill="WHITE" style="-fx-cursor: hand;">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
