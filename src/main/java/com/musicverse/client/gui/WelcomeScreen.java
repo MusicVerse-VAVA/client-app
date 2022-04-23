@@ -18,9 +18,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
+import com.musicverse.client.Localozator;
 
 public class WelcomeScreen {
 
@@ -33,6 +40,7 @@ public class WelcomeScreen {
 
         // Requesting the Java versions used by the application
         //(top/right/bottom/left)
+
         final String versionJava = System.getProperty("java.version");
         final String versionJavaFX = System.getProperty("javafx.version");
 
@@ -42,28 +50,28 @@ public class WelcomeScreen {
         buttons.setHgap(10);
         buttons.setVgap(30);
 
-        Label title = new Label("Welcome to MUSICVERSE");
+        Label title = new Label(Localozator.getResourceBundle().getString("WELCOME"));
         title.setStyle("-fx-text-fill: white; -fx-font-size: 25px;");
         title.setAlignment(Pos.TOP_LEFT);
         title.setPadding(new Insets(40,10, 10, 40));
 
-        registerBtn = new Button("Create an account");
+        registerBtn = new Button(Localozator.getResourceBundle().getString("CREATE AN ACCOUNT"));
         registerBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
         registerBtn.setAlignment(Pos.TOP_CENTER);
 
-        loginBtn = new Button("I already have an account");
+        loginBtn = new Button(Localozator.getResourceBundle().getString("I ALREADY HAVE AN ACCOUNT"));
         loginBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px;-fx-text-fill: white; -fx-pref-width: 300px;");
 
-        registerArtistBtn = new Button("Create an artist account");
+        registerArtistBtn = new Button(Localozator.getResourceBundle().getString("CREATE AN ARTIST ACCOUNT"));
         registerArtistBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
 
-        guestBtn = new Button("Continue without registration");
+        guestBtn = new Button(Localozator.getResourceBundle().getString("CONTINUE WITHOUT REGISTRATION"));
         guestBtn.setStyle("-fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
         guestBtn.setMaxWidth(Double.MAX_VALUE);
         guestBtn.setAlignment(Pos.CENTER);
         guestBtn.setUnderline(true);
 
-        Label motto = new Label("where all the music experience is indescribably unearthly");
+        Label motto = new Label(Localozator.getResourceBundle().getString("WHERE ALL THE MUSIC EXPERIENCE IS INDESCRIBABLY UNEARTHLY"));
         motto.setStyle("-fx-text-fill: white; -fx-font-size: 18px; ");
         motto.setMaxWidth(Double.MAX_VALUE);
         motto.setAlignment(Pos.BOTTOM_RIGHT);

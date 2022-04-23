@@ -28,6 +28,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.val;
+import com.musicverse.client.Localozator;
 
 public class MainScreen {
 
@@ -78,7 +79,7 @@ public class MainScreen {
     @FXML
     private Label homeLabel;
 
-    private String userName = "Guest";
+    private String userName = Localozator.getResourceBundle().getString("GUEST");
 
     private int genre_id = -1;
 
@@ -229,10 +230,10 @@ public class MainScreen {
         Button buttonSave = new Button("Save");
         Button buttonCancel = new Button("Cancel");
 
-        dialogVbox.getChildren().add(new Text("Name of playlist"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("NAME OF PLAYLIST")));
         dialogVbox.getChildren().add(nameField);
 
-        dialogVbox.getChildren().add(new Text("Add description"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("ADD DESCRIPTION")));
         dialogVbox.getChildren().add(descriptionField);
 
         dialogVbox.getChildren().add(buttonSave);
@@ -314,7 +315,7 @@ public class MainScreen {
                 break;
 
             case 0:
-                playlistsLabel.setText("Only for registered");
+                playlistsLabel.setText(Localozator.getResourceBundle().getString("ONLY FOR REGISTERED"));
                 likedAlbumsLabel1.setVisible(false);
                 likedArtistsLabel.setVisible(false);
                 likedSongsLabel1.setVisible(false);
@@ -417,9 +418,9 @@ public class MainScreen {
         VBox dialogVbox = new VBox(20);
         dialog.setHeight(400);
 
-        Button buttonCancel = new Button("Cancel");
+        Button buttonCancel = new Button(Localozator.getResourceBundle().getString("CANCEL"));
 
-        dialogVbox.getChildren().add(new Text("Playlist description"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("PLAYLIST DESCRIPTION")));
 
         dialogVbox.getChildren().add(new Text(playlistDescription));
 

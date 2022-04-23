@@ -1,4 +1,5 @@
 package com.musicverse.client.gui;
+import com.musicverse.client.Localozator;
 
 import java.io.IOException;
 
@@ -31,10 +32,10 @@ public class SettingsDropDown {
             AAItem.setVisible(false);
         }
         else if (role == 2){
-            AAItem.setText("Artist section");
+            AAItem.setText(Localozator.getResourceBundle().getString("ARTIST SECTION"));
         }
         else if (role == 3){
-            AAItem.setText("Admin section");
+            AAItem.setText(Localozator.getResourceBundle().getString("ADMIN SECTION"));
         }
 
         settingsItem.setOnAction(e -> {
@@ -65,7 +66,7 @@ public class SettingsDropDown {
         });
 
         logOutItem.setOnAction(e -> {
-            System.out.println("Menu Item 3 Selected");
+            System.out.println(Localozator.getResourceBundle().getString("MENU ITEM 3 SELECTED"));
         });
 
         return settingsMenu;

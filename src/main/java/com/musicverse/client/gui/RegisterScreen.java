@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import com.musicverse.client.api.ServerAPI;
 import lombok.val;
+import com.musicverse.client.Localozator;
 
 public class RegisterScreen {
 
@@ -43,7 +44,7 @@ public class RegisterScreen {
 
     @FXML
     private Button signUpBtn;
-    
+
     private Alert registerAlert = new Alert(AlertType.NONE);
 
     @FXML
@@ -55,7 +56,7 @@ public class RegisterScreen {
     void onBackBtnClick(MouseEvent event) {
         this.goBack(event);
     }
-    
+
     private void goBack(Event event) {
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(WelcomeScreen.getHolder(), 1200, 600);
@@ -74,16 +75,16 @@ public class RegisterScreen {
 	    	String nickname = this.nickNameField.getText();
 	    	String email = this.emailField.getText();
             String password = this.pswdField.getText();
-	    	
+
 	    	if (!api.registerUser(email, nickname, password, role)) {
                 registerAlert.setAlertType(AlertType.ERROR);
-                registerAlert.setContentText("Username or Email is already in use!");
+                registerAlert.setContentText(Localozator.getResourceBundle().getString("USERNAME OR EMAIL IS ALREADY IN USE!"));
                 registerAlert.show();
                 return;
             };
 
             registerAlert.setAlertType(AlertType.INFORMATION);
-            registerAlert.setContentText("Používate¾ bol vytvorený - èaká na schválenie!");
+            registerAlert.setContentText(Localozator.getResourceBundle().getString("USER HAS BEEN CREATED - WAITING FOR APPROVAL!"));
             registerAlert.show();
             this.goBack(event);
 
@@ -93,27 +94,27 @@ public class RegisterScreen {
     	}
 
     }
-    
+
     private boolean correctInputData() {
     	if((this.pswdField.getText().length()<=0) || (this.pswd2Field.getText().length()<=0) ||
     			(this.nickNameField.getText().length()<=0)|| (this.emailField.getText().length()<=0)) {
     		registerAlert.setAlertType(AlertType.ERROR);
-   		 	registerAlert.setContentText("Musite zadat vsetky udaje!");
+   		 	registerAlert.setContentText(Localozator.getResourceBundle().getString("YOU MUST ENTER ALL DATA!"));
             registerAlert.show();
             return false;
-    		
+
     	}
     	if(!this.pswdField.getText().equals(this.pswd2Field.getText())) {
     		registerAlert.setAlertType(AlertType.ERROR);
-   		 	registerAlert.setContentText("Zadane hesla sa nezhoduju!");
+   		 	registerAlert.setContentText(Localozator.getResourceBundle().getString("PASSWORDS DO NOT MATCH!"));
             registerAlert.show();
     		return false;
     	}
-    	
-    	return true;  	
+
+    	return true;
     }
-    
-    
+
+
 
     public void setLabelText(String text, int role){
         this.role = role;
