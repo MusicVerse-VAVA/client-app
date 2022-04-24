@@ -17,3 +17,15 @@
 <Log message="Ziskavanie skladieb v playliste4prebehlo uspesne" time="2022-04-24T00:02:42.769172500" type="INFO"/>
 <Log message="Ziskanie interpretov podla zadaneho zanru 1 prebehlo uspesne" time="2022-04-24T00:02:44.395189300" type="INFO"/>
 <Log message="Ziskavanie skladieb v playliste5prebehlo uspesne" time="2022-04-24T00:02:45.110124400" type="INFO"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-24T11:03:47.917411400" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-24T11:03:56.041008100" type="ERROR"/>
+<Log message="Uspesna autentifikacia pouzivatela" time="2022-04-24T11:04:19.625126500" type="INFO"/>
+<Log message="Prihlaseny pouzivatel: da" time="2022-04-24T11:04:19.717128" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-24T11:04:19.944128900" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-24T11:04:20.012130500" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 19 z databazy prebehlo uspesne" time="2022-04-24T11:04:20.087127400" type="INFO"/>
+<Log message="Uspesna autentifikacia pouzivatela" time="2022-04-24T11:05:12.197001200" type="INFO"/>
+<Log message="Prihlaseny pouzivatel: da" time="2022-04-24T11:05:12.274001600" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-24T11:05:12.745001300" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-24T11:05:12.814001400" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 19 z databazy prebehlo uspesne" time="2022-04-24T11:05:12.886001700" type="INFO"/>

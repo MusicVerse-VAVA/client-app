@@ -20,6 +20,8 @@ import com.musicverse.client.api.ServerAPI;
 import lombok.val;
 import com.musicverse.client.Localozator;
 
+import java.util.regex.Pattern;
+
 public class RegisterScreen {
 
     private int role;
@@ -75,6 +77,26 @@ public class RegisterScreen {
 	    	String nickname = this.nickNameField.getText();
 	    	String email = this.emailField.getText();
             String password = this.pswdField.getText();
+
+            Pattern pattern_email = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+
+            if (!pattern_email.matcher(email).matches()){
+                registerAlert.setAlertType(AlertType.ERROR);
+                registerAlert.setContentText(Localozator.getResourceBundle().getString("INVALID PASSWD"));
+                registerAlert.show();
+                return;
+            }
+
+
+            Pattern pattern_passwd = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+
+            if (!pattern_passwd.matcher(email).matches()){
+                registerAlert.setAlertType(AlertType.ERROR);
+                registerAlert.setContentText(Localozator.getResourceBundle().getString("INVALID EMAIL"));
+                registerAlert.show();
+                return;
+            }
+
 
 	    	if (!api.registerUser(email, nickname, password, role)) {
                 registerAlert.setAlertType(AlertType.ERROR);
