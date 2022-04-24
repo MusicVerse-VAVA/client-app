@@ -12,18 +12,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import com.musicverse.client.api.ServerAPI;
 import lombok.val;
 import com.musicverse.client.Localozator;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
 public class RegisterScreen {
-
+    final FileChooser fileChooser = new FileChooser();
     private int role;
 
     @FXML
@@ -51,6 +55,24 @@ public class RegisterScreen {
 
     @FXML
     void onAvatarClick(MouseEvent event) {
+        Stage stage = new Stage();
+        final StackPane stac = new StackPane();
+        final Button openButton = new Button("Choose Profile Picture");
+        final Button saveButton = new Button("Save profile picture");
+        openButton.setOnAction((final ActionEvent e) -> {
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                Image image1 = new Image(file.toURI().toString());
+                BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
+                BackgroundImage backgroundImage = new BackgroundImage(image1, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+                stac.setBackground(new Background(backgroundImage));
+            }
+        });
+
+        stac.getChildren().add(openButton);
+
+        stage.setScene(new Scene(stac, 500, 500));
+        stage.show();
 
     }
 
