@@ -100,11 +100,11 @@ public class RegisterScreen {
 	    	String email = this.emailField.getText();
             String password = this.pswdField.getText();
 
-            Pattern pattern_email = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+            Pattern pattern_email = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?!-)(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
 
             if (!pattern_email.matcher(email).matches()){
                 registerAlert.setAlertType(AlertType.ERROR);
-                registerAlert.setContentText(Localozator.getResourceBundle().getString("INVALID PASSWD"));
+                registerAlert.setContentText(Localozator.getResourceBundle().getString("INVALID EMAIL"));
                 registerAlert.show();
                 return;
             }
@@ -112,13 +112,12 @@ public class RegisterScreen {
 
             Pattern pattern_passwd = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
 
-            if (!pattern_passwd.matcher(email).matches()){
+            if (!pattern_passwd.matcher(password).matches()){
                 registerAlert.setAlertType(AlertType.ERROR);
-                registerAlert.setContentText(Localozator.getResourceBundle().getString("INVALID EMAIL"));
+                registerAlert.setContentText(Localozator.getResourceBundle().getString("INVALID PASSWD"));
                 registerAlert.show();
                 return;
             }
-
 
 	    	if (!api.registerUser(email, nickname, password, role)) {
                 registerAlert.setAlertType(AlertType.ERROR);

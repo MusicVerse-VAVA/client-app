@@ -7,9 +7,8 @@ import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public final class Localozator {
-    private static final Locale locale = Locale.getDefault();
-//    private static final Locale locale = new Locale("sk", "SK");
+public class Localozator {
+    private static Locale locale = Locale.getDefault();
 
     private static final File file = new File("src/main/resources/bundle");
 
@@ -21,6 +20,10 @@ public final class Localozator {
         } catch (MalformedURLException malformedURLException) {
             malformedURLException.printStackTrace();
         }
+    }
+
+    public static void setLocale(Locale l){
+        locale = l;
     }
 
     public static ResourceBundle getResourceBundle(){

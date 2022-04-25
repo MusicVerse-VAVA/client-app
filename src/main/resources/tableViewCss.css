@@ -22,7 +22,7 @@
 }
 
 .table-row-cell:selected {
-    -fx-background-color: 0x009900;
+    -fx-background-color: #009900;
 }
 
 .table-view .table-cell{

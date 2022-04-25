@@ -360,3 +360,50 @@
 <Log message="Ziskavanie skladieb v albume2prebehlo uspesne" time="2022-04-25T13:40:54.918548300" type="INFO"/>
 <Log message="Ziskanie interpreta z databazy prebehlo uspesne " time="2022-04-25T13:40:56.687039" type="INFO"/>
 <Log message="Ziskanie interpreta z databazy prebehlo uspesne " time="2022-04-25T13:41:48.750248400" type="INFO"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T13:56:54.889328600" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T13:57:00.424193" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T13:57:13.491549300" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T13:57:17.535059300" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T13:57:28.513636600" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T13:57:41.941767300" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T13:58:16.752890300" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela a" time="2022-04-25T13:58:24.622372500" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T13:58:44.644871700" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T13:58:46.689903800" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T13:59:04.235560700" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T13:59:06.282215300" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T13:59:19.993297200" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T13:59:22.022956" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T14:01:30.875959400" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:01:36.475733900" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:01:38.534669" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:01:56.786949100" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:01:58.832010200" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T14:02:31.961429700" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:03:00.177665200" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:03:02.225489100" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:03:10.178313700" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:03:12.224549700" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:03:23.881662800" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:03:25.914383700" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:04:17.136912800" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:04:19.257528" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:04:26.128621200" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:04:28.147508" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:06:07.325261800" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:06:09.445157400" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:07:41.803043200" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:07:43.882219200" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:07:55.654474" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:07:57.702080" type="ERROR"/>
+<Log message="Chyba pri ziskavani playlistov" time="2022-04-25T14:08:04.914351900" type="ERROR"/>
+<Log message="Chyba pri ziskavani zanrov" time="2022-04-25T14:08:06.960228600" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-25T14:14:03.563220400" type="ERROR"/>
+<Log message="Chyba pri registracii interpreta" time="2022-04-25T14:17:44.413737500" type="ERROR"/>
+<Log message="Chyba pri registracii interpreta" time="2022-04-25T14:17:52.427173300" type="ERROR"/>
+<Log message="Chyba pri registracii interpreta" time="2022-04-25T14:17:59.696670400" type="ERROR"/>
+<Log message="Chyba pri registracii interpreta" time="2022-04-25T14:18:06.931088" type="ERROR"/>
+<Log message="Chyba pri registracii interpreta" time="2022-04-25T14:18:50.661257600" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela aaa" time="2022-04-25T14:21:34.791229900" type="ERROR"/>
+<Log message="Chyba pri autentifikacii pouzivatela asfasff" time="2022-04-25T14:21:53.027136500" type="ERROR"/>
+<Log message="Chyba pri registracii interpreta" time="2022-04-25T14:23:03.302190100" type="ERROR"/>

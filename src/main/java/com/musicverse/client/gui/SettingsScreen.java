@@ -1,8 +1,10 @@
 package com.musicverse.client.gui;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.Localozator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,7 +29,7 @@ public class SettingsScreen {
     private Button discardBtn;
 
     @FXML
-    private ChoiceBox<?> languageOption;
+    private ChoiceBox<String> languageOption;
 
     @FXML
     private PasswordField newPswdField;
@@ -57,8 +59,14 @@ public class SettingsScreen {
     }
 
     @FXML
-    void onSaveBtnClick(ActionEvent event) {
-
+    void onSaveBtnClick(ActionEvent event) throws IOException {
+        if (languageOption.getValue().equals("English")){
+            Localozator.setLocale(new Locale("en", "US"));
+        }
+        if (languageOption.getValue().equals("Slovenčina")){
+            Localozator.setLocale(new Locale("sk", "SK"));
+        }
+        new InitScreensFunctions().initMainScreen(event);
     }
 
     public void setFrom(String from){
