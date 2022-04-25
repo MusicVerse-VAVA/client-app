@@ -490,3 +490,6 @@
 <Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:23:03.659992400" type="INFO"/>
 <Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:23:07.907933400" type="INFO"/>
 <Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T19:23:23.082621300" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T20:45:07.319004200" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T20:45:07.451165100" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T20:45:07.536937400" type="INFO"/>

@@ -4,6 +4,7 @@ import com.falsepattern.json.node.JsonNode;
 import com.falsepattern.json.node.ObjectNode;
 import com.musicverse.client.IOUtil;
 import com.musicverse.client.sessionManagement.MyLogger;
+import com.musicverse.client.sessionManagement.PreferencesLogin;
 import lombok.val;
 
 import java.io.*;
@@ -296,6 +297,15 @@ public class ServerAPI {
         payload.set("process", process);
         return queryServerJson("updateUser", Method.POST, payload, (code, response) ->
                 response.getString("status").equals("ok"));
+    }
+    public int updateUser(int userId, String newPswd, String nickName, String oldPswd){
+        val payload = new ObjectNode();
+        payload.set("user_id", userId);
+        payload.set("new_password", newPswd);
+        payload.set("nickname", nickName);
+        payload.set("old_password", oldPswd);
+        return queryServerJson("updateUserSettings", Method.POST, payload, (code, response) ->
+                response.getInt("response"));
     }
 
     public boolean createCollection(int id, String name, String description, int what){
