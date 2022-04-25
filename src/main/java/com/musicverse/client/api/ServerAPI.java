@@ -168,7 +168,7 @@ public class ServerAPI {
                 new MyLogger("Ziskanie interpretov podla zadaneho zanru "+genre_id+" prebehlo uspesne","INFO");
                 return response.get("artists");
             } else {
-                new MyLogger("Chyba pri ziskavani interpretov podla zanru"+genre_id,"ERROR");
+                new MyLogger("Chyba pri ziskavani interpretov podla zanru "+genre_id,"ERROR");
                 return null;
             }
         });
@@ -209,6 +209,7 @@ public class ServerAPI {
         val prefix = prefixStream.toByteArray();
         val prefixInput = new ByteArrayInputStream(prefix);
         try (val fileInput = new BufferedInputStream(new FileInputStream(songFile)); val sequence = new SequenceInputStream(prefixInput, fileInput)) {
+            new MyLogger("Skladba "+songID+" bola uspesne nahrana na server","INFO");
             return queryServerJson("uploadSongData", Method.POST, fileSize + prefix.length, sequence, (code, response) -> response.getString("status").equals("ok"));
         }
     }
@@ -239,10 +240,10 @@ public class ServerAPI {
         return queryServerJson("songsByPlaylist", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
                 System.out.println(response.get("songs"));
-                new MyLogger("Ziskavanie skladieb v playliste"+playlist_id+"prebehlo uspesne","INFO");
+                new MyLogger("Ziskavanie skladieb v playliste "+playlist_id+"prebehlo uspesne","INFO");
                 return response.get("songs");
             } else {
-                new MyLogger("Chyba pri ziskavani skladieb v playliste"+playlist_id,"ERROR");
+                new MyLogger("Chyba pri ziskavani skladieb v playliste "+playlist_id,"ERROR");
                 return null;
             }
         });
@@ -256,38 +257,66 @@ public class ServerAPI {
         return queryServerJson("songsByAlbum", Method.POST, payload, (code, response) -> {
             if (response.getString("status").equals("ok")) {
                 System.out.println(response.get("songs"));
-                new MyLogger("Ziskavanie skladieb v albume"+album_id+"prebehlo uspesne","INFO");
+                new MyLogger("Ziskavanie skladieb v albume "+album_id+"prebehlo uspesne","INFO");
                 return response.get("songs");
             } else {
-                new MyLogger("Chyba pri ziskavani skladieb v albume"+album_id,"ERROR");
+                new MyLogger("Chyba pri ziskavani skladieb v albume "+album_id,"ERROR");
                 return null;
             }
         });
     }
 
     public boolean deleteSong(int songId, int collectionId, int what){
+        new MyLogger("Pokus o zmazanie skladby "+songId,"WARNING");
         val payload = new ObjectNode();
         payload.set("collection", what);
         payload.set("collection_id", collectionId);
         payload.set("song_id", songId);
-        return queryServerJson("deleteSong", Method.POST, payload, (code, response) ->
-                response.getString("status").equals("ok"));
+        return queryServerJson("deleteSong", Method.POST, payload, (code, response) -> {
+            if(response.getString("status").equals("ok")){
+                new MyLogger("Skladba "+songId+" bola zmazana úspešne","INFO");
+                return null;
+            }
+            else {
+                new MyLogger("Skladbu "+songId+" sa nepodarilo odstrániť","ERROR");
+                return null;
+            }
+        });
     }
 
     public boolean deleteCollection(int id, int what){
+        new MyLogger("Pokus o zmazanie kolekcie "+id,"WARNING");
         val payload = new ObjectNode();
         payload.set("collection", what);
         payload.set("collection_id", id);
-        return queryServerJson("deleteCollection", Method.POST, payload, (code, response) ->
-                response.getString("status").equals("ok"));
+        return queryServerJson("deleteCollection", Method.POST, payload, (code, response) ->{
+                if(response.getString("status").equals("ok")){
+                    new MyLogger("Kolekcia "+id+" bola zmazana úspešne","INFO");
+                    return null;
+                }
+                else {
+                    new MyLogger("Kolekciu "+id+" sa nepodarilo odstrániť","ERROR");
+                    return null;
+                }
+        });
+
     }
 
     public boolean addToPlaylist(int playlistId, int songId){
+        new MyLogger("Pokus o pridanie skladby "+songId+" do playlistu "+playlistId,"WARNING");
         val payload = new ObjectNode();
         payload.set("song_id", songId);
         payload.set("collection_id", playlistId);
-        return queryServerJson("addToPlaylist", Method.POST, payload, (code, response) ->
-                response.getString("status").equals("ok"));
+        return queryServerJson("addToPlaylist", Method.POST, payload, (code, response) ->{
+            if(response.getString("status").equals("ok")){
+                new MyLogger("Skladba "+songId+" bola úspešne pridaná do playlistu "+playlistId,"INFO");
+                return null;
+            }
+            else {
+                new MyLogger("Skladbu "+songId+" sa nepodarilo pridať do playlistu "+playlistId,"ERROR");
+                return null;
+            }
+        });
     }
 
     public boolean updateUser(int userId, int statusId, int process){
@@ -309,13 +338,22 @@ public class ServerAPI {
     }
 
     public boolean createCollection(int id, String name, String description, int what){
+        new MyLogger("Pokus o vytvorenie kolekcie "+name,"WARNING");
         val payload = new ObjectNode();
         payload.set("collection", what);
         payload.set("id", id);
         payload.set("name", name);
         payload.set("description", description);
-        return queryServerJson("createCollection", Method.POST, payload, (code, response) ->
-                response.getString("status").equals("ok"));
+        return queryServerJson("createCollection", Method.POST, payload, (code, response) ->{
+            if(response.getString("status").equals("ok")){
+                new MyLogger("Kolekcia "+name+" bola úspešne vytvorená s ID: "+id,"INFO");
+                return null;
+            }
+            else {
+                new MyLogger("Kolekciu "+name+" sa nepodarilo vytvoriť","ERROR");
+                return null;
+            }
+        });
     }
 
     public boolean editArtist(int id, String nameField, String descriptionField, String genre){
