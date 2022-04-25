@@ -171,7 +171,7 @@ public class InitScreensFunctions {
            // controler.setFrom(from);
         }else if (Objects.equals(Title, "Admin")){
             com.musicverse.client.gui.AdminSectionScreen controler = loader.getController();
-            //controler.setSettings(from);
+            controler.setSettings("");
         }
         Scene scene = new Scene(root, 1200,600);
         window.setScene(scene);

@@ -33,7 +33,7 @@ public class Controller <U> {
        ArrayList<TableColumn<U,String>> tableColumnArrayList = new ArrayList<>();
         for (String column : columns) {
             TableColumn<U, String> tableColumn = new TableColumn<>(column);
-            tableColumn.setCellValueFactory(new PropertyValueFactory<U,String>(column));
+            tableColumn.setCellValueFactory(new PropertyValueFactory<U, String>(column));
             tableColumnArrayList.add(tableColumn);
 
 
@@ -54,7 +54,7 @@ public class Controller <U> {
                         break;
                 }
 
-              //SONGS
+            //SONGS
             if (what == 1)
                 switch (column) {
                     case "id":
@@ -108,12 +108,38 @@ public class Controller <U> {
                         tableColumn.setPrefWidth(100);
                         break;
                 }
+
+            if (what == 3) //table of users in admin section
+                switch (column) {
+                    case "id":
+                    case "access_level":
+                        tableColumn.setVisible(false);
+                        break;
+
+                    case "nick_name":
+                    case "email":
+                        tableColumn.setPrefWidth(176);
+                        break;
+
+                }
+
+            if (what == 4) //table of requests in admin section
+                switch (column) {
+                    case "id":
+                        tableColumn.setPrefWidth(39);
+                        break;
+
+                    case "name":
+                        tableColumn.setPrefWidth(300);
+                        break;
+
+                }
         }
 
         tableView.setItems(data);
         boolean x = tableView.getColumns().addAll(tableColumnArrayList);
 
-        tableView.setRowFactory(tv -> {
+       /* tableView.setRowFactory(tv -> {
             TableRow<U> row = new TableRow<>();
             row.setOnMouseClicked(mouseEvent -> {
                 if (!row.isEmpty() && mouseEvent.getButton()== MouseButton.PRIMARY
@@ -134,11 +160,11 @@ public class Controller <U> {
                         EventHandler<Album> eventHandler = new AlbumTableHandler();
                         eventHandler.handler(album, mainPane);
                     }*/
-                }
-            });
-            return row;
-        });
-        System.out.println(x);
+                //}
+            //});
+            //return row;
+        //});
+        //System.out.println(x);/*
 
         return tableView;
     }

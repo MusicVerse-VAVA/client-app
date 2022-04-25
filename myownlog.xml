@@ -407,3 +407,86 @@
 <Log message="Chyba pri autentifikacii pouzivatela aaa" time="2022-04-25T14:21:34.791229900" type="ERROR"/>
 <Log message="Chyba pri autentifikacii pouzivatela asfasff" time="2022-04-25T14:21:53.027136500" type="ERROR"/>
 <Log message="Chyba pri registracii interpreta" time="2022-04-25T14:23:03.302190100" type="ERROR"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T16:09:46.144867300" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T16:09:46.300753800" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T16:09:46.387521900" type="INFO"/>
+<Log message="Uspesna autentifikacia pouzivatela" time="2022-04-25T16:10:30.076465100" type="INFO"/>
+<Log message="Prihlaseny pouzivatel: artist9" time="2022-04-25T16:10:30.234015400" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T16:10:30.509385200" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T16:10:30.579254400" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T16:10:30.664022" type="INFO"/>
+<Log message="Chyba pri ziskavani pouzivatelov z databazy" time="2022-04-25T16:10:44.275968900" type="ERROR"/>
+<Log message="Chyba pri ziskavani pouzivatelov z databazy" time="2022-04-25T16:12:27.650959600" type="ERROR"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T16:16:22.985768800" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T16:16:23.110776900" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T16:16:23.194553800" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T16:16:29.305100800" type="INFO"/>
+<Log message="Chyba pri autentifikacii pouzivatela artist9@artist.com" time="2022-04-25T16:17:10.164781" type="ERROR"/>
+<Log message="Uspesna autentifikacia pouzivatela" time="2022-04-25T16:17:22.088453700" type="INFO"/>
+<Log message="Prihlaseny pouzivatel: artist9" time="2022-04-25T16:17:22.115346700" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T16:17:22.411554700" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T16:17:22.480166900" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T16:17:22.560948200" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T16:17:30.587556800" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T16:19:27.002812200" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T16:19:27.125483400" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T16:19:27.219232700" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T16:19:48.136779" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T16:28:21.638020" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T16:28:21.757656700" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T16:28:21.842430500" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T16:28:28.846729500" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T16:28:56.277134100" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T16:28:56.397835800" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T16:28:56.479618300" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T16:29:06.359969" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T17:21:41.635129800" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T17:21:41.781076700" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T17:21:41.866849200" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T17:22:28.048289600" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T17:22:28.167414500" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T17:22:28.259169200" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T17:25:25.001812800" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T17:25:25.129351900" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T17:25:25.229085300" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T17:25:53.955863700" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T17:25:54.077539500" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T17:25:54.162313400" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T17:26:03.133984900" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T17:31:09.606503200" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T17:31:09.733167300" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T17:31:09.819933100" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T17:31:21.621266500" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T18:03:39.053405200" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T18:03:39.195027800" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T18:03:39.276809100" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T18:03:46.415114600" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T19:15:30.587475100" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T19:15:30.776972600" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T19:15:30.862744900" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T19:16:55.020196600" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T19:16:55.148854700" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T19:16:55.231636700" type="INFO"/>
+<Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:16:57.513938800" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T19:17:35.373238" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T19:17:35.495953900" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T19:17:35.576738900" type="INFO"/>
+<Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:17:40.084693300" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T19:18:43.895069300" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T19:18:44.017743900" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T19:18:44.099526500" type="INFO"/>
+<Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:18:46.309453900" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T19:21:06.244328" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T19:21:06.372982500" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T19:21:06.452771300" type="INFO"/>
+<Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:21:09.770386600" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T19:21:57.925746500" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T19:21:58.046427" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T19:21:58.125217300" type="INFO"/>
+<Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:22:01.035397" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-25T19:23:00.281375400" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-25T19:23:00.402037700" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 18 z databazy prebehlo uspesne" time="2022-04-25T19:23:00.494791900" type="INFO"/>
+<Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:23:03.659992400" type="INFO"/>
+<Log message="Ziskanie artist requestov prebehlo uspesne" time="2022-04-25T19:23:07.907933400" type="INFO"/>
+<Log message="Ziskanie pouzivatelov z databazy prebehlo uspesne " time="2022-04-25T19:23:23.082621300" type="INFO"/>

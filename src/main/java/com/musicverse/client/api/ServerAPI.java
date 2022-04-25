@@ -51,6 +51,20 @@ public class ServerAPI {
 
     }
 
+    public JsonNode searchUser(String input){
+        val payload = new ObjectNode();
+        payload.set("input", input);
+        return queryServerJson("searchUsers", Method.POST, payload, (code, response) -> {
+            if (response.getString("status").equals("ok")){
+                new MyLogger("Ziskanie pouzivatelov z databazy prebehlo uspesne ","INFO");
+                return response.get("users");
+            }else{
+                new MyLogger("Chyba pri ziskavani pouzivatelov z databazy","ERROR");
+                return null;
+            }
+        });
+    }
+
     public JsonNode loadArtist(int id, int what){
         val payload = new ObjectNode();
         String url;
@@ -124,6 +138,19 @@ public class ServerAPI {
                 return response.get("genres");
             } else {
                 new MyLogger("Chyba pri ziskavani zanrov","ERROR");
+                return null;
+            }
+        });
+    }
+
+    public JsonNode getRequests(){
+        val payload = new ObjectNode();
+        return queryServerJson("getRequests", Method.POST, payload, (code, response) -> {
+            if (response.getString("status").equals("ok")) {
+                new MyLogger("Ziskanie artist requestov prebehlo uspesne", "INFO");
+                return response.get("requests");
+            } else {
+                new MyLogger("Chyba pri ziskavani requestov", "ERROR");
                 return null;
             }
         });
@@ -259,6 +286,15 @@ public class ServerAPI {
         payload.set("song_id", songId);
         payload.set("collection_id", playlistId);
         return queryServerJson("addToPlaylist", Method.POST, payload, (code, response) ->
+                response.getString("status").equals("ok"));
+    }
+
+    public boolean updateUser(int userId, int statusId, int process){
+        val payload = new ObjectNode();
+        payload.set("user_id", userId);
+        payload.set("status_id", statusId);
+        payload.set("process", process);
+        return queryServerJson("updateUser", Method.POST, payload, (code, response) ->
                 response.getString("status").equals("ok"));
     }
 
