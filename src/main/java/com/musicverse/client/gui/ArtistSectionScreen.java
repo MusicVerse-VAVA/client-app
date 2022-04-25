@@ -28,6 +28,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import lombok.val;
 
 import java.io.IOException;
@@ -107,12 +108,17 @@ public class ArtistSectionScreen {
     @FXML
     private Label artistName;
 
+    private Song selectedSong;
+
     private int id;
 
     @FXML
     private TableView<Album> tableAlbums;
 
     private JsonNode data;
+
+    @FXML
+    private MenuBar songAction;
 
     @FXML
     private TableView<Song> tableSongs;
@@ -148,6 +154,15 @@ public class ArtistSectionScreen {
     }
 
 
+    @FXML
+    void onSongClick(MouseEvent event) {
+        selectedSong = tableSongs.getSelectionModel().getSelectedItem();
+        ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
+        SongActionDropDown songActionDropDown = new SongActionDropDown();
+        songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, 1,
+                Integer.parseInt(selectedSong.getAlbumId()), ae));
+        songAction.setVisible(true);
+    }
 
     public void load(int id, int shownTable){
 
@@ -184,6 +199,8 @@ public class ArtistSectionScreen {
             );
         }
 
+
+
         Controller<Album> controller = new Controller<>();
         tableAlbums.getItems().clear();
         tableAlbums = controller.initialize(albumArrayList, new String[]{"id", "name", "description", "artist_id", "genre_id", "artist", "genre"}, tableAlbums, 2, artistNameLabel);
@@ -197,6 +214,7 @@ public class ArtistSectionScreen {
             Utils utils = new Utils();
             tableSongs.setVisible(true);
             tableSongs = utils.generateTableSongs(tableSongs, songs, artistNameLabel);
+
         }
     }
 
@@ -205,7 +223,47 @@ public class ArtistSectionScreen {
 
     @FXML
     void onNewAlbumBtnClick(ActionEvent event) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        dialog.setHeight(500);
 
+        TextField nameField = new TextField("album name");
+        TextField descriptionField = new TextField("album description");
+        Button buttonSave = new Button("Save");
+        Button buttonCancel = new Button("Cancel");
+
+        dialogVbox.getChildren().add(new Text("Enter album name"));
+        dialogVbox.getChildren().add(nameField);
+
+        dialogVbox.getChildren().add(new Text("Enter album description"));
+        dialogVbox.getChildren().add(descriptionField);
+
+        dialogVbox.getChildren().add(buttonSave);
+        dialogVbox.getChildren().add(buttonCancel);
+
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+
+        buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+
+        buttonSave.setOnAction(new EventHandler<ActionEvent>() {
+            @SneakyThrows
+            @Override
+            public void handle(ActionEvent event) {
+                val api = ServerAPI.getInstance();
+                api.createCollection(id, nameField.getText(), descriptionField.getText(), 1);
+                dialog.close();
+                InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+                initScreensFunctions.initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", artistNameLabel, 0, 0);
+            }
+        });
     }
 
 

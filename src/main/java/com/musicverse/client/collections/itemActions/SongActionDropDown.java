@@ -4,6 +4,8 @@ import com.falsepattern.json.node.JsonNode;
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.api.ServerAPI;
 import com.musicverse.client.objects.Song;
+import com.musicverse.client.player.MediaManager;
+import com.musicverse.client.player.MusicPlayerException;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -12,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -41,12 +42,37 @@ public class SongActionDropDown implements ItemActionDropDown<Song>{
 
         this.api = ServerAPI.getInstance();
 
-        if (id != 1 || PreferencesLogin.getPrefs().getId() < 1){
-           // addToPlaylist.setVisible(false);
+        //verify user for deleting song from artist
+        if (id == 1){
+            JsonNode artist = api.loadArtist(PreferencesLogin.getPrefs().getId(), 0);
+            if (artist != null){
+                if (!(artist.getInt("user_id") == PreferencesLogin.getPrefs().getId())){
+                    deleteSong.setVisible(false);
+                }
+            } else {
+                deleteSong.setVisible(false);
+            }
         }
 
         playSong.setOnAction(e -> {
                 // TODO songs playing code
+           /* try {
+                MediaManager.instance.setCurrentSong(1);
+            } catch (MusicPlayerException ex) {
+                throw new RuntimeException(ex);
+            }
+            val audioPlayer = MediaManager.instance.getPlayer();
+            try {
+                audioPlayer.play();
+            } catch (MusicPlayerException ex) {
+                throw new RuntimeException(ex);
+            }*/
+            InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+            try {
+                initScreensFunctions.initPlayerSscreen(song);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         //only for songs reached from artist, it means id = 1
@@ -90,12 +116,13 @@ public class SongActionDropDown implements ItemActionDropDown<Song>{
             buttonSave.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-
                     int playlistId;
                    for (int i = 0; i < jn.size(); i++){
                        if (jn.get(i).getString("name") == combo_box.getSelectionModel().getSelectedItem()){
                            playlistId = jn.get(i).getInt("id");
                            api.addToPlaylist(playlistId, Integer.parseInt(song.getId()));
+                           api.downloadSongData(Integer.parseInt(song.getId()));
+                           dialog.close();
                        }
                    }
                 }

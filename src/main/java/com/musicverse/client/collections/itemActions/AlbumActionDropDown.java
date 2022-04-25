@@ -4,22 +4,38 @@ import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.api.ServerAPI;
 import com.musicverse.client.objects.Album;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.tritonus.share.sampled.file.TAudioFileFormat;
 
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 public class AlbumActionDropDown implements ItemActionDropDown<Album>{
 
     private ServerAPI api;
+
+    private final int[] idOfLastSong = new int[1];
+    private final int[] duration = new int[1];
+    private final File[] selectedFile = new File[1];
+
+    private Album item;
 
     private Menu menu = new javafx.scene.control.Menu("Selected album action");
     private javafx.scene.control.MenuItem deleteAlbum = new javafx.scene.control.MenuItem("Delete album");
@@ -33,6 +49,8 @@ public class AlbumActionDropDown implements ItemActionDropDown<Album>{
         menu.getItems().add(albumDescription);
         menu.getItems().add(addToAlbum);
         menu.getItems().add(deleteAlbum);
+
+        this.item = item;
 
         this.api = ServerAPI.getInstance();
 
@@ -81,14 +99,100 @@ public class AlbumActionDropDown implements ItemActionDropDown<Album>{
         });
 
         addToAlbum.setOnAction(e -> {
-            // TODO add song to db with album_id: item.getId() and artist_id: item.getArtistId() and genre_id of this artist
+
+            Stage dialog2 = new Stage();
+            dialog2.initModality(Modality.APPLICATION_MODAL);
+            VBox dialogVbox = new VBox(20);
+            dialog2.setHeight(400);
+
+            FileChooser fileChooser = new FileChooser();
+            Button button = new Button("Select File");
+            button.setOnAction(l -> {
+                selectedFile[0] = fileChooser.showOpenDialog(dialog2);
+                try {
+                    duration[0] = getDuration(selectedFile[0]);
+                } catch (UnsupportedAudioFileException | IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                dialog2.close();
+                songUpload();
+            });
+
+            VBox dialogVbox2 = new VBox(button);
+            Scene dialogScene2 = new Scene(dialogVbox2, 960, 600);
+            dialog2.setScene(dialogScene2);
+            dialog2.show();
+
         });
 
         deleteAlbum.setOnAction(e -> {
-            // TODO with this method will be deleted all related songs to album and album itself but also is necesary to delete that songs in folder, for that you can use IDs of songs in Album collection "item"
             api.deleteCollection(Integer.parseInt(item.getId()), 1);
         });
 
         return menu;
     }
+
+    private static int getDuration(File file) throws UnsupportedAudioFileException, IOException {
+        AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(file);
+        int seconds = 0;
+        if (fileFormat instanceof TAudioFileFormat) {
+            Map<?, ?> properties = ((TAudioFileFormat) fileFormat).properties();
+            String key = "duration";
+            Long microseconds = (Long) properties.get(key);
+            int mili = (int) (microseconds / 1000);
+            int sec = (mili / 1000) % 60;
+            int min = (mili / 1000) / 60;
+            seconds = (min * 60) + sec;
+        }
+        return seconds;
+    }
+
+    private void songUpload(){
+        final Stage[] dialog = {new Stage()};
+        dialog[0].initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        dialog[0].setHeight(500);
+
+        TextField nameField = new TextField("Song name");
+        Button buttonSave = new Button("Save");
+        Button buttonCancel = new Button("Cancel");
+
+        dialogVbox.getChildren().add(new Text("Enter song name"));
+        dialogVbox.getChildren().add(nameField);
+
+        dialogVbox.getChildren().add(buttonSave);
+        dialogVbox.getChildren().add(buttonCancel);
+
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog[0].setScene(dialogScene);
+        dialog[0].show();
+
+        buttonCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog[0].close();
+            }
+        });
+
+        buttonSave.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                idOfLastSong[0] = api.createSong(
+                        nameField.getText(),
+                        Integer.parseInt(item.getArtist_id()),
+                        Integer.parseInt(item.getId()),
+                        Integer.parseInt(item.getGenre_id()),
+                        duration[0]
+                );
+                try {
+                    api.uploadSongData(selectedFile[0], idOfLastSong[0]);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                dialog[0].close();
+            }
+        });
+    }
+
+
 }

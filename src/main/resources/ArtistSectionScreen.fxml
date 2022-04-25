@@ -52,12 +52,13 @@
       <Line endX="743.0" layoutX="409.0" layoutY="578.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
       <TableView fx:id="tableAlbums" layoutX="308.0" layoutY="307.0" onMouseClicked="#onAlbumItemClicked" prefHeight="253.0" prefWidth="840.0" />
       <Button fx:id="backBtn" layoutX="219.0" layoutY="40.0" mnemonicParsing="false" onAction="#backBtnClick" text="Back" />
-      <TableView fx:id="tableSongs" layoutX="247.0" layoutY="280.0" prefHeight="282.0" prefWidth="960.0">
+      <TableView fx:id="tableSongs" layoutX="247.0" layoutY="280.0" onMouseClicked="#onSongClick" prefHeight="282.0" prefWidth="960.0">
          <columns>
             <TableColumn prefWidth="75.0" text="Column X" />
          </columns>
       </TableView>
       <Button fx:id="newAlbumBtn" layoutX="21.0" layoutY="376.0" mnemonicParsing="false" onAction="#onNewAlbumBtnClick" prefHeight="25.0" prefWidth="140.0" text="Add new album" />
       <MenuBar fx:id="albumAction" layoutX="1051.0" layoutY="247.0" />
+      <MenuBar fx:id="songAction" layoutX="1061.0" layoutY="247.0" />
    </children>
 </AnchorPane>

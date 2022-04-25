@@ -9,6 +9,6 @@ import java.util.Objects;
 
 public interface ItemActionDropDown<T> {
 
-    public Menu setMenu(T item, AnchorPane pane, int id, int selectedId, ActionEvent event);
+     Menu setMenu(T item, AnchorPane pane, int id, int selectedId, ActionEvent event);
 
 }

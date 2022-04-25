@@ -3,6 +3,7 @@ package com.musicverse.client;
 import com.musicverse.client.collections.Utils;
 import com.musicverse.client.objects.Artist;
 import com.musicverse.client.objects.Playlist;
+import com.musicverse.client.objects.Song;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -137,6 +138,20 @@ public class InitScreensFunctions {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1200,600);
         window.setTitle("Log in user");
+        window.setScene(scene);
+        window.show();
+    }
+
+    @SneakyThrows
+    public void initPlayerSscreen(Song song) throws IOException{
+        ResourceBundle resources = Localozator.getResourceBundle();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MediaPlayerScreen.fxml")), resources);
+        Parent root = loader.load();
+        Stage window = new Stage();
+        com.musicverse.client.gui.MediaPlayerScreen controler = loader.getController();
+        controler.load(song);
+        Scene scene = new Scene(root, 600,190);
+        window.setTitle("MusicVerse player");
         window.setScene(scene);
         window.show();
     }

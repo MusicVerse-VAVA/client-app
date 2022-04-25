@@ -32,7 +32,7 @@ public class ServerAPI {
     public void connect() {
         //TODO load this from a config file. Using localhost for now.
         hostname = "http://127.0.0.1";
-        port = 10008;
+        port = 10007;
     }
 
     public boolean registerUser(String email, String username, String password, int role) {
@@ -183,6 +183,24 @@ public class ServerAPI {
         try (val fileInput = new BufferedInputStream(new FileInputStream(songFile)); val sequence = new SequenceInputStream(prefixInput, fileInput)) {
             return queryServerJson("uploadSongData", Method.POST, fileSize + prefix.length, sequence, (code, response) -> response.getString("status").equals("ok"));
         }
+    }
+
+    public int createSong(String name, int artistId, int albumId, int genreId, int duration){
+        val payload = new ObjectNode();
+        payload.set("name", name);
+        payload.set("artist_id", artistId);
+        payload.set("album_id", albumId);
+        payload.set("genre_id", genreId);
+        payload.set("duration", duration);
+        return queryServerJson("lastSongId", Method.POST, payload, (code, response) -> {
+            if (response.getString("status").equals("ok")) {
+                new MyLogger("Ziskanie id poslednej pesnicky prebehlo uspesne","INFO");
+                return response.getInt("id");
+            } else {
+                new MyLogger("Chyba pri ziskavani id poslednej pesnicky","ERROR");
+                return 0;
+            }
+        });
     }
 
     public JsonNode songsByPlaylist(int playlist_id){
