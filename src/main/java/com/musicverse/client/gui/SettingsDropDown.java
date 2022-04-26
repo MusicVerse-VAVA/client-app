@@ -16,7 +16,7 @@ public class SettingsDropDown {
 
     private Menu settingsMenu = new Menu(Localozator.getResourceBundle().getString("SETTINGS"));
     private MenuItem settingsItem = new MenuItem(Localozator.getResourceBundle().getString("SETTINGS"));
-    private MenuItem AAItem = new MenuItem("AA section");
+    private MenuItem AAItem = new MenuItem(Localozator.getResourceBundle().getString("AA SECTION"));
     private MenuItem logOutItem = new MenuItem(Localozator.getResourceBundle().getString("LOG OUT"));
 
     public Menu menu(int role, AnchorPane pane, String from){

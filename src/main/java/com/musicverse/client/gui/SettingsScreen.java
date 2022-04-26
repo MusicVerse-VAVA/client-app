@@ -81,7 +81,7 @@ public class SettingsScreen {
                 System.out.println("test11");
                 if (!newPswd.equals(confirmPswd)){
                     loginAlert.setAlertType(Alert.AlertType.ERROR);
-                    loginAlert.setContentText("Hesla sa nezhoduju!");
+                    loginAlert.setContentText(Localozator.getResourceBundle().getString("PASSWORDS DO NOT MATCH!"));
                     loginAlert.show();
                     System.out.println("test10");
                 } else {
@@ -91,34 +91,34 @@ public class SettingsScreen {
                     System.out.println("test9");
                     if(matchFound && newPswd.getBytes(StandardCharsets.UTF_8).length > 7) {
                         loginAlert.setAlertType(Alert.AlertType.INFORMATION);
-                        loginAlert.setContentText("Heslo vyhovuje");
+                        loginAlert.setContentText(Localozator.getResourceBundle().getString("PASSWORD IS OK"));
                         loginAlert.show();
                         System.out.println("test8");
                         if (confirmOldPswd.getBytes(StandardCharsets.UTF_8).length > 1) {
                             if (api.updateUser(PreferencesLogin.getPrefs().getId(), newPswd, nickname, confirmOldPswd) == 1){
                                 loginAlert.setAlertType(Alert.AlertType.INFORMATION);
-                                loginAlert.setContentText("Akcia prebehla uspesne");
+                                loginAlert.setContentText(Localozator.getResourceBundle().getString("ACTION WAS SUCCESSFUL"));
                                 loginAlert.show();
                                 System.out.println("test7");
 
                                 initScreensFunctions.initMainScreen(event);
                             } else {
                                 loginAlert.setAlertType(Alert.AlertType.INFORMATION);
-                                loginAlert.setContentText("Pravdepodobne ste nezadali spravne vase heslo");
+                                loginAlert.setContentText(Localozator.getResourceBundle().getString("INCORRECT PASSWORD"));
                                 loginAlert.show();
                                 System.out.println("test6");
                             }
                         }
                         else{
                             loginAlert.setAlertType(Alert.AlertType.ERROR);
-                            loginAlert.setContentText("Zadajte svoje aktualne heslo");
+                            loginAlert.setContentText(Localozator.getResourceBundle().getString("ENTER CURRENT PASSWORD"));
                             loginAlert.show();
                             System.out.println("test5");
 
                         }
                     } else {
                         loginAlert.setAlertType(Alert.AlertType.ERROR);
-                        loginAlert.setContentText("Heslo nie je dostatocne silne");
+                        loginAlert.setContentText(Localozator.getResourceBundle().getString("PASSWORD IS TOO WEAK"));
                         loginAlert.show();
                         System.out.println("test4");
 
@@ -130,20 +130,20 @@ public class SettingsScreen {
                     if (confirmOldPswd.getBytes(StandardCharsets.UTF_8).length > 1) {
                         if (api.updateUser(PreferencesLogin.getPrefs().getId(), newPswd, nickname, confirmOldPswd) == 1){
                             loginAlert.setAlertType(Alert.AlertType.INFORMATION);
-                            loginAlert.setContentText("Akcia prebehla uspesne");
+                            loginAlert.setContentText(Localozator.getResourceBundle().getString("ACTION WAS SUCCESSFUL"));
                             loginAlert.show();
                             System.out.println("test3");
                             initScreensFunctions.initMainScreen(event);
                         } else {
                             loginAlert.setAlertType(Alert.AlertType.ERROR);
-                            loginAlert.setContentText("Pravdepodobne ste nezadali spravne vase aktualne heslo");
+                            loginAlert.setContentText(Localozator.getResourceBundle().getString("INCORRECT PASSWORD"));
                             loginAlert.show();
                             System.out.println("test2");
 
                         }
                     } else {
                         loginAlert.setAlertType(Alert.AlertType.ERROR);
-                        loginAlert.setContentText("Zadajte svoje aktualne heslo");
+                        loginAlert.setContentText(Localozator.getResourceBundle().getString("ENTER CURRENT PASSWORD"));
                         loginAlert.show();
                         System.out.println("test1");
                     }

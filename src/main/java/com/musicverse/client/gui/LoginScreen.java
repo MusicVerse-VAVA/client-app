@@ -2,6 +2,7 @@ package com.musicverse.client.gui;
 
 import com.falsepattern.json.node.JsonNode;
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.Localozator;
 import com.musicverse.client.api.ServerAPI;
 
 import com.musicverse.client.objects.User;
@@ -66,13 +67,13 @@ public class LoginScreen {
             val userJson = api.authenticate(email, password);
             if(userJson == null) {
                 loginAlert.setAlertType(AlertType.ERROR);
-                loginAlert.setContentText("Nesprávne prihlasovacie údaje");
+                loginAlert.setContentText(Localozator.getResourceBundle().getString("NESPRÁVNE PRIHLASOVACIE ÚDAJE"));
                 loginAlert.show();
                 return;
             }
             else {
                 loginAlert.setAlertType(AlertType.INFORMATION);
-                loginAlert.setContentText("PRIHLASENY POUZIVATEL : " + userJson.getString("username"));
+                loginAlert.setContentText(Localozator.getResourceBundle().getString("PRIHLASENY POUZIVATEL") + ": " + userJson.getString("username"));
                 loginAlert.show();
                 new MyLogger("Prihlaseny pouzivatel: "+userJson.getString("username"),"INFO");
 

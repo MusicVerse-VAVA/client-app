@@ -1,5 +1,6 @@
 package com.musicverse.client.gui;
 
+import com.musicverse.client.Localozator;
 import com.musicverse.client.objects.Song;
 import com.musicverse.client.player.AudioPlayer;
 import com.musicverse.client.player.MediaManager;
@@ -67,14 +68,14 @@ public class MediaPlayerScreen {
     @FXML
     void onPlayBtnClick(ActionEvent event) {
 
-        if (Objects.equals(playButton.getText(), "Pause")){
-            playButton.setText("Resume");
+        if (Objects.equals(playButton.getText(), Localozator.getResourceBundle().getString("PAUSE"))){
+            playButton.setText(Localozator.getResourceBundle().getString("RESUME"));
             pause = 1;
             audioPlayer.pause();
         }
 
-        else if (Objects.equals(playButton.getText(), "Resume")){
-            playButton.setText("Pause");
+        else if (Objects.equals(playButton.getText(), Localozator.getResourceBundle().getString("RESUME"))){
+            playButton.setText(Localozator.getResourceBundle().getString("PAUSE"));
             pause = 0;
             givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
             audioPlayer.resume();
@@ -99,7 +100,7 @@ public class MediaPlayerScreen {
         audioPlayer = MediaManager.instance.getPlayer();
         audioPlayer.play();
 
-        playButton.setText("Pause");
+        playButton.setText(Localozator.getResourceBundle().getString("PAUSE"));
 
         previousButton.setVisible(false);
         nextButton.setVisible(false);
@@ -149,7 +150,7 @@ public class MediaPlayerScreen {
                     givenUsingTimer_whenSchedulingTaskOnce_thenCorrect();
             }
         };
-        Timer timer = new Timer("Timer");
+        Timer timer = new Timer(Localozator.getResourceBundle().getString("TIMER"));
         long delay = 1000L;
         timer.schedule(task, delay);
     }

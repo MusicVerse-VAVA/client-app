@@ -642,3 +642,25 @@
 <Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-26T11:39:08.308714200" type="INFO"/>
 <Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-26T11:39:08.375739500" type="INFO"/>
 <Log message="Ziskanie playlistov pouzivatela 22 z databazy prebehlo uspesne" time="2022-04-26T11:39:08.444869800" type="INFO"/>
+<Log message="Chyba pri autentifikacii pouzivatela da" time="2022-04-26T11:43:04.109124" type="ERROR"/>
+<Log message="Uspesna autentifikacia pouzivatela" time="2022-04-26T11:43:29.912028800" type="INFO"/>
+<Log message="Prihlaseny pouzivatel: da" time="2022-04-26T11:43:29.996999100" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-26T11:43:30.181001700" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-26T11:43:30.247" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 19 z databazy prebehlo uspesne" time="2022-04-26T11:43:30.317251100" type="INFO"/>
+<Log message="Ziskanie interpretov podla zadaneho zanru 1 prebehlo uspesne" time="2022-04-26T11:43:33.545019300" type="INFO"/>
+<Log message="Ziskanie interpretov podla zadaneho zanru 1 prebehlo uspesne" time="2022-04-26T11:43:33.683485800" type="INFO"/>
+<Log message="Ziskanie interpretov podla zadaneho zanru 2 prebehlo uspesne" time="2022-04-26T11:43:36.487880600" type="INFO"/>
+<Log message="Ziskavanie skladieb v playliste 10prebehlo uspesne" time="2022-04-26T11:43:50.460407300" type="INFO"/>
+<Log message="Pokus o zmazanie kolekcie 10" time="2022-04-26T11:44:20.420471200" type="WARNING"/>
+<Log message="Kolekcia 10 bola zmazana úspešne" time="2022-04-26T11:44:20.491912900" type="INFO"/>
+<Log message="Chyba pri ziskavani skladieb " time="2022-04-26T11:44:38.319095300" type="ERROR"/>
+<Log message="Chyba pri ziskavani skladieb " time="2022-04-26T11:44:42.034969" type="ERROR"/>
+<Log message="Chyba pri ziskavani albumov z databazy" time="2022-04-26T11:44:42.703361300" type="ERROR"/>
+<Log message="Chyba pri ziskavani interpretov z databazy" time="2022-04-26T11:44:43.523781900" type="ERROR"/>
+<Log message="Chyba pri ziskavani skladieb " time="2022-04-26T11:44:56.208802600" type="ERROR"/>
+<Log message="Chyba pri ziskavani interpretov z databazy" time="2022-04-26T11:44:58.351607100" type="ERROR"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-26T11:45:04.275189" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-26T11:45:04.345706400" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 19 z databazy prebehlo uspesne" time="2022-04-26T11:45:04.419640400" type="INFO"/>
+<Log message="Ziskanie interpretov podla zadaneho zanru 2 prebehlo uspesne" time="2022-04-26T11:45:09.613642800" type="INFO"/>

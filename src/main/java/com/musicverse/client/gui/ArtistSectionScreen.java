@@ -3,6 +3,7 @@ package com.musicverse.client.gui;
 import com.falsepattern.json.node.JsonNode;
 import com.falsepattern.json.node.ListNode;
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.Localozator;
 import com.musicverse.client.api.ServerAPI;
 import com.musicverse.client.collections.Controller;
 import com.musicverse.client.collections.Utils;
@@ -228,15 +229,15 @@ public class ArtistSectionScreen {
         VBox dialogVbox = new VBox(20);
         dialog.setHeight(500);
 
-        TextField nameField = new TextField("album name");
-        TextField descriptionField = new TextField("album description");
-        Button buttonSave = new Button("Save");
-        Button buttonCancel = new Button("Cancel");
+        TextField nameField = new TextField(Localozator.getResourceBundle().getString("ALBUM NAME"));
+        TextField descriptionField = new TextField(Localozator.getResourceBundle().getString("ALBUM DESCRIPTION"));
+        Button buttonSave = new Button(Localozator.getResourceBundle().getString("SAVE"));
+        Button buttonCancel = new Button(Localozator.getResourceBundle().getString("CANCEL"));
 
-        dialogVbox.getChildren().add(new Text("Enter album name"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("ENTER ALBUM NAME")));
         dialogVbox.getChildren().add(nameField);
 
-        dialogVbox.getChildren().add(new Text("Enter album description"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("ENTER ALBUM DESCRIPTION")));
         dialogVbox.getChildren().add(descriptionField);
 
         dialogVbox.getChildren().add(buttonSave);
@@ -319,20 +320,20 @@ public class ArtistSectionScreen {
 
         TextField nameField = new TextField(artistName.getText());
         TextField descriptionField = new TextField(descriptionArea.getText());
-        Button buttonSave = new Button("Save");
-        Button buttonCancel = new Button("Cancel");
+        Button buttonSave = new Button(Localozator.getResourceBundle().getString("SAVE"));
+        Button buttonCancel = new Button(Localozator.getResourceBundle().getString("CANCEL"));
 
-        dialogVbox.getChildren().add(new Text("Edit artist name"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("EDIT ARTIST NAME")));
         dialogVbox.getChildren().add(nameField);
 
-        dialogVbox.getChildren().add(new Text("Edit genre"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("EDIT GENRE")));
         ComboBox combo_box =
                 new ComboBox(FXCollections
                         .observableArrayList(genres));
         dialogVbox.getChildren().add(combo_box);
         combo_box.getSelectionModel().select(genreLabel.getText());
 
-        dialogVbox.getChildren().add(new Text("Edit description"));
+        dialogVbox.getChildren().add(new Text(Localozator.getResourceBundle().getString("EDIT DESCRIPTION")));
         dialogVbox.getChildren().add(descriptionField);
 
         dialogVbox.getChildren().add(buttonSave);

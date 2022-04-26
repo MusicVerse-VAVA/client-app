@@ -57,8 +57,8 @@ public class RegisterScreen {
     void onAvatarClick(MouseEvent event) {
         Stage stage = new Stage();
         final StackPane stac = new StackPane();
-        final Button openButton = new Button("Choose Profile Picture");
-        final Button saveButton = new Button("Save profile picture");
+        final Button openButton = new Button(Localozator.getResourceBundle().getString("CHOOSE PROFILE PICTURE"));
+        final Button saveButton = new Button(Localozator.getResourceBundle().getString("SAVE PROFILE PICTURE"));
         openButton.setOnAction((final ActionEvent e) -> {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
