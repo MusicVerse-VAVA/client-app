@@ -150,7 +150,7 @@ public class SettingsScreen {
                 }
             }
         }
-        if (nickname == null || newPswd == null) {
+        if (nickname == null || nickname.equals("") || newPswd == null || newPswd.equals("")) {
             if (languageOption.getValue().equals("English")) {
                 Localozator.setLocale(new Locale("en", "US"));
             }
