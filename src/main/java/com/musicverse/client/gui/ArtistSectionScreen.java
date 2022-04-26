@@ -152,7 +152,8 @@ public class ArtistSectionScreen {
         AlbumActionDropDown albumActionDropDown = new AlbumActionDropDown();
         selectedAlbum = tableAlbums.getSelectionModel().getSelectedItem();
         albumAction.setVisible(true);
-        albumAction.getMenus().add(albumActionDropDown.setMenu(selectedAlbum, artistNameLabel, 0, Integer.parseInt(selectedAlbum.getId()),  ae));
+        System.out.println(this.id);
+        albumAction.getMenus().add(albumActionDropDown.setMenu(selectedAlbum, artistNameLabel, this.id, Integer.parseInt(selectedAlbum.getId()),  ae));
     }
 
 
@@ -161,6 +162,7 @@ public class ArtistSectionScreen {
         selectedSong = tableSongs.getSelectionModel().getSelectedItem();
         ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
         SongActionDropDown songActionDropDown = new SongActionDropDown();
+<<<<<<< Updated upstream
         try {
             songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, 1,
                     Integer.parseInt(selectedSong.getAlbumId()), ae));
@@ -168,25 +170,31 @@ public class ArtistSectionScreen {
         catch (Exception e){
             new MyLogger(e.toString(),"ERROR");
         }
+=======
+        songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, this.id,
+                Integer.parseInt(selectedSong.getAlbumId()), ae));
+>>>>>>> Stashed changes
         songAction.setVisible(true);
     }
 
     public void load(int id, int shownTable){
 
+        this.id = id;
+        System.out.println(this.id);
         val api = ServerAPI.getInstance();
         data = api.loadArtist(PreferencesLogin.getPrefs().getId(), id);
 
         albumAction.setVisible(true);
         nickLabel.setText(PreferencesLogin.getPrefs().getNickName());
 
-        if (!editDescriptionLabel.isVisible())
+        if (id > 0)
             newAlbumBtn.setVisible(false);
 
         this.artistName.setText(data.getString("name"));
         this.genreLabel.setText(data.getString("genre"));
         this.descriptionArea.setText(data.getString("description"));
-        this.id = data.getInt("id");
-        if (id > 1)
+        //this.id = data.getInt("id");
+        if (id > 0)
             editDescriptionLabel.setVisible(false);
         this.descriptionArea.setEditable(false);
 
