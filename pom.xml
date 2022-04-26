@@ -12,7 +12,7 @@
         <java.version>11</java.version>
         <lombok.version>1.18.22</lombok.version>
         <project.encoding>UTF-8</project.encoding>
-        <project.mainclass>com.musicverse.client.Main</project.mainclass>
+        <project.mainclass>com.musicverse.client.Launcher</project.mainclass>
         <json.version>0.4.1</json.version>
     </properties>
 
