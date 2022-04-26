@@ -7,6 +7,7 @@ import com.musicverse.client.collections.Controller;
 import com.musicverse.client.objects.Album;
 import com.musicverse.client.objects.Request;
 import com.musicverse.client.objects.User;
+import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,9 +90,12 @@ public class AdminSectionScreen {
 
     private JsonNode searchedUsers;
 
+    @SneakyThrows
     @FXML
     void backLabelClick(MouseEvent event) {
-
+        ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
+        InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+        initScreensFunctions.initMainScreen(ae);
     }
 
     @FXML
@@ -127,6 +131,7 @@ public class AdminSectionScreen {
         this.roleIDchoiceBox.setVisible(false);
         this.dateOfRegistrationValueLabel.setVisible(false);
         this.dateOfRegistrationLabel.setVisible(false);
+        nickLabel.setText(PreferencesLogin.getPrefs().getNickName());
 
         this.api = ServerAPI.getInstance();
         JsonNode requests = api.getRequests();

@@ -1,6 +1,7 @@
 package com.musicverse.client.sessionManagement;
 
 import com.musicverse.client.objects.User;
+import lombok.SneakyThrows;
 
 import java.awt.*;
 import java.util.prefs.Preferences;
@@ -22,7 +23,8 @@ public class PreferencesLogin {
     public static User getPrefs() {
         Preferences prefs = Preferences.userRoot().node(PreferencesLogin.class.getName());
         return new User(prefs.get("nickname", "guest"), prefs.get("email", "none"),
-                prefs.getInt("role", -1), prefs.getInt("id", -1), "xxxxxxxx");
+                prefs.getInt("role", 0), prefs.getInt("id", -1), "xxxxxxxx");
     }
+
 
 }

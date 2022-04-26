@@ -171,7 +171,10 @@ public class ArtistSectionScreen {
         data = api.loadArtist(PreferencesLogin.getPrefs().getId(), id);
 
         albumAction.setVisible(true);
+        nickLabel.setText(PreferencesLogin.getPrefs().getNickName());
 
+        if (!editDescriptionLabel.isVisible())
+            newAlbumBtn.setVisible(false);
 
         this.artistName.setText(data.getString("name"));
         this.genreLabel.setText(data.getString("genre"));
@@ -211,6 +214,8 @@ public class ArtistSectionScreen {
         tableSongs.setVisible(false);
         if (shownTable > 0){
             albumAction.setVisible(false);
+            albumsLabel.setVisible(false);
+            tableAlbums.setVisible(false);
             val songs = api.songsByAlbum(shownTable);
             Utils utils = new Utils();
             tableSongs.setVisible(true);
@@ -303,6 +308,19 @@ public class ArtistSectionScreen {
             }
         });
     }*/
+
+
+    @FXML
+    private Button showAlbumsBtn;
+    @FXML
+    void onShowAlbumsBtnClick(ActionEvent event) {
+        if (!songAction.isVisible())
+            showAlbumsBtn.setVisible(false);
+        tableSongs.setVisible(false);
+        songAction.setVisible(false);
+        albumAction.setVisible(true);
+        tableAlbums.setVisible(true);
+    }
 
     @FXML
     void onEditBtnClick(MouseEvent event) {

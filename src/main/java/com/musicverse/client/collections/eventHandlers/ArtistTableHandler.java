@@ -6,6 +6,7 @@ import com.musicverse.client.objects.Artist;
 import javafx.scene.layout.AnchorPane;
 import lombok.SneakyThrows;
 
+@Deprecated
 public class ArtistTableHandler implements EventHandler<Artist> {
     @SneakyThrows
     @Override

@@ -1,6 +1,7 @@
 package com.musicverse.client.gui;
 
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -67,6 +68,8 @@ public class WelcomeScreen {
         registerArtistBtn.setAlignment(Pos.CENTER);
 
         guestBtn = new Button(Localozator.getResourceBundle().getString("CONTINUE WITHOUT REGISTRATION"));
+        if (PreferencesLogin.getPrefs().getId() > 0)
+            guestBtn.setText("CONTINUE WITH SAVED ACCOUNT");
         guestBtn.setStyle("-fx-cursor: hand; -fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
         guestBtn.setMaxWidth(Double.MAX_VALUE);
         guestBtn.setAlignment(Pos.CENTER);

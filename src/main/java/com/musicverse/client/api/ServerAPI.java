@@ -359,11 +359,11 @@ public class ServerAPI {
         return queryServerJson("addToPlaylist", Method.POST, payload, (code, response) ->{
             if(response.getString("status").equals("ok")){
                 new MyLogger("Skladba "+songId+" bola úspešne pridaná do playlistu "+playlistId,"INFO");
-                return null;
+                return true;
             }
             else {
                 new MyLogger("Skladbu "+songId+" sa nepodarilo pridať do playlistu "+playlistId,"ERROR");
-                return null;
+                return false;
             }
         });
     }
@@ -396,11 +396,11 @@ public class ServerAPI {
         return queryServerJson("createCollection", Method.POST, payload, (code, response) ->{
             if(response.getString("status").equals("ok")){
                 new MyLogger("Kolekcia "+name+" bola úspešne vytvorená s ID: "+id,"INFO");
-                return null;
+                return true;
             }
             else {
                 new MyLogger("Kolekciu "+name+" sa nepodarilo vytvoriť","ERROR");
-                return null;
+                return false;
             }
         });
     }

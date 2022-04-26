@@ -4,9 +4,14 @@ import com.musicverse.client.Localozator;
 import java.io.IOException;
 
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.objects.User;
+import com.musicverse.client.sessionManagement.PreferencesLogin;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 //This class can be used for dynamic Settings bar
 // in header of almost every screen
@@ -66,7 +71,17 @@ public class SettingsDropDown {
         });
 
         logOutItem.setOnAction(e -> {
-            System.out.println(Localozator.getResourceBundle().getString("MENU ITEM 3 SELECTED"));
+            PreferencesLogin prefLogin = new PreferencesLogin();
+            User user = new User("guest", "none", 0
+                    ,-1, "xxxxxxxx");
+            prefLogin.setPreference(user);
+            InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+            ActionEvent ae = new ActionEvent(e.getSource(), e.getTarget());
+            try {
+                initScreensFunctions.initLoginScreen(pane);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         return settingsMenu;

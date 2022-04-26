@@ -143,6 +143,17 @@ public class InitScreensFunctions {
     }
 
     @SneakyThrows
+    public void initLoginScreen(AnchorPane actionEvent) throws IOException{
+        ResourceBundle resources = Localozator.getResourceBundle();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/LoginScreen.fxml")), resources);
+        Stage window = (Stage) ((Node) actionEvent).getScene().getWindow();
+        Scene scene = new Scene(root, 1200,600);
+        window.setTitle("Log in user");
+        window.setScene(scene);
+        window.show();
+    }
+
+    @SneakyThrows
     public void initPlayerSscreen(Song song) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MediaPlayerScreen.fxml")), resources);
@@ -164,7 +175,7 @@ public class InitScreensFunctions {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         com.musicverse.client.gui.SearchScreen controler = loader.getController();
         controler.load(regex);
-        Scene scene = new Scene(root, 600,190);
+        Scene scene = new Scene(root, 1200,600);
         window.setTitle("MusicVerse searcher");
         window.setScene(scene);
         window.show();

@@ -167,14 +167,12 @@ public class MainScreen {
                                         labelOfBox.getText())
                                 );
                     }
-                    System.out.println(artistArrayList.get(0).getGenre());
 
                     Controller<Artist> controller = new Controller<>();
                     tableView.getItems().clear();
                     tableView = controller.initialize(artistArrayList, new String[]{"name", "description", "id", "genre"}, tableView, 0, mainPane);
                     tableView.setVisible(true);
                     tableView.refresh();
-                    System.out.println(tableView.getColumns().toString());
 
 
 
@@ -317,7 +315,7 @@ public class MainScreen {
         registerMainScreenLabel.setVisible(false);
         loginMainScreenLabel.setVisible(false);
         nickLabel.setText(userName);
-
+        System.out.println(role);
         if (role > 0)
             nickLabel.setText(PreferencesLogin.getPrefs().getNickName());
 
@@ -328,9 +326,9 @@ public class MainScreen {
 
             case 0:
                 playlistsLabel.setText(Localozator.getResourceBundle().getString("ONLY FOR REGISTERED"));
-                likedAlbumsLabel1.setVisible(false);
-                likedArtistsLabel.setVisible(false);
-                likedSongsLabel1.setVisible(false);
+                //likedAlbumsLabel1.setVisible(false);
+                //likedArtistsLabel.setVisible(false);
+                //likedSongsLabel1.setVisible(false);
                 registerMainScreenLabel.setVisible(true);
                 loginMainScreenLabel.setVisible(true);
                 break;
@@ -412,13 +410,17 @@ public class MainScreen {
 
 
     @FXML
-    void loginLabelClick(ActionEvent event) throws IOException {
-        new InitScreensFunctions().initLoginScreen(event);
+    void loginLabelClick(MouseEvent event) throws IOException {
+        ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
+        InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+        initScreensFunctions.initLoginScreen(ae);
     }
 
     @FXML
-    void registerLabelClick(ActionEvent event) throws IOException {
-        new InitScreensFunctions().initRegistrationScreen(event, 1);
+    void registerLabelClick(MouseEvent event) throws IOException {
+        ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
+        InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+        initScreensFunctions.initRegistrationScreen(ae, 1);
     }
 
     @FXML
@@ -458,6 +460,14 @@ public class MainScreen {
         songItemAction.setVisible(false);
         btnDeletePlaylist.setVisible(false);
         playlistDescriptionBtn.setVisible(false);
+    }
+
+    @SneakyThrows
+    @FXML
+    void onArtistsTableClicked(MouseEvent event) {
+        Artist artist = tableView.getSelectionModel().getSelectedItem();
+        InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+        initScreensFunctions.initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", mainPane, Integer.parseInt(artist.getId()), 0);
     }
 
 }

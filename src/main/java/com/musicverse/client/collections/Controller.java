@@ -29,6 +29,7 @@ public class Controller <U> {
        ObservableList<U> data = FXCollections.observableArrayList(records);
         tableView.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/tableViewCss.css")).toExternalForm());
         U u;
+        tableView.getColumns().clear();
 
        ArrayList<TableColumn<U,String>> tableColumnArrayList = new ArrayList<>();
         for (String column : columns) {
@@ -135,8 +136,8 @@ public class Controller <U> {
 
                 }
         }
-
-        tableView.setItems(data);
+        if (data != null)
+            tableView.setItems(data);
         boolean x = tableView.getColumns().addAll(tableColumnArrayList);
 
        /* tableView.setRowFactory(tv -> {

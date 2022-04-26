@@ -91,6 +91,8 @@ public class SearchScreen {
         artistsTable.setVisible(false);
         artistAction.setVisible(false);
         songAction.setVisible(false);
+        labelSearch.setText("Albums");
+        labelSearch.setVisible(true);
 
         val api = ServerAPI.getInstance();
         albums = api.loadAlbumsRegex(regex);
@@ -135,6 +137,8 @@ public class SearchScreen {
         artistAction.setVisible(false);
         songAction.setVisible(false);
         albumAction.setVisible(false);
+        labelSearch.setText("Artists");
+        labelSearch.setVisible(true);
 
         val api = ServerAPI.getInstance();
         val artists = api.getArtistsByRegex(regex);
@@ -184,6 +188,7 @@ public class SearchScreen {
         albumAction.setVisible(false);
         artistAction.setVisible(false);
         songAction.setVisible(false);
+        labelSearch.setVisible(false);
     }
 
     @FXML
@@ -202,6 +207,8 @@ public class SearchScreen {
         artistsTable.setVisible(false);
         artistAction.setVisible(false);
         albumAction.setVisible(false);
+        labelSearch.setText("Songs");
+        labelSearch.setVisible(true);
 
         Utils utils = new Utils();
         tableSongs.setVisible(true);
@@ -212,6 +219,7 @@ public class SearchScreen {
 
     public void load(String regex){
         this.regex = regex;
+        labelSearch.setVisible(false);
         tableAlbums.setVisible(false);
         tableSongs.setVisible(false);
         artistsTable.setVisible(false);
