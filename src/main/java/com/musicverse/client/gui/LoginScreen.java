@@ -67,13 +67,13 @@ public class LoginScreen {
             val userJson = api.authenticate(email, password);
             if(userJson == null) {
                 loginAlert.setAlertType(AlertType.ERROR);
-                loginAlert.setContentText(Localozator.getResourceBundle().getString("NESPRÁVNE PRIHLASOVACIE ÚDAJE"));
+                loginAlert.setContentText(Localozator.getResourceBundle().getString("INCORRECT LOGIN DATA"));
                 loginAlert.show();
                 return;
             }
             else {
                 loginAlert.setAlertType(AlertType.INFORMATION);
-                loginAlert.setContentText(Localozator.getResourceBundle().getString("PRIHLASENY POUZIVATEL") + ": " + userJson.getString("username"));
+                loginAlert.setContentText(Localozator.getResourceBundle().getString("LOGGED IN USER") + ": " + userJson.getString("username"));
                 loginAlert.show();
                 new MyLogger("Prihlaseny pouzivatel: "+userJson.getString("username"),"INFO");
 

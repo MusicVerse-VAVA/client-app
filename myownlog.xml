@@ -1194,3 +1194,8 @@
 <Log message="Ziskanie interpreta z databazy prebehlo uspesne " time="2022-04-26T20:11:57.113506700" type="INFO"/>
 <Log message="Ziskanie interpreta z databazy prebehlo uspesne " time="2022-04-26T20:12:06.007783300" type="INFO"/>
 <Log message="Ziskavanie skladieb v albume 4prebehlo uspesne" time="2022-04-26T20:12:06.266092900" type="INFO"/>
+<Log message="Uspesna autentifikacia pouzivatela" time="2022-04-26T20:45:31.874099300" type="INFO"/>
+<Log message="Prihlaseny pouzivatel: da" time="2022-04-26T20:45:31.965101300" type="INFO"/>
+<Log message="Ziskanie playlistov z databazy prebehlo uspesne" time="2022-04-26T20:45:32.199832400" type="INFO"/>
+<Log message="Ziskanie zanrov z databazy prebehlo uspesne" time="2022-04-26T20:45:32.330264" type="INFO"/>
+<Log message="Ziskanie playlistov pouzivatela 19 z databazy prebehlo uspesne" time="2022-04-26T20:45:32.466179400" type="INFO"/>
