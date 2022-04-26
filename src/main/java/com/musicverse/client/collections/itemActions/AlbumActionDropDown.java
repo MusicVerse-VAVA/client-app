@@ -65,7 +65,7 @@ public class AlbumActionDropDown implements ItemActionDropDown<Album>{
 
             try {
                 initScreensFunctions.initSettingsScreen("Artist", "/ArtistSectionScreen.fxml",
-                        pane, Integer.parseInt(item.getArtist_id()), Integer.parseInt(item.getId()));
+                        pane, id, Integer.parseInt(item.getId()));
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

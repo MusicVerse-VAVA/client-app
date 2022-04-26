@@ -41,17 +41,23 @@ public class SongActionDropDown implements ItemActionDropDown<Song>{
         menu.getItems().add(deleteSong);
 
         this.api = ServerAPI.getInstance();
-
+        if (id > 0){
+            deleteSong.setVisible(false);
+        }
+        if (PreferencesLogin.getPrefs().getId() < 1){
+            addToPlaylist.setVisible(false);
+        }
         //verify user for deleting song from artist
-        if (id == 1){
-            JsonNode artist = api.loadArtist(PreferencesLogin.getPrefs().getId(), 0);
+        if (id == 0){
+            deleteSong.setVisible(true);
+            /*JsonNode artist = api.loadArtist(PreferencesLogin.getPrefs().getId(), 0);
             if (artist != null){
                 if (!(artist.getInt("user_id") == PreferencesLogin.getPrefs().getId())){
                     deleteSong.setVisible(false);
                 }
             } else {
                 deleteSong.setVisible(false);
-            }
+            }*/
         }
 
         playSong.setOnAction(e -> {

@@ -324,11 +324,11 @@ public class ServerAPI {
         return queryServerJson("deleteSong", Method.POST, payload, (code, response) -> {
             if(response.getString("status").equals("ok")){
                 new MyLogger("Skladba "+songId+" bola zmazana úspešne","INFO");
-                return null;
+                return true;
             }
             else {
                 new MyLogger("Skladbu "+songId+" sa nepodarilo odstrániť","ERROR");
-                return null;
+                return false;
             }
         });
     }

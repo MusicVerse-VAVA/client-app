@@ -152,7 +152,7 @@ public class ArtistSectionScreen {
         AlbumActionDropDown albumActionDropDown = new AlbumActionDropDown();
         selectedAlbum = tableAlbums.getSelectionModel().getSelectedItem();
         albumAction.setVisible(true);
-        System.out.println(this.id);
+        System.out.println("ttt" + this.id);
         albumAction.getMenus().add(albumActionDropDown.setMenu(selectedAlbum, artistNameLabel, this.id, Integer.parseInt(selectedAlbum.getId()),  ae));
     }
 
@@ -164,21 +164,21 @@ public class ArtistSectionScreen {
         SongActionDropDown songActionDropDown = new SongActionDropDown();
 
         try {
-            songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, 1,
+            songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, this.id,
                     Integer.parseInt(selectedSong.getAlbumId()), ae));
         }
         catch (Exception e){
             new MyLogger(e.toString(),"ERROR");
         }
 
-        songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, this.id,
-                Integer.parseInt(selectedSong.getAlbumId()), ae));
+       /* songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, this.id,
+                Integer.parseInt(selectedSong.getAlbumId()), ae));*/
 
         songAction.setVisible(true);
     }
 
     public void load(int id, int shownTable){
-
+        System.out.println(id);
         this.id = id;
         System.out.println(this.id);
         val api = ServerAPI.getInstance();
