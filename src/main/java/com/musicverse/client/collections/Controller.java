@@ -19,11 +19,26 @@ import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * genericka metoda Controller sluzi na vygenerovanie TableView Albums alebo Songs alebo Artists alebo Users alebo Requests.
+ * Podla generika U.
+ * @param <U> zadany objekt z package Objects
+ */
 public class Controller <U> {
 
     public Controller(){
     }
 
+    /**
+     * metoda initialize nam vygeneruje TableView na zaklade uvedeneho generika a dat ktore udavame v arrayListe
+     * @param records predstavuju polozky typu U, ktore budu v tableView
+     * @param columns stlpce ktore bude tableView obsahovat, musia sa zhodovat s argumentami konstruktora U
+     * @param tableView tableView preddefinujeme v danej triede a potom ju vlozime ako argument a vratime tu istu instanciu
+     *                  tableView ale naplnenu itemami
+     * @param what rozlisovacia pomocka
+     * @param mainPane vlastnik Stage-u
+     * @return navratova hodnota je naplnena TableView
+     */
     public TableView<U> initialize(ArrayList<U> records, String[] columns, TableView<U> tableView, int what, AnchorPane mainPane){
 
        ObservableList<U> data = FXCollections.observableArrayList(records);

@@ -4,10 +4,11 @@ import com.falsepattern.json.node.JsonNode;
 import com.falsepattern.json.node.ObjectNode;
 import com.musicverse.client.IOUtil;
 import com.musicverse.client.sessionManagement.MyLogger;
+
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import lombok.SneakyThrows;
-import lombok.val;
 
+import lombok.val;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -15,6 +16,15 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * ServerAPI trieda obsahuje pripojenie na server, kde je nasa API.
+ * Metody, ktore sa tu nachadzaju sluzia na prepojenie s API endpointmi na serveri. Volaju requesty na server API pomocou HTTP requestov
+ * a obdrziavaju response spolu s datami. V argumentoch maju hodnoty, s ktorymi sa budeme dopytovat na db
+ * Ak potrebujeme vraciat udaje z db tak metoda ma navratovu hodnotu typu JSONNode a ak robime zapis do db a nepotrebujeme
+ * nic vraciat tak metoda ma navratovu hodnotu boolean
+ * Do payload ObjectNode vkladame udaje, ktore ptrebujeme v nasom requeste a priradujeme im kluce
+ *
+ */
 public class ServerAPI {
     private static ServerAPI instance;
 
@@ -37,6 +47,9 @@ public class ServerAPI {
         val cfg = JsonNode.parse(Files.readString(Path.of(".", "server.json")));
         hostname = cfg.getString("hostname");
         port = cfg.getInt("port");
+        //TODO load this from a config file. Using localhost for now.
+        hostname = "https://musicverse-vava.xyz";
+        port = 443;
     }
 
     public boolean registerUser(String email, String username, String password, int role) {
@@ -344,11 +357,11 @@ public class ServerAPI {
         return queryServerJson("deleteCollection", Method.POST, payload, (code, response) ->{
                 if(response.getString("status").equals("ok")){
                     new MyLogger("Kolekcia "+id+" bola zmazana úspešne","INFO");
-                    return null;
+                    return true;
                 }
                 else {
                     new MyLogger("Kolekciu "+id+" sa nepodarilo odstrániť","ERROR");
-                    return null;
+                    return false;
                 }
         });
 
@@ -427,6 +440,15 @@ public class ServerAPI {
 
     //Internal communication code below
 
+    /**
+     * queryServerJson nam sluzi ako prepojenie na endpoint na API a vrati nam response zo servera
+     * @param url je url pre HTTP request na rozlisenie endpointu na ktory sa chceme dopytovat
+     * @param method HTTP request metoda
+     * @param request payload s datami, ktore potrebujeme do sql
+     * @param callback response s datami, ktore dopytujeme v tavre JSONNode
+     * @return
+     * @param <R>
+     */
     private <R> R queryServerJson(String url, Method method, JsonNode request, ServerQueryCallback<JsonNode, R> callback) {
         val raw = request.toString().getBytes(StandardCharsets.UTF_8);
         val in = new ByteArrayInputStream(raw);

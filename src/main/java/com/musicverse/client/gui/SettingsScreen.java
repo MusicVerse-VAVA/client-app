@@ -54,8 +54,9 @@ public class SettingsScreen {
     private Alert loginAlert = new Alert(Alert.AlertType.NONE);
 
     @FXML
-    void onBackLabelClick(ActionEvent event) throws IOException {
-        new InitScreensFunctions().initMainScreen(event);
+    void onBackLabelClick(MouseEvent event) throws IOException {
+        ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
+        new InitScreensFunctions().initMainScreen(ae);
     }
 
     @FXML

@@ -6,6 +6,11 @@ import lombok.SneakyThrows;
 import java.awt.*;
 import java.util.prefs.Preferences;
 
+/**
+ * funkcionalita Preferencies nam uchovava udaje o prihlasenom pouzivatelovi pomocou xml a tak su nam k dispozici
+ * pocas celeho behu programu bez vytvarania novej instancie a teda implementuje pattern Singleton.
+ * Ked zrusime program a sme prihlaseni, tak po opatovnom otvoreni programu budeme stale prihlaseni
+ */
 public class PreferencesLogin {
 
     private Preferences prefs;

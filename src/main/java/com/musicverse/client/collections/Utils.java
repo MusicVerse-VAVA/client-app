@@ -11,7 +11,11 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Utils {
-
+    /**
+     * metoda na vygenerovanie hash mapy ktora je vlozena do ListView playlistov
+     * @param playlists je zoznam playlistov ktore chceme vlozit do hashmapy
+     * @return vratime hashmapu naplnenu playlistami a ich ID
+     */
     public static HashMap<Integer,String> createPlaylist(JsonNode playlists){
         HashMap<Integer,String> list = new HashMap<>();
         for (int i = 0; i<playlists.size();i++) {
@@ -20,6 +24,14 @@ public class Utils {
         return list;
     }
 
+    /**
+     * metoda na naplenenie arraylistu pesnickami a nasledne je arraylist zaslany na naplnenie tableView pomocou
+     * class Controller
+     * @param tableView ktory chceme naplnit
+     * @param songs2 data, ktorymi chceme plnit
+     * @param mainPane vlastnik stage
+     * @return vyplneny tableView
+     */
     public TableView<Song> generateTableSongs(TableView<Song> tableView, JsonNode songs2, AnchorPane mainPane){
         ArrayList<Song> songArrayList = new ArrayList<>();
 

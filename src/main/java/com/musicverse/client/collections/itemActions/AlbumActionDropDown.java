@@ -126,7 +126,15 @@ public class AlbumActionDropDown implements ItemActionDropDown<Album>{
         });
 
         deleteAlbum.setOnAction(e -> {
+
             api.deleteCollection(Integer.parseInt(item.getId()), 1);
+            InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+            try {
+                initScreensFunctions.initSettingsScreen("Artist", "/ArtistSectionScreen.fxml",
+                        pane, id, 0);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         return menu;

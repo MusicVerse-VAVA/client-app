@@ -146,6 +146,8 @@ public class ArtistSectionScreen {
         menuBarSettings.getMenus().add(settingsDropDownImported.menu(2, artistNameLabel, "artist"));
     }
     private Album selectedAlbum;
+
+    private int artistId = 0;
     @FXML
     void onAlbumItemClicked(MouseEvent event) {
         ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
@@ -193,7 +195,7 @@ public class ArtistSectionScreen {
         this.artistName.setText(data.getString("name"));
         this.genreLabel.setText(data.getString("genre"));
         this.descriptionArea.setText(data.getString("description"));
-        //this.id = data.getInt("id");
+        artistId = data.getInt("id");
         if (id > 0)
             editDescriptionLabel.setVisible(false);
         this.descriptionArea.setEditable(false);
@@ -278,10 +280,10 @@ public class ArtistSectionScreen {
             @Override
             public void handle(ActionEvent event) {
                 val api = ServerAPI.getInstance();
-                api.createCollection(id, nameField.getText(), descriptionField.getText(), 1);
-                dialog.close();
+                api.createCollection(artistId, nameField.getText(), descriptionField.getText(), 1);
                 InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
                 initScreensFunctions.initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", artistNameLabel, 0, 0);
+                dialog.close();
             }
         });
     }

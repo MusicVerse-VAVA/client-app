@@ -117,6 +117,9 @@ public class MediaPlayerScreen {
 
         duration = audioPlayer.getLength().getSeconds();
 
+        /**
+         * timer, ktory kazdu sekundu vypocita pocet zostavajucich sekund do konca pesnicky
+         */
         Thread timerThread = new Thread(() -> {
             while (true) {
                 try {
@@ -140,6 +143,9 @@ public class MediaPlayerScreen {
         timerThread.start();
     }
 
+    /**
+     * timer ktory kazdu sekundu aktualizuje poziciu na slide prehravaca pesnicky
+     */
     @SneakyThrows
     public void givenUsingTimer_whenSchedulingTaskOnce_thenCorrect() {
         TimerTask task = new TimerTask() {

@@ -19,53 +19,21 @@ import lombok.val;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * metody v tejto triede sluzia na prepinanie medzi obrazovkami.
+ * Pomocou FXMLLoader ziskame fxml subor so obrazovkou
+ * Preberieme Stage od aktualneho vlastnika pomocou ActionEvents alebo AnchorPane
+ * a do noveho Stage nahrame novy screen
+ */
 public class InitScreensFunctions {
 
-    /*@SneakyThrows
-    public void initMainScreen(ActionEvent event, HashMap<Integer,String> list) throws IOException{
-        PreferencesLogin preferencesLogin = new PreferencesLogin();
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")));
-        Parent root = loader.load();
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1200,600);
-        com.musicverse.client.gui.MainScreen controler = loader.getController();
-        controler.setRole(PreferencesLogin.getPrefs().getRole());
-        String[] items = {"Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout","Rock", "Pop", "Metal", "Classical", "Chill", "Christmas", "Workout"};
 
-
-        //Pridanie public playlistov k private playlistom -> pre guesta sa zobrazia only public playlisty
-        try {
-            val api = ServerAPI.getInstance();
-            val playlists = api.getPublicPlaylists();
-            /*for (int i = 0; i<playlists.size();i++) {
-                list.put(playlists.get(i).getInt("id"),playlists.get(i).getString("name"));
-            }*/
-           /* val genres = api.getGenres();
-
-            ArrayList<String> genresList = new ArrayList<String>();
-            for (int i = 0; i < genres.size(); i++)
-                genresList.add(genres.get(i).getString("genre"));
-
-            controler.setRectangles(genresList);
-
-            val response = api.getUserPlaylists(PreferencesLogin.getPrefs().getId());
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-        controler.setPlaylists(list);
-        window.setTitle("MusicVerse");
-        window.setScene(scene);
-        window.show();
-    }*/
-
+    /**
+     *inicializacia hlavnej obrazovky
+     */
     public void initMainScreen(ActionEvent event) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/MainScreen.fxml")), resources);
@@ -111,6 +79,9 @@ public class InitScreensFunctions {
         window.show();
     }
 
+    /**
+     *inicializacia obrazovky registracie
+     */
     @SneakyThrows
     public void initRegistrationScreen(ActionEvent actionEvent, int role) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
@@ -133,6 +104,11 @@ public class InitScreensFunctions {
         window.show();
     }
 
+    /**
+     * inicializacia obrazovky login
+     * @param actionEvent
+     * @throws IOException
+     */
     @SneakyThrows
     public void initLoginScreen(ActionEvent actionEvent) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
@@ -155,6 +131,11 @@ public class InitScreensFunctions {
         window.show();
     }
 
+    /**
+     * inicializacia player screen
+     * @param song
+     * @throws IOException
+     */
     @SneakyThrows
     public void initPlayerSscreen(Song song) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
@@ -169,6 +150,12 @@ public class InitScreensFunctions {
         window.show();
     }
 
+    /**
+     * search screen pre vyhladavanie pomocou zadaneho regex
+     * @param regex
+     * @param actionEvent
+     * @throws IOException
+     */
     @SneakyThrows
     public void initSearchScreen(String regex, ActionEvent actionEvent) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
@@ -183,6 +170,15 @@ public class InitScreensFunctions {
         window.show();
     }
 
+    /**
+     * tu inicializujeme artist section, admin section a settings section
+     * @param Title
+     * @param fxml
+     * @param pane
+     * @param from
+     * @param shownTable
+     * @throws IOException
+     */
     @SneakyThrows
     public void initSettingsScreen(String Title, String fxml, AnchorPane pane, int from, int shownTable) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
