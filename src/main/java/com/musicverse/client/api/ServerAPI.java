@@ -5,6 +5,7 @@ import com.falsepattern.json.node.ObjectNode;
 import com.musicverse.client.IOUtil;
 import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
+import lombok.SneakyThrows;
 import lombok.val;
 
 import java.io.*;
@@ -12,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class ServerAPI {
     private static ServerAPI instance;
@@ -30,10 +32,11 @@ public class ServerAPI {
         this.connect();
     }
 
+    @SneakyThrows
     public void connect() {
-        //TODO load this from a config file. Using localhost for now.
-        hostname = "http://127.0.0.1";
-        port = 10007;
+        val cfg = JsonNode.parse(Files.readString(Path.of(".", "server.json")));
+        hostname = cfg.getString("hostname");
+        port = cfg.getInt("port");
     }
 
     public boolean registerUser(String email, String username, String password, int role) {
