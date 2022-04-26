@@ -1,6 +1,7 @@
 package com.musicverse.client.gui;
 
 import com.musicverse.client.InitScreensFunctions;
+import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -99,6 +100,7 @@ public class WelcomeScreen {
 					new InitScreensFunctions().initLoginScreen(actionEvent);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+                    new MyLogger(e.toString(),"ERROR");
 					e.printStackTrace();
 				}
             }
@@ -112,6 +114,7 @@ public class WelcomeScreen {
 					new InitScreensFunctions().initRegistrationScreen(actionEvent, 1);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+                    new MyLogger(e.toString(),"ERROR");
 					e.printStackTrace();
 				}
             }
@@ -125,6 +128,7 @@ public class WelcomeScreen {
 					new InitScreensFunctions().initRegistrationScreen(actionEvent, 2);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+                    new MyLogger(e.toString(),"ERROR");
 					e.printStackTrace();
 				}
             }
@@ -136,6 +140,7 @@ public class WelcomeScreen {
                 try {
 					new InitScreensFunctions().initMainScreen(event);
 				} catch (IOException e) {
+                    new MyLogger(e.toString(),"ERROR");
 					e.printStackTrace();
 				}
             }

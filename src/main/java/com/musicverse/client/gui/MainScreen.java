@@ -14,6 +14,7 @@ import com.musicverse.client.collections.itemActions.SongActionDropDown;
 import com.musicverse.client.objects.Artist;
 import com.musicverse.client.objects.Playlist;
 import com.musicverse.client.objects.Song;
+import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -103,6 +104,7 @@ public class MainScreen {
             this.showType = 0;
         }
         catch (Exception e){
+            new MyLogger(e.toString(),"ERROR");
             e.printStackTrace();
         }
 
@@ -274,6 +276,7 @@ public class MainScreen {
                         initScreensFunctions.initMainScreen(event2);
 
                     } catch (IOException ex) {
+                        new MyLogger(ex.toString(),"ERROR");
                         throw new RuntimeException(ex);
                     }
                 }
@@ -467,7 +470,13 @@ public class MainScreen {
     void onArtistsTableClicked(MouseEvent event) {
         Artist artist = tableView.getSelectionModel().getSelectedItem();
         InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
-        initScreensFunctions.initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", mainPane, Integer.parseInt(artist.getId()), 0);
+        try {
+            initScreensFunctions.initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", mainPane, Integer.parseInt(artist.getId()), 0);
+        }
+        catch (Exception e){
+            new MyLogger(e.toString(),"ERROR");
+        }
+
     }
 
 }

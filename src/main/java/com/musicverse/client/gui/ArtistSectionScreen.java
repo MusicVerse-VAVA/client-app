@@ -12,6 +12,7 @@ import com.musicverse.client.collections.itemActions.SongActionDropDown;
 import com.musicverse.client.objects.Album;
 import com.musicverse.client.objects.Artist;
 import com.musicverse.client.objects.Song;
+import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.collections.FXCollections;
@@ -160,8 +161,13 @@ public class ArtistSectionScreen {
         selectedSong = tableSongs.getSelectionModel().getSelectedItem();
         ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
         SongActionDropDown songActionDropDown = new SongActionDropDown();
-        songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, 1,
-                Integer.parseInt(selectedSong.getAlbumId()), ae));
+        try {
+            songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, 1,
+                    Integer.parseInt(selectedSong.getAlbumId()), ae));
+        }
+        catch (Exception e){
+            new MyLogger(e.toString(),"ERROR");
+        }
         songAction.setVisible(true);
     }
 

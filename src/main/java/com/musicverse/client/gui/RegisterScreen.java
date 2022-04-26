@@ -1,5 +1,6 @@
 package com.musicverse.client.gui;
 
+import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -133,6 +134,7 @@ public class RegisterScreen {
 
     	}
     	catch(Exception e){
+            new MyLogger(e.toString(),"ERROR");
             e.printStackTrace();
     	}
 

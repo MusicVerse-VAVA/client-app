@@ -90,6 +90,7 @@ public class LoginScreen {
                     new InitScreensFunctions().initMainScreen(event);
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
+                    new MyLogger(e.toString(),"ERROR");
                     e.printStackTrace();
                 }
 
@@ -99,6 +100,7 @@ public class LoginScreen {
 
         }
         catch(Exception e){
+            new MyLogger(e.toString(),"ERROR");
             e.printStackTrace();
         }
 

@@ -5,6 +5,7 @@ import com.musicverse.client.objects.Song;
 import com.musicverse.client.player.AudioPlayer;
 import com.musicverse.client.player.MediaManager;
 import com.musicverse.client.player.MusicPlayerException;
+import com.musicverse.client.sessionManagement.MyLogger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -121,6 +122,7 @@ public class MediaPlayerScreen {
                 try {
                     Thread.sleep(1000); //1 second
                 } catch (InterruptedException e) {
+                    new MyLogger(e.toString(),"ERROR");
                     e.printStackTrace();
                 }
                 Platform.runLater(() -> {
@@ -129,6 +131,7 @@ public class MediaPlayerScreen {
                                 String.valueOf((audioPlayer.getLength().getSeconds() - audioPlayer.getCurrentPlaybackPosition().getSeconds()) / 60 )
                         + ":" + String.valueOf((audioPlayer.getLength().getSeconds() - audioPlayer.getCurrentPlaybackPosition().getSeconds()) % 60 ));
                     } catch (MusicPlayerException e) {
+                        new MyLogger(e.toString(),"ERROR");
                         throw new RuntimeException(e);
                     }
                 });

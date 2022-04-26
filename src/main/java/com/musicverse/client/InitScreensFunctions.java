@@ -4,6 +4,7 @@ import com.musicverse.client.collections.Utils;
 import com.musicverse.client.objects.Artist;
 import com.musicverse.client.objects.Playlist;
 import com.musicverse.client.objects.Song;
+import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -101,6 +102,7 @@ public class InitScreensFunctions {
 
         }
         catch (Exception e){
+            new MyLogger(e.toString(),"ERROR");
             e.printStackTrace();
         }
 

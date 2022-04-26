@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import com.musicverse.client.InitScreensFunctions;
 import com.musicverse.client.objects.User;
+import com.musicverse.client.sessionManagement.MyLogger;
 import com.musicverse.client.sessionManagement.PreferencesLogin;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -47,6 +48,7 @@ public class SettingsDropDown {
             try {
 				new InitScreensFunctions().initSettingsScreen("Settings", "/SettingsScreen.fxml", pane, 0, 0);
 			} catch (IOException e1) {
+                new MyLogger(e1.toString(),"ERROR");
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -58,6 +60,7 @@ public class SettingsDropDown {
 					new InitScreensFunctions().initSettingsScreen("Artist", "/ArtistSectionScreen.fxml", pane, 0, 0);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
+                    new MyLogger(e1.toString(),"ERROR");
 					e1.printStackTrace();
 				}
 			else if (role == 3)
@@ -65,6 +68,7 @@ public class SettingsDropDown {
 					new InitScreensFunctions().initSettingsScreen("Admin", "/AdminSectionScreen.fxml", pane, 0, 0);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
+                    new MyLogger(e1.toString(),"ERROR");
 					e1.printStackTrace();
 				}
 
@@ -78,8 +82,10 @@ public class SettingsDropDown {
             InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
             ActionEvent ae = new ActionEvent(e.getSource(), e.getTarget());
             try {
+                new MyLogger("Pokus o odhlasenie prebehol uspesne","INFO");
                 initScreensFunctions.initLoginScreen(pane);
             } catch (IOException ex) {
+                new MyLogger(ex.toString(),"ERROR");
                 throw new RuntimeException(ex);
             }
         });
