@@ -162,7 +162,7 @@ public class ArtistSectionScreen {
         selectedSong = tableSongs.getSelectionModel().getSelectedItem();
         ActionEvent ae = new ActionEvent(event.getSource(), event.getTarget());
         SongActionDropDown songActionDropDown = new SongActionDropDown();
-<<<<<<< Updated upstream
+
         try {
             songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, 1,
                     Integer.parseInt(selectedSong.getAlbumId()), ae));
@@ -170,10 +170,10 @@ public class ArtistSectionScreen {
         catch (Exception e){
             new MyLogger(e.toString(),"ERROR");
         }
-=======
+
         songAction.getMenus().setAll(songActionDropDown.setMenu(selectedSong, artistNameLabel, this.id,
                 Integer.parseInt(selectedSong.getAlbumId()), ae));
->>>>>>> Stashed changes
+
         songAction.setVisible(true);
     }
 
