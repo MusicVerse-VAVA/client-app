@@ -70,7 +70,7 @@ public class WelcomeScreen {
 
         guestBtn = new Button(Localozator.getResourceBundle().getString("CONTINUE WITHOUT REGISTRATION"));
         if (PreferencesLogin.getPrefs().getId() > 0)
-            guestBtn.setText("CONTINUE WITH SAVED ACCOUNT");
+            guestBtn.setText(Localozator.getResourceBundle().getString("CONTINUE WITH SAVED ACCOUNT"));
         guestBtn.setStyle("-fx-cursor: hand; -fx-background-color: #58A034; -fx-font-size: 18px; -fx-text-fill: white; -fx-pref-width: 300px;");
         guestBtn.setMaxWidth(Double.MAX_VALUE);
         guestBtn.setAlignment(Pos.CENTER);
