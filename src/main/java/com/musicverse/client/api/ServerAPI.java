@@ -89,6 +89,39 @@ public class ServerAPI {
         });
     }
 
+    public JsonNode getArtistsByRegex(String regex){
+        val payload = new ObjectNode();
+        String url;
+        payload.set("regex", regex);
+        url = "loadArtistsByRegex";
+        return queryServerJson(url, Method.POST, payload, (code, response) -> {
+            if (response.getString("status").equals("ok")){
+                new MyLogger("Ziskanie interpretov z databazy prebehlo uspesne ","INFO");
+                return response.get("artists");
+            }else{
+                new MyLogger("Chyba pri ziskavani interpretov z databazy","ERROR");
+                return null;
+            }
+        });
+    }
+
+    public JsonNode loadAlbumsRegex(String regex){
+        val payload = new ObjectNode();
+        String url;
+        payload.set("regex", regex);
+        url = "loadAlbumsByRegex";
+
+        return queryServerJson(url, Method.POST, payload, (code, response) -> {
+            if (response.getString("status").equals("ok")){
+                new MyLogger("Ziskanie albumov z databazy prebehlo uspesne ","INFO");
+                return response.get("albums");
+            }else{
+                new MyLogger("Chyba pri ziskavani albumov z databazy","ERROR");
+                return null;
+            }
+        });
+    }
+
     public JsonNode authenticate(String email, String password) {
         val payload = new ObjectNode();
         payload.set("email", email);
@@ -266,6 +299,22 @@ public class ServerAPI {
         });
     }
 
+    //TODO server
+    public JsonNode songsByRegex(String regex){
+        val payload = new ObjectNode();
+        payload.set("regex",regex);
+        return queryServerJson("songsByRegex", Method.POST, payload, (code, response) -> {
+            if (response.getString("status").equals("ok")) {
+                System.out.println(response.get("songs"));
+                new MyLogger("Ziskavanie skladieb prebehlo uspesne","INFO");
+                return response.get("songs");
+            } else {
+                new MyLogger("Chyba pri ziskavani skladieb ","ERROR");
+                return null;
+            }
+        });
+    }
+
     public boolean deleteSong(int songId, int collectionId, int what){
         new MyLogger("Pokus o zmazanie skladby "+songId,"WARNING");
         val payload = new ObjectNode();
@@ -334,7 +383,7 @@ public class ServerAPI {
         payload.set("nickname", nickName);
         payload.set("old_password", oldPswd);
         return queryServerJson("updateUserSettings", Method.POST, payload, (code, response) ->
-                response.getInt("response"));
+                response.getInt("valid"));
     }
 
     public boolean createCollection(int id, String name, String description, int what){

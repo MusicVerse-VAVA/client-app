@@ -157,6 +157,20 @@ public class InitScreensFunctions {
     }
 
     @SneakyThrows
+    public void initSearchScreen(String regex, ActionEvent actionEvent) throws IOException{
+        ResourceBundle resources = Localozator.getResourceBundle();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/SearchScreen.fxml")), resources);
+        Parent root = loader.load();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        com.musicverse.client.gui.SearchScreen controler = loader.getController();
+        controler.load(regex);
+        Scene scene = new Scene(root, 600,190);
+        window.setTitle("MusicVerse searcher");
+        window.setScene(scene);
+        window.show();
+    }
+
+    @SneakyThrows
     public void initSettingsScreen(String Title, String fxml, AnchorPane pane, int from, int shownTable) throws IOException{
         ResourceBundle resources = Localozator.getResourceBundle();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(fxml)), resources);

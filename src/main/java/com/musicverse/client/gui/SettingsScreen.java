@@ -76,40 +76,52 @@ public class SettingsScreen {
         InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
 
         if (nickname != null || newPswd != null){
+            System.out.println("test12");
             if (newPswd.getBytes(StandardCharsets.UTF_8).length > 0){
+                System.out.println("test11");
                 if (!newPswd.equals(confirmPswd)){
                     loginAlert.setAlertType(Alert.AlertType.ERROR);
                     loginAlert.setContentText("Hesla sa nezhoduju!");
                     loginAlert.show();
+                    System.out.println("test10");
                 } else {
                     Pattern pattern = Pattern.compile("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)");
                     Matcher matcher = pattern.matcher(newPswd);
                     boolean matchFound = matcher.find();
+                    System.out.println("test9");
                     if(matchFound && newPswd.getBytes(StandardCharsets.UTF_8).length > 7) {
                         loginAlert.setAlertType(Alert.AlertType.INFORMATION);
                         loginAlert.setContentText("Heslo vyhovuje");
                         loginAlert.show();
+                        System.out.println("test8");
                         if (confirmOldPswd.getBytes(StandardCharsets.UTF_8).length > 1) {
                             if (api.updateUser(PreferencesLogin.getPrefs().getId(), newPswd, nickname, confirmOldPswd) == 1){
                                 loginAlert.setAlertType(Alert.AlertType.INFORMATION);
                                 loginAlert.setContentText("Akcia prebehla uspesne");
                                 loginAlert.show();
+                                System.out.println("test7");
+
                                 initScreensFunctions.initMainScreen(event);
                             } else {
                                 loginAlert.setAlertType(Alert.AlertType.INFORMATION);
                                 loginAlert.setContentText("Pravdepodobne ste nezadali spravne vase heslo");
                                 loginAlert.show();
+                                System.out.println("test6");
                             }
                         }
                         else{
                             loginAlert.setAlertType(Alert.AlertType.ERROR);
                             loginAlert.setContentText("Zadajte svoje aktualne heslo");
                             loginAlert.show();
+                            System.out.println("test5");
+
                         }
                     } else {
                         loginAlert.setAlertType(Alert.AlertType.ERROR);
                         loginAlert.setContentText("Heslo nie je dostatocne silne");
                         loginAlert.show();
+                        System.out.println("test4");
+
                     }
                 }
             } else {
@@ -120,28 +132,33 @@ public class SettingsScreen {
                             loginAlert.setAlertType(Alert.AlertType.INFORMATION);
                             loginAlert.setContentText("Akcia prebehla uspesne");
                             loginAlert.show();
+                            System.out.println("test3");
                             initScreensFunctions.initMainScreen(event);
                         } else {
                             loginAlert.setAlertType(Alert.AlertType.ERROR);
                             loginAlert.setContentText("Pravdepodobne ste nezadali spravne vase aktualne heslo");
                             loginAlert.show();
+                            System.out.println("test2");
+
                         }
                     } else {
                         loginAlert.setAlertType(Alert.AlertType.ERROR);
                         loginAlert.setContentText("Zadajte svoje aktualne heslo");
                         loginAlert.show();
+                        System.out.println("test1");
                     }
                 }
             }
         }
-
-        if (languageOption.getValue().equals("English")){
-            Localozator.setLocale(new Locale("en", "US"));
+        if (nickname == null || newPswd == null) {
+            if (languageOption.getValue().equals("English")) {
+                Localozator.setLocale(new Locale("en", "US"));
+            }
+            if (languageOption.getValue().equals("Slovenčina")) {
+                Localozator.setLocale(new Locale("sk", "SK"));
+            }
+            initScreensFunctions.initMainScreen(event);
         }
-        if (languageOption.getValue().equals("Slovenčina")){
-            Localozator.setLocale(new Locale("sk", "SK"));
-        }
-        initScreensFunctions.initMainScreen(event);
     }
 
     public void setFrom(String from){

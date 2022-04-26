@@ -27,6 +27,7 @@ import com.musicverse.client.api.ServerAPI;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.SneakyThrows;
 import lombok.val;
 import com.musicverse.client.Localozator;
 
@@ -213,6 +214,17 @@ public class MainScreen {
 
     @FXML
     private Button newPlaylistBtn;
+
+
+    @FXML
+    private TextField searchField;
+
+    @SneakyThrows
+    @FXML
+    void onSearchButtonClick(ActionEvent event) {
+        InitScreensFunctions initScreensFunctions = new InitScreensFunctions();
+        initScreensFunctions.initSearchScreen(searchField.getText(), event);
+    }
 
 
     @FXML
