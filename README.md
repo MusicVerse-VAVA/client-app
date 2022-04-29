@@ -1,15 +1,24 @@
 # client-app
 Front end: JavaFX
+
 Back-end: Java 11
+
 Session management: Library Java Preferencies
+
 Music Player: javax.sound.sampled; io, lombok; time, nio
+
 Manazer zavisloti: Maven
+
 GUI: SceneBuilder
+
 Collections: FXCollections, ObservableList
+
 Lokalizacia: ResourceBundler, Locale, net.URLClassLoader, net.URL
+
 Logging: JavaX.xml, javaio, javaTime, org.w3c.dom
 
 Pre spustenie programu sluzi JAR subor client_with_dependencies
+
 Pre zobrazenie JavaDoc o klientovi je JAR client_java_doc
 
 # Projekt musi obsahovat
